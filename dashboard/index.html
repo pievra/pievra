@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard - Pievra</title><meta name="robots" content="noindex"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}body{font-family:Inter,sans-serif;background:var(--surf);min-height:100vh;display:flex;flex-direction:column}nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}.logo{display:flex;align-items:center;gap:10px;text-decoration:none}.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}.nr{display:flex;align-items:center;gap:14px}.ptag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7)}.ptag.pro{border-color:var(--teal);color:var(--teal)}.av{width:32px;height:32px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink);cursor:pointer}.nwrap{position:relative}.dd{position:absolute;right:0;top:40px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:8px;min-width:190px;box-shadow:0 8px 32px rgba(10,14,26,.12);display:none;z-index:200}.dd.open{display:block}.ddi{display:block;padding:8px 12px;font-size:13px;color:var(--soft);border-radius:8px;text-decoration:none;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:Inter}.ddi:hover{background:var(--surf);color:var(--ink)}.ddi.red{color:#dc2626}.ddi.red:hover{background:#fef2f2}.sep{height:1px;background:var(--border);margin:4px 0}.shell{display:flex;flex:1}.sb{width:220px;background:#fff;border-right:1px solid var(--border);padding:16px 10px;display:flex;flex-direction:column;gap:2px;min-height:calc(100vh - 60px)}.sb-sec{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;padding:12px 10px 4px;text-transform:uppercase}.sb-btn{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:14px;color:var(--soft);cursor:pointer;background:none;border:none;width:100%;font-family:Inter;text-decoration:none}.sb-btn:hover{background:var(--surf);color:var(--ink)}.sb-btn.on{background:var(--teal-l);color:var(--teal-d);font-weight:600}.main{flex:1;padding:28px;max-width:1100px}.pnl{display:none}.pnl.on{display:block}.ptitle{font-family:Manrope;font-weight:800;font-size:22px;color:var(--ink);margin-bottom:4px}.psub{font-size:14px;color:var(--muted);margin-bottom:24px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}.stat{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px}.sv{font-family:Manrope;font-weight:800;font-size:28px;color:var(--ink)}.sv.t{color:var(--teal-d)}.sl{font-size:12px;color:var(--muted);margin-top:4px}.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px}.ct{font-family:Manrope;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}.act{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;text-decoration:none;display:block;transition:all .15s}.act:hover{border-color:var(--teal);transform:translateY(-2px)}.ai{font-size:26px;margin-bottom:6px}.at{font-weight:600;font-size:14px;color:var(--ink);margin-bottom:2px}.ad{font-size:12px;color:var(--muted)}.pr{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surf);border-radius:10px;margin-bottom:6px}.pd{width:10px;height:10px;border-radius:50%;flex-shrink:0}.pn{font-weight:600;font-size:14px;color:var(--ink);flex:1}.pv{font-size:12px;color:var(--muted)}.pb{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px}.live{background:#dcfce7;color:#166534}.draft{background:#fef9c3;color:#713f12}.ug{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.uc{background:#fff;border:2px solid var(--border);border-radius:14px;padding:22px;text-align:center;position:relative}.uc.cur{border-color:var(--teal);background:var(--teal-l)}.uc.feat{border-color:var(--ink)}.ubg{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}.un{font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);margin-bottom:4px}.up{font-size:24px;font-weight:700;color:var(--ink);margin-bottom:4px}.up span{font-size:12px;font-weight:400;color:var(--muted)}.ud{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.5}.ufl{list-style:none;text-align:left;margin-bottom:14px;font-size:13px;color:var(--soft)}.ufl li{padding:3px 0;display:flex;gap:6px}.ufl li::before{content:"✓";color:var(--teal-d);font-weight:700}.fl{display:block;font-size:13px;font-weight:500;color:var(--soft);margin-bottom:4px}.fi{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--ink);background:var(--surf);outline:none;font-family:Inter}.fi:focus{border-color:var(--teal);background:#fff}.fi[readonly]{opacity:.6;cursor:not-allowed}.fr{margin-bottom:14px}.btn{padding:10px 20px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:Inter;transition:all .15s}.bi{background:var(--ink);color:#fff}.bi:hover{background:#1a2030}.bt{background:var(--teal);color:var(--ink)}.bt:hover{background:var(--teal-d)}.bo{background:none;border:1px solid var(--border);color:var(--soft)}.bo:hover{border-color:var(--ink);color:var(--ink)}.br{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}.br:hover{background:#dc2626;color:#fff}.bs{padding:7px 14px;font-size:13px}.alrt{padding:11px 15px;border-radius:10px;font-size:13px;margin-bottom:14px;display:none}.aok{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}.aer{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}#load{position:fixed;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999}.spin{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:sp .7s linear infinite;margin-bottom:14px}.ssm{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;margin-right:4px}@keyframes sp{to{transform:rotate(360deg)}}.empty{text-align:center;padding:44px 20px;color:var(--muted)}.ei{font-size:38px;margin-bottom:10px}.et{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px}.eb{font-size:13px;line-height:1.6}.moverlay{display:none;position:fixed;inset:0;background:rgba(10,14,26,.5);z-index:500;align-items:center;justify-content:center}.moverlay.open{display:flex}.mbox{background:#fff;border-radius:16px;padding:30px;max-width:360px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2)}@media(max-width:900px){.sb{display:none}.stats{grid-template-columns:repeat(2,1fr)}.acts{grid-template-columns:1fr 1fr}.ug{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}</style></head><body>
+<div id="load"><div class="spin"></div><p style="color:var(--muted);font-size:14px">Loading your dashboard...</p></div>
+<nav>
+  <a href="/" class="logo"><div class="lm">P</div><div class="ln">pievra</div></a>
+  <div class="nr">
+    <div class="ptag" id="ntag">Community</div>
+    <div class="nwrap">
+      <div class="av" id="av" onclick="toggleDD()">?</div>
+      <div class="dd" id="ddd">
+        <div style="padding:8px 12px 10px;border-bottom:1px solid var(--border);margin-bottom:4px">
+          <div style="font-size:13px;font-weight:600;color:var(--ink)" id="dde">—</div>
+          <div style="font-size:12px;color:var(--muted)" id="ddp">Community plan</div>
+        </div>
+        <button class="ddi" onclick="go('overview')">&#x1F4CA; Overview</button>
+        <button class="ddi" onclick="go('settings')">&#x2699;&#xFE0F; Settings</button>
+        <div class="sep"></div>
+        <a class="ddi" href="/">&#x2190; pievra.com</a>
+        <div class="sep"></div>
+        <button class="ddi red" onclick="doLogout()">Sign out</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="shell">
+  <aside class="sb">
+    <div class="sb-sec">Main</div>
+    <button class="sb-btn on" id="sov" onclick="go('overview')">&#x1F4CA; Overview</button>
+    <button class="sb-btn" id="sca" onclick="go('campaigns')">&#x1F5FA; Campaigns</button>
+    <button class="sb-btn" id="spr" onclick="go('protocols')">&#x26A1; Protocols</button>
+    <button class="sb-btn" id="sag" onclick="go('agents')">&#x1F916; Agents</button>
+    <div class="sb-sec">Account</div>
+    <button class="sb-btn" id="spl" onclick="go('plan')">&#x1F4B3; Plan &amp; billing</button>
+    <button class="sb-btn" id="sst" onclick="go('settings')">&#x2699;&#xFE0F; Settings</button>
+    <button class="sb-btn" id="sse" onclick="go('security')">&#x1F512; Security</button>
+  </aside>
+  <main class="main">
+    <!-- OVERVIEW -->
+    <div class="pnl on" id="pov">
+      <div class="ptitle" id="greet">Dashboard</div>
+      <div class="psub" id="osub">Welcome to Pievra</div>
+      <div class="stats">
+        <div class="stat"><div class="sv t">0</div><div class="sl">Campaigns</div></div>
+        <div class="stat"><div class="sv">0</div><div class="sl">Active agents</div></div>
+        <div class="stat"><div class="sv t">5</div><div class="sl">Live protocols</div></div>
+        <div class="stat"><div class="sv">$0</div><div class="sl">GMV transacted</div></div>
+      </div>
+      <div class="acts">
+        <a class="act" href="/#planner"><div class="ai">&#x1F5FA;</div><div class="at">Plan a campaign</div><div class="ad">Cross-protocol builder</div></a>
+        <a class="act" href="/#marketplace"><div class="ai">&#x1F916;</div><div class="at">List your agent</div><div class="ad">Add to marketplace</div></a>
+        <a class="act" href="/newsletter"><div class="ai">&#x1F4EC;</div><div class="at">Protocol briefing</div><div class="ad">Weekly newsletter</div></a>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="ct">Your plan <button class="btn bt bs" onclick="go('plan')">Upgrade</button></div>
+          <div id="plbadge" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;background:var(--surf);border:1px solid var(--border);font-size:14px;font-weight:600;color:var(--soft)">&#x2B21; Community</div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted);line-height:1.7" id="plfeats">5 agents · All protocols · SDK · Sandbox</div>
+        </div>
+        <div class="card">
+          <div class="ct">Account</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--muted)">Email</span><span style="color:var(--ink);font-weight:500" id="aemail">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--muted)">Member since</span><span style="color:var(--ink)" id="asince">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--muted)">Last sign in</span><span style="color:var(--ink)" id="alast">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--muted)">Status</span><span style="color:#166534;font-weight:600">✓ Verified</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CAMPAIGNS -->
+    <div class="pnl" id="pca">
+      <div class="ptitle">Campaigns</div><div class="psub">Your cross-protocol campaign history</div>
+      <div class="card"><div class="empty"><div class="ei">&#x1F5FA;</div><div class="et">No campaigns yet</div><div class="eb">Plan your first campaign using the Campaign Planner. Pievra auto-selects the optimal protocol stack.</div>
+      <a href="/#planner" style="display:inline-block;margin-top:14px;padding:10px 20px;background:var(--ink);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px">Plan a campaign &#x2192;</a></div></div>
+    </div>
+    <!-- PROTOCOLS -->
+    <div class="pnl" id="ppr">
+      <div class="ptitle">Live Protocols</div><div class="psub">All five agentic advertising standards — verified March 2026</div>
+      <div class="card">
+        <div class="pr"><div class="pd" style="background:#00c4a7"></div><div class="pn">AdCP</div><div class="pv">v2.5.1 · AgenticAdvertising.org</div><div class="pb live">LIVE</div></div>
+        <div class="pr"><div class="pd" style="background:#7c3aed"></div><div class="pn">MCP</div><div class="pv">Spec 2025-11-25 · Linux Foundation</div><div class="pb live">LIVE</div></div>
+        <div class="pr"><div class="pd" style="background:#3b82f6"></div><div class="pn">UCP / AAMP</div><div class="pv">v1.0 public · IAB Tech Lab</div><div class="pb live">LIVE</div></div>
+        <div class="pr"><div class="pd" style="background:#f59e0b"></div><div class="pn">ARTF</div><div class="pv">v1.0 draft · IAB Tech Lab</div><div class="pb draft">DRAFT</div></div>
+        <div class="pr"><div class="pd" style="background:#009e86"></div><div class="pn">A2A</div><div class="pv">v1.0.0 · Linux Foundation</div><div class="pb live">LIVE</div></div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">Updated every Tuesday · <a href="/news" style="color:var(--teal);text-decoration:none">Protocol Briefing &#x2192;</a></div>
+      </div>
+    </div>
+    <!-- AGENTS -->
+    <div class="pnl" id="pag">
+      <div class="ptitle">Agents</div><div class="psub">Agents you have listed in the Pievra Marketplace</div>
+      <div class="card"><div class="empty"><div class="ei">&#x1F916;</div><div class="et">No agents listed</div><div class="eb">List your DSP or SSP agent. Receive standardised bid requests across all buying protocols simultaneously.</div>
+      <a href="/#marketplace" style="display:inline-block;margin-top:14px;padding:10px 20px;background:var(--ink);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px">List your agent &#x2192;</a></div></div>
+    </div>
+    <!-- PLAN -->
+    <div class="pnl" id="ppl">
+      <div class="ptitle">Plan &amp; Billing</div><div class="psub">Manage your subscription</div>
+      <div class="alrt" id="apl"></div>
+      <div class="ug">
+        <div class="uc" id="uc0"><div class="un">Community</div><div class="up">$0<span>/forever</span></div><div class="ud">Individuals and exploration</div>
+          <ul class="ufl"><li>5 agents</li><li>All protocols</li><li>SDK access</li><li>Sandbox</li><li>Community support</li></ul>
+          <button class="btn bo" id="pb0" onclick="upgr('community')">Get started</button></div>
+        <div class="uc feat" id="uc1"><div class="ubg">Most Popular</div><div class="un">Pro</div><div class="up">$499<span>/month</span></div><div class="ud">Teams. First 14 days free.</div>
+          <ul class="ufl"><li>Unlimited agents</li><li>Performance benchmarks</li><li>Campaign analytics</li><li>PDF export</li><li>Audit trail</li><li>Priority support</li></ul>
+          <button class="btn bt" id="pb1" onclick="upgr('pro')">Upgrade to Pro</button></div>
+        <div class="uc" id="uc2"><div class="un">Enterprise</div><div class="up">Custom</div><div class="ud">White-label, SSO, SLA.</div>
+          <ul class="ufl"><li>Dedicated agent fleet</li><li>Custom integrations</li><li>SSO &amp; RBAC</li><li>White-label</li><li>Account manager</li><li>SLA guarantees</li></ul>
+          <button class="btn bi" id="pb2" onclick="salesContact()">Contact sales</button></div>
+      </div>
+      <div style="margin-top:14px;padding:14px;background:#fff;border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--muted);line-height:1.7">A <strong style="color:var(--ink)">0.75% liquidity fee</strong> applies on all GMV transacted through the platform.</div>
+    </div>
+    <!-- SETTINGS -->
+    <div class="pnl" id="pst">
+      <div class="ptitle">Settings</div><div class="psub">Manage your profile and data</div>
+      <div class="alrt" id="ast"></div>
+      <div class="card"><div class="ct">Profile</div>
+        <div class="fr"><label class="fl">Email</label><input class="fi" id="sem" type="email" readonly></div>
+        <div class="fr"><label class="fl">Plan</label><input class="fi" id="spl" type="text" readonly></div>
+        <div class="fr"><label class="fl">Member since</label><input class="fi" id="ssi" type="text" readonly></div>
+      </div>
+      <div class="card"><div class="ct">Change password</div>
+        <div class="fr"><label class="fl">New password</label><input class="fi" id="sp1" type="password" placeholder="Minimum 8 characters"></div>
+        <div class="fr"><label class="fl">Confirm</label><input class="fi" id="sp2" type="password" placeholder="Repeat new password"></div>
+        <button class="btn bi" onclick="changePw()">Update password</button>
+      </div>
+      <div class="card"><div class="ct">GDPR &amp; your data</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">Under GDPR you have the right to access, rectify and erase your personal data. Pievra stores only your email and consent records. Your data is never sold.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn bo bs" onclick="exportData()">Export my data</button>
+          <button class="btn br bs" onclick="document.getElementById('delmod').classList.add('open')">Delete my account</button>
+        </div>
+      </div>
+    </div>
+    <!-- SECURITY -->
+    <div class="pnl" id="pse">
+      <div class="ptitle">Security</div><div class="psub">Sessions and recovery</div>
+      <div class="alrt" id="ase"></div>
+      <div class="card"><div class="ct">Active session</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--surf);border-radius:10px">
+          <div><div style="font-size:14px;font-weight:600;color:var(--ink)">Current session</div><div style="font-size:12px;color:var(--muted)">30-day JWT · This device</div></div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:12px;color:#166534;font-weight:600"><span style="width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block"></span>Active</div>
+        </div>
+        <button class="btn bo bs" style="margin-top:10px" onclick="doLogout()">Sign out</button>
+      </div>
+      <div class="card"><div class="ct">Recovery codes</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7">8 recovery codes were generated at account creation. Each can be used once if you lose password and email access. Store in a password manager or print them.</p>
+        <p style="font-size:13px;color:var(--muted);margin-top:10px">For new codes contact <a href="mailto:legal@pievra.com" style="color:var(--teal)">legal@pievra.com</a>.</p>
+      </div>
+      <div class="card"><div class="ct">Password security</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Pievra uses bcrypt hashing. Your password is never stored in plain text.</p>
+        <button class="btn bo bs" onclick="go('settings')">Change password &#x2192;</button>
+      </div>
+    </div>
+  </main>
+</div>
+<!-- DELETE MODAL -->
+<div class="moverlay" id="delmod">
+  <div class="mbox">
+    <div style="font-size:30px;margin-bottom:10px">&#x26A0;&#xFE0F;</div>
+    <h3 style="font-family:Manrope;font-weight:800;font-size:17px;color:var(--ink);margin-bottom:8px">Delete account?</h3>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">Permanently deletes your account and all data. Cannot be undone.</p>
+    <div style="display:flex;gap:10px">
+      <button class="btn bo" style="flex:1" onclick="document.getElementById('delmod').classList.remove('open')">Cancel</button>
+      <button class="btn br" style="flex:1" onclick="delAccount()">Delete</button>
+    </div>
+  </div>
+</div>
+<script>
+var U=null;
+var fmt=function(d){return d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';};
+var greetMsg=function(){var h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening';};
+
+function init(){
+  fetch('/auth/me',{credentials:'include'}).then(function(r){
+    if(!r.ok){window.location='/signin';return null;}
+    return r.json();
+  }).then(function(u){
+    if(!u)return;
+    U=u;
+    render(U);
+    document.getElementById('load').style.display='none';
+    if(new URLSearchParams(location.search).get('welcome')){
+      al('st','Welcome! Your account is verified and ready.','ok');
+      history.replaceState({},'','/dashboard');
+    }
+  }).catch(function(){window.location='/signin';});
+}
+
+function render(u){
+  var ini=u.email[0].toUpperCase();
+  document.getElementById('av').textContent=ini;
+  document.getElementById('dde').textContent=u.email;
+  var planCap=u.plan.charAt(0).toUpperCase()+u.plan.slice(1);
+  document.getElementById('ddp').textContent=planCap+' plan';
+  document.getElementById('ntag').textContent=planCap;
+  if(u.plan==='pro')document.getElementById('ntag').classList.add('pro');
+  document.getElementById('greet').textContent=greetMsg()+' \uD83D\uDC4B';
+  document.getElementById('osub').textContent='Welcome back, '+u.email;
+  document.getElementById('aemail').textContent=u.email;
+  document.getElementById('asince').textContent=fmt(u.created_at);
+  document.getElementById('alast').textContent=u.last_login?fmt(u.last_login):'First session';
+  var pf={community:'5 agents \u00B7 All protocols \u00B7 SDK \u00B7 Sandbox',pro:'Unlimited agents \u00B7 Analytics \u00B7 PDF export \u00B7 Priority support',enterprise:'Dedicated fleet \u00B7 SSO \u00B7 White-label \u00B7 SLA'};
+  document.getElementById('plfeats').textContent=pf[u.plan]||'';
+  document.getElementById('plbadge').innerHTML='&#x2B21; '+planCap;
+  document.getElementById('sem').value=u.email;
+  document.getElementById('spl').value=planCap;
+  document.getElementById('ssi').value=fmt(u.created_at);
+  updCards(u.plan);
+}
+
+function updCards(plan){
+  var plans=['community','pro','enterprise'];
+  plans.forEach(function(p,i){
+    var c=document.getElementById('uc'+i),b=document.getElementById('pb'+i);
+    if(p===plan){
+      c.classList.add('cur');
+      if(b){b.textContent='Current plan';b.disabled=true;b.className='btn bo';}
+    } else {
+      c.classList.remove('cur');
+      if(b&&b.disabled){
+        b.disabled=false;
+        if(p==='pro'){b.textContent='Upgrade to Pro';b.className='btn bt';}
+        if(p==='community'){b.textContent='Get started';b.className='btn bo';}
+        if(p==='enterprise'){b.textContent='Contact sales';b.className='btn bi';}
+      }
+    }
+  });
+}
+
+function go(id){
+  document.querySelectorAll('.pnl').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+  var pm={overview:'pov',campaigns:'pca',protocols:'ppr',agents:'pag',plan:'ppl',settings:'pst',security:'pse'};
+  var sm={overview:'sov',campaigns:'sca',protocols:'spr',agents:'sag',plan:'spl',settings:'sst',security:'sse'};
+  var pel=document.getElementById(pm[id]);
+  if(pel)pel.classList.add('on');
+  var sel=document.getElementById(sm[id]);
+  if(sel)sel.classList.add('on');
+  document.getElementById('ddd').classList.remove('open');
+  window.scrollTo(0,0);
+}
+
+function toggleDD(){document.getElementById('ddd').classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.nwrap'))document.getElementById('ddd').classList.remove('open');});
+
+function doLogout(){
+  fetch('/auth/logout',{method:'POST',credentials:'include'}).then(function(){
+    localStorage.removeItem('pievra_user');
+    window.location='/signin';
+  });
+}
+
+function upgr(plan){
+  var names=['community','pro','enterprise'];
+  var i=names.indexOf(plan);
+  var b=document.getElementById('pb'+i);
+  b.innerHTML='<span class="ssm"></span>...';b.disabled=true;
+  fetch('/auth/upgrade',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:plan})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+  .then(function(res){
+    if(!res.ok){al('pl',res.d.detail||'Upgrade failed.','er');return;}
+    U.plan=plan;render(U);
+    al('pl','Plan updated to '+(plan.charAt(0).toUpperCase()+plan.slice(1))+'. Stripe payment integration coming soon.','ok');
+  })
+  .catch(function(){al('pl','Network error.','er');})
+  .finally(function(){b.disabled=false;updCards(U?U.plan:'community');});
+}
+
+function salesContact(){window.location='mailto:legal@pievra.com?subject=Enterprise%20Plan%20Enquiry';}
+
+function changePw(){
+  var p1=document.getElementById('sp1').value,p2=document.getElementById('sp2').value;
+  if(p1.length<8){al('st','Password must be at least 8 characters.','er');return;}
+  if(p1!==p2){al('st','Passwords do not match.','er');return;}
+  fetch('/auth/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:U.email})})
+  .then(function(){
+    al('st','A reset link has been sent to '+U.email+'. Click it to set your new password.','ok');
+    document.getElementById('sp1').value='';
+    document.getElementById('sp2').value='';
+  }).catch(function(){al('st','Network error.','er');});
+}
+
+function exportData(){
+  var d={email:U.email,plan:U.plan,member_since:U.created_at,last_login:U.last_login,exported_at:new Date().toISOString(),gdpr:'Exported under GDPR Art. 20'};
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));
+  a.download='pievra-data.json';a.click();
+  al('st','Account data downloaded.','ok');
+}
+
+function delAccount(){
+  fetch('/auth/account',{method:'DELETE',credentials:'include'}).then(function(r){
+    if(r.ok){localStorage.removeItem('pievra_user');window.location='/?deleted=1';}
+  }).catch(function(){document.getElementById('delmod').classList.remove('open');al('st','Error. Please try again.','er');});
+}
+
+function al(sec,msg,type){
+  var m={ov:'',ca:'',pr:'',ag:'',pl:'apl',st:'ast',se:'ase'};
+  var id=m[sec.slice(0,2)]||'ast';
+  var el=document.getElementById(id);if(!el)return;
+  el.textContent=msg;
+  el.className='alrt '+(type==='ok'?'aok':'aer');
+  el.style.display='block';
+  if(type==='ok')setTimeout(function(){el.style.display='none';},5000);
+}
+
+init();
+</script>
+</body></html>
