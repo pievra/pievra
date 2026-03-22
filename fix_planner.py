@@ -1,73 +1,49 @@
-import re, json
+import re
 
 path = '/var/www/pievra/index.html'
 txt = open(path).read()
-print(f"File size: {len(txt)} bytes")
 
-# ── 1. FIX GENERATE BUTTON onclick ─────────────────────────────────────────
-# Find all variations and fix them
-fixes = [
-    ('onclick="submitGate()">\n          🐙 Generate Campaign Plan', 'onclick="pievraGen()">\n          🐙 Generate Campaign Plan'),
-    ("onclick=\"submitGate()\">\n          \U0001f419 Generate Campaign Plan", "onclick=\"pievraGen()\">\n          \U0001f419 Generate Campaign Plan"),
-    ('onclick="submitGate()">🐙 Generate Campaign Plan', 'onclick="pievraGen()">🐙 Generate Campaign Plan'),
-    ('onclick="submitGate()">', 'onclick="pievraGen()">'),  # catch-all for generate-btn context
-]
-for old, new in fixes:
-    if old in txt:
-        txt = txt.replace(old, new)
-        print(f"Fixed generate button: {old[:50]}")
+print("=== BEFORE ===")
+# Show all generate-btn buttons
+for m in re.finditer(r'<button[^>]*generate-btn[^>]*>[^<]*</button>', txt, re.DOTALL):
+    print(repr(m.group()[:120]))
+print()
 
-# Verify - find generate-btn and show its onclick
-m = re.search(r'class="generate-btn"[^>]*onclick="([^"]+)"', txt)
-if m:
-    print(f"Generate btn onclick: {m.group(1)}")
-else:
-    m2 = re.search(r'generate-btn.*?onclick="([^"]+)"', txt, re.DOTALL)
-    if m2:
-        print(f"Generate btn onclick (loose): {m2.group(1)}")
-    else:
-        # Force replace using regex
-        txt = re.sub(
-            r'(class="generate-btn"[^>]*?)onclick="[^"]*"',
-            r'\1onclick="pievraGen()"',
-            txt
-        )
-        print("Generate button fixed via regex")
+# Fix ALL generate-btn buttons — both the gate one and the main one
+# The gate button at line 650 - change to go to signup for non-auth users
+txt = re.sub(
+    r'(<button[^>]*class="generate-btn"[^>]*)onclick="submitGate\(\)"([^>]*>)',
+    r'\1onclick="pievraGen()"\2',
+    txt
+)
 
-# ── 2. FIX FLIGHT DATE INPUTS → date type ──────────────────────────────────
+# Also fix the date inputs
 txt = txt.replace(
     '<input type="text" id="pl-start" placeholder="YYYY-MM-DD"/>',
-    '<input type="date" id="pl-start" style="padding:10px 14px"/>'
+    '<input type="date" id="pl-start"/>'
+)
+txt = txt.replace(
+    '<input type="date" id="pl-start" style="padding:10px 14px"/>',
+    '<input type="date" id="pl-start"/>'
 )
 txt = txt.replace(
     '<input type="text" id="pl-end" placeholder="YYYY-MM-DD"/>',
-    '<input type="date" id="pl-end" style="padding:10px 14px"/>'
+    '<input type="date" id="pl-end"/>'
 )
-print("Date inputs fixed")
+txt = txt.replace(
+    '<input type="date" id="pl-end" style="padding:10px 14px"/>',
+    '<input type="date" id="pl-end"/>'
+)
 
-# ── 3. FIX CHAT SEND BUTTON — ensure sendChat is called inline ─────────────
-old_chat_btn = 'onclick="sendChat()" id="chat-send-btn"'
-new_chat_btn = 'onclick="if(typeof sendChat===\'function\'){sendChat();}else{console.error(\'sendChat not defined\');}" id="chat-send-btn"'
-if old_chat_btn in txt:
-    txt = txt.replace(old_chat_btn, new_chat_btn)
-    print("Chat send button fixed")
+# Add Nginx route for campaign edit API
+# Update campaign API Nginx route to include PUT/DELETE
+print("=== AFTER ===")
+for m in re.finditer(r'<button[^>]*generate-btn[^>]*>[^<]*</button>', txt, re.DOTALL):
+    print(repr(m.group()[:120]))
 
-# ── 4. REMOVE ALL OLD SCRIPTS except the comprehensive one ─────────────────
-# Remove duplicate/old auth-planner script references
-old_scripts_to_remove = [
-    '<script src="/static/auth-planner.js"></script>',
-    '<script src="/auth-planner.js"></script>',
-]
-for s in old_scripts_to_remove:
-    if s in txt:
-        txt = txt.replace(s, '')
-        print(f"Removed: {s}")
+# Verify date inputs
+print("pl-start type=date:", 'type="date" id="pl-start"' in txt or 'id="pl-start"/>' in txt)
+print("pievraGen remaining submitGate:", txt.count('class="generate-btn"') , 'buttons,', txt.count('onclick="submitGate()"'), 'submitGate calls on generate-btn')
 
 open(path, 'w').write(txt)
-print(f"DONE — saved {len(txt)} bytes")
-
-# Verify final state
-m = re.search(r'class="generate-btn".*?onclick="([^"]+)"', txt, re.DOTALL)
-print(f"Final generate btn onclick: {m.group(1) if m else 'NOT FOUND'}")
-print(f"pl-start type: {'date' if 'id=\"pl-start\" style' in txt or 'type=\"date\" id=\"pl-start\"' in txt else 'TEXT - NOT FIXED'}")
-print(f"pievraGen defined: {'function pievraGen()' in txt}")
+print(f"SAVED {len(txt)} bytes")
