@@ -3,105 +3,184 @@ import re
 path = '/var/www/pievra/dashboard/index.html'
 txt = open(path).read()
 
-# Find the campaigns panel and replace with full campaign management UI
-old_campaigns = '''    <!-- CAMPAIGNS -->
-    <div class="pnl" id="pca">
-      <div class="ptitle">Campaigns</div><div class="psub">Your cross-protocol campaign history</div>
-      <div class="card"><div class="empty"><div class="ei">&#x1F5FA;</div><div class="et">No campaigns yet</div><div class="eb">Plan your first campaign using the Campaign Planner. Pievra auto-selects the optimal protocol stack.</div>
-      <a href="/#planner" style="display:inline-block;margin-top:14px;padding:10px 20px;background:var(--ink);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px">Plan a campaign &#x2192;</a></div></div>
-    </div>'''
+# Find the single script block and replace it entirely with the full working version
+script_start = txt.find('<script>')
+script_end = txt.find('</script>', script_start) + 9
 
-new_campaigns = '''    <!-- CAMPAIGNS -->
-    <div class="pnl" id="pca">
-      <div class="ptitle">Campaigns</div>
-      <div class="psub">Your active and draft campaigns</div>
-      <div id="camp-alert" class="alrt" style="display:none"></div>
+old_script = txt[script_start:script_end]
+print(f"Replacing script block: {len(old_script)} chars")
 
-      <!-- Tabs -->
-      <div style="display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;width:fit-content">
-        <button id="tab-active" onclick="showCampTab('active')" style="padding:9px 20px;background:var(--ink);color:white;border:none;font-size:13px;font-weight:600;cursor:pointer">Active</button>
-        <button id="tab-draft" onclick="showCampTab('draft')" style="padding:9px 20px;background:none;border:none;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer">Drafts</button>
-      </div>
+new_script = '''<script>
+var U=null;
+var _allCampaigns=[];
+var _campTab='active';
+var fmt=function(d){return d?new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'--';};
+var greetMsg=function(){var h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening';};
 
-      <div id="camp-active-list"></div>
-      <div id="camp-draft-list" style="display:none"></div>
+function init(){
+  var _tok=localStorage.getItem('pievra_token')||'';
+  var _authOpts={credentials:'include'};
+  if(_tok) _authOpts.headers={'Authorization':'Bearer '+_tok};
+  fetch('/auth/me',_authOpts).then(function(r){
+    if(!r.ok){
+      localStorage.removeItem('pievra_token');
+      localStorage.removeItem('pievra_user');
+      window.location='/signin';
+      return null;
+    }
+    return r.json();
+  }).then(function(u){
+    if(!u)return;
+    U=u;
+    render(U);
+    document.getElementById('load').style.display='none';
+    loadCampaigns();
+    if(new URLSearchParams(location.search).get('welcome')){
+      al('st','Welcome! Your account is verified and ready.','ok');
+      history.replaceState({},'','/dashboard');
+    }
+  }).catch(function(){window.location='/signin';});
+}
 
-      <div style="margin-top:16px">
-        <a href="/#planner" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:white;font-weight:600;font-size:14px;padding:11px 20px;border-radius:10px;text-decoration:none">
-          + New Campaign
-        </a>
-      </div>
-    </div>
+function render(u){
+  var ini=u.email[0].toUpperCase();
+  document.getElementById('av').textContent=ini;
+  document.getElementById('dde').textContent=u.email;
+  var pc=u.plan.charAt(0).toUpperCase()+u.plan.slice(1);
+  document.getElementById('ddp').textContent=pc+' plan';
+  document.getElementById('ntag').textContent=pc;
+  if(u.plan==='pro')document.getElementById('ntag').classList.add('pro');
+  document.getElementById('greet').textContent=greetMsg()+' \uD83D\uDC4B';
+  document.getElementById('osub').textContent='Welcome back, '+u.email;
+  document.getElementById('aemail').textContent=u.email;
+  document.getElementById('asince').textContent=fmt(u.created_at);
+  document.getElementById('alast').textContent=u.last_login?fmt(u.last_login):'First session';
+  var pf={community:'5 agents \u00B7 All protocols \u00B7 SDK \u00B7 Sandbox',pro:'Unlimited agents \u00B7 Analytics \u00B7 PDF export \u00B7 Priority support',enterprise:'Dedicated fleet \u00B7 SSO \u00B7 White-label \u00B7 SLA'};
+  document.getElementById('plfeats').textContent=pf[u.plan]||'';
+  document.getElementById('plbadge').innerHTML='\u2B21 '+pc;
+  document.getElementById('sem').value=u.email;
+  document.getElementById('spl').value=pc;
+  document.getElementById('ssi').value=fmt(u.created_at);
+  updCards(u.plan);
+}
 
-    <!-- CAMPAIGN EDIT MODAL -->
-    <div class="moverlay" id="editmod">
-      <div class="mbox" style="max-width:600px;width:95%;max-height:90vh;overflow-y:auto">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-          <h3 style="font-family:Manrope;font-weight:800;font-size:17px;color:var(--ink)">Edit Campaign</h3>
-          <button onclick="document.getElementById('editmod').classList.remove('open')" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)">&#x00D7;</button>
-        </div>
-        <input type="hidden" id="edit-id"/>
-        <div class="fr"><label class="fl">Brand / Advertiser</label><input class="fi" id="edit-brand" type="text" placeholder="e.g. Nike"/></div>
-        <div class="fr"><label class="fl">Campaign Name</label><input class="fi" id="edit-name" type="text" placeholder="e.g. Air Max 2026 Launch"/></div>
-        <div class="fr"><label class="fl">Description</label><textarea class="fi" id="edit-desc" rows="3" style="resize:vertical" placeholder="Campaign goals, messaging, requirements..."></textarea></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-          <div><label class="fl">Budget (USD)</label><input class="fi" id="edit-budget" type="text"/></div>
-          <div><label class="fl">KPI Target</label><input class="fi" id="edit-kpi" type="text"/></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-          <div><label class="fl">Objective</label>
-            <select class="fi" id="edit-obj">
-              <option>Awareness</option><option>Consideration</option><option>Conversion</option><option>Retention</option>
-            </select>
-          </div>
-          <div><label class="fl">Buying Model</label>
-            <select class="fi" id="edit-buy">
-              <option>CPM</option><option>CPC</option><option>CPA</option><option>CPL</option><option>CPCV</option>
-            </select>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-          <div><label class="fl">Status</label>
-            <select class="fi" id="edit-status">
-              <option value="active">Active</option>
-              <option value="draft">Draft</option>
-              <option value="paused">Paused</option>
-            </select>
-          </div>
-          <div><label class="fl">&nbsp;</label>
-            <button class="btn br" style="width:100%" onclick="confirmDeleteCamp()">Delete Campaign</button>
-          </div>
-        </div>
-        <div style="display:flex;gap:10px;margin-top:4px">
-          <button class="btn bo" style="flex:1" onclick="document.getElementById('editmod').classList.remove('open')">Cancel</button>
-          <button class="btn bi" style="flex:1" onclick="saveEditCamp()">Save Changes</button>
-        </div>
-      </div>
-    </div>'''
+function updCards(plan){
+  var plans=['community','pro','enterprise'];
+  plans.forEach(function(p,i){
+    var c=document.getElementById('uc'+i),b=document.getElementById('pb'+i);
+    if(p===plan){
+      c.classList.add('cur');
+      if(b){b.textContent='Current plan';b.disabled=true;b.className='btn bo';}
+    } else {
+      c.classList.remove('cur');
+      if(b&&b.disabled){
+        b.disabled=false;
+        if(p==='pro'){b.textContent='Upgrade to Pro';b.className='btn bt';}
+        if(p==='community'){b.textContent='Get started';b.className='btn bo';}
+        if(p==='enterprise'){b.textContent='Contact sales';b.className='btn bi';}
+      }
+    }
+  });
+}
 
-if old_campaigns in txt:
-    txt = txt.replace(old_campaigns, new_campaigns)
-    print("Campaigns panel replaced")
-else:
-    print("NOT FOUND - trying partial match")
-    idx = txt.find('id="pca"')
-    if idx > 0:
-        print(f"Found pca at {idx}")
-        print(txt[idx:idx+200])
+function go(id){
+  document.querySelectorAll('.pnl').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('on');});
+  var pm={overview:'pov',campaigns:'pca',protocols:'ppr',agents:'pag',plan:'ppl',settings:'pst',security:'pse'};
+  var sm={overview:'sov',campaigns:'sca',protocols:'spr',agents:'sag',plan:'spl',settings:'sst',security:'sse'};
+  var pel=document.getElementById(pm[id]);if(pel)pel.classList.add('on');
+  var sel=document.getElementById(sm[id]);if(sel)sel.classList.add('on');
+  document.getElementById('ddd').classList.remove('open');
+  window.scrollTo(0,0);
+  if(id==='campaigns') loadCampaigns();
+}
 
-# Update the overview stat to load from API
-old_stat = '<div class="stat"><div class="sv t">0</div><div class="sl">Campaigns</div></div>'
-new_stat = '<div class="stat"><div class="sv t" id="stat-campaigns">0</div><div class="sl">Campaigns</div></div>'
-txt = txt.replace(old_stat, new_stat, 1)
+function toggleDD(){document.getElementById('ddd').classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.nwrap'))document.getElementById('ddd').classList.remove('open');});
 
-# Replace the campaigns JS section in the init script
-old_js_marker = 'function nav(id){'
-new_campaign_js = '''
-var _allCampaigns = [];
-var _campTab = 'active';
+function doLogout(){
+  fetch('/auth/logout',{method:'POST',credentials:'include'}).then(function(){
+    localStorage.removeItem('pievra_user');
+    localStorage.removeItem('pievra_token');
+    window.location='/signin';
+  });
+}
+
+function upgr(plan){
+  var names=['community','pro','enterprise'];
+  var i=names.indexOf(plan);
+  var b=document.getElementById('pb'+i);
+  b.innerHTML='...';b.disabled=true;
+  fetch('/auth/upgrade',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:plan})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+  .then(function(res){
+    if(!res.ok){al('pl',res.d.detail||'Upgrade failed.','er');return;}
+    U.plan=plan;render(U);
+    al('pl','Plan updated to '+(plan.charAt(0).toUpperCase()+plan.slice(1))+'. Stripe payment coming soon.','ok');
+  })
+  .catch(function(){al('pl','Network error.','er');})
+  .finally(function(){b.disabled=false;updCards(U?U.plan:'community');});
+}
+
+function salesContact(){window.location='mailto:legal@pievra.com?subject=Enterprise%20Plan%20Enquiry';}
+
+function changePw(){
+  var p1=document.getElementById('sp1').value,p2=document.getElementById('sp2').value;
+  if(p1.length<8){al('st','Password must be at least 8 characters.','er');return;}
+  if(p1!==p2){al('st','Passwords do not match.','er');return;}
+  fetch('/auth/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:U.email})})
+  .then(function(){
+    al('st','A reset link has been sent to '+U.email+'. Click it to set your new password.','ok');
+    document.getElementById('sp1').value='';
+    document.getElementById('sp2').value='';
+  }).catch(function(){al('st','Network error.','er');});
+}
+
+function exportData(){
+  var d={email:U.email,plan:U.plan,member_since:U.created_at,last_login:U.last_login,exported_at:new Date().toISOString(),gdpr:'Exported under GDPR Art. 20'};
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));
+  a.download='pievra-data.json';a.click();
+  al('st','Account data downloaded.','ok');
+}
+
+function delAccount(){
+  fetch('/auth/account',{method:'DELETE',credentials:'include'}).then(function(r){
+    if(r.ok){localStorage.removeItem('pievra_user');localStorage.removeItem('pievra_token');window.location='/?deleted=1';}
+  }).catch(function(){document.getElementById('delmod').classList.remove('open');al('st','Error. Please try again.','er');});
+}
+
+function al(sec,msg,type){
+  var m={ov:'',ca:'camp-alert',pr:'',ag:'',pl:'apl',st:'ast',se:'ase'};
+  var id=m[sec]||'ast';
+  var el=document.getElementById(id);if(!el)return;
+  el.textContent=msg;
+  el.className='alrt '+(type==='ok'?'aok':'aer');
+  el.style.display='block';
+  if(type==='ok')setTimeout(function(){el.style.display='none';},5000);
+}
+
+// ── CAMPAIGNS ────────────────────────────────────────────────────────────────
+function loadCampaigns(){
+  var _tok=localStorage.getItem('pievra_token')||'';
+  var opts={credentials:'include'};
+  if(_tok) opts.headers={'Authorization':'Bearer '+_tok};
+  fetch('/api/campaigns',opts)
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(d){
+    if(!d||!d.campaigns)return;
+    _allCampaigns=d.campaigns;
+    var active=d.campaigns.filter(function(c){return c.status==='active'||c.status==='paused';});
+    var drafts=d.campaigns.filter(function(c){return c.status==='draft';});
+    renderCampList('camp-active-list',active,'active');
+    renderCampList('camp-draft-list',drafts,'draft');
+    var sc=document.getElementById('stat-campaigns');
+    if(sc)sc.textContent=d.campaigns.length;
+  }).catch(function(){});
+}
 
 function showCampTab(tab){
-  _campTab = tab;
+  _campTab=tab;
   var btnA=document.getElementById('tab-active');
   var btnD=document.getElementById('tab-draft');
   var listA=document.getElementById('camp-active-list');
@@ -109,70 +188,50 @@ function showCampTab(tab){
   if(tab==='active'){
     if(btnA){btnA.style.background='var(--ink)';btnA.style.color='white';}
     if(btnD){btnD.style.background='none';btnD.style.color='var(--muted)';}
-    if(listA) listA.style.display='block';
-    if(listD) listD.style.display='none';
+    if(listA)listA.style.display='block';
+    if(listD)listD.style.display='none';
   } else {
     if(btnD){btnD.style.background='var(--ink)';btnD.style.color='white';}
     if(btnA){btnA.style.background='none';btnA.style.color='var(--muted)';}
-    if(listA) listA.style.display='none';
-    if(listD) listD.style.display='block';
+    if(listA)listA.style.display='none';
+    if(listD)listD.style.display='block';
   }
 }
 
-function loadCampaigns(){
-  fetch('/api/campaigns',{credentials:'include'})
-  .then(function(r){return r.ok?r.json():null;})
-  .then(function(d){
-    if(!d||!d.campaigns) return;
-    _allCampaigns = d.campaigns;
-    var active=d.campaigns.filter(function(c){return c.status==='active'||c.status==='paused';});
-    var drafts=d.campaigns.filter(function(c){return c.status==='draft';});
-    renderCampList('camp-active-list', active, 'active');
-    renderCampList('camp-draft-list', drafts, 'draft');
-    // Update stat
-    var sc=document.getElementById('stat-campaigns');
-    if(sc) sc.textContent=d.campaigns.length;
-  }).catch(function(){});
-}
-
-var statusColor={'active':'#166534','draft':'#713f12','paused':'#1e40af'};
-var statusBg={'active':'#dcfce7','draft':'#fef9c3','paused':'#dbeafe'};
-
-function renderCampList(containerId, camps, type){
+function renderCampList(containerId,camps,type){
   var el=document.getElementById(containerId);
-  if(!el) return;
-  if(!camps.length){
+  if(!el)return;
+  if(!camps||!camps.length){
     el.innerHTML='<div style="text-align:center;padding:36px 20px;color:var(--muted)">'
       +'<div style="font-size:32px;margin-bottom:10px">'+(type==='active'?'🗺':'📋')+'</div>'
       +'<div style="font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px">No '+(type==='active'?'active':'draft')+' campaigns</div>'
-      +'<div style="font-size:13px">'+  (type==='active'?'Generate your first campaign in the Campaign Planner':'Save a campaign as draft to work on it later')+'</div>'
-      +'<a href="/#planner" style="display:inline-block;margin-top:14px;padding:10px 18px;background:var(--ink);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px">+ New Campaign</a>'
+      +'<a href="/#planner" style="display:inline-block;margin-top:12px;padding:10px 18px;background:var(--ink);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px">+ New Campaign</a>'
       +'</div>';
     return;
   }
   el.innerHTML=camps.map(function(c){
     var plan=c.plan_json||{};
     var kpis=plan.projected_kpis||{};
-    var imp=kpis.estimated_impressions?parseInt(kpis.estimated_impressions).toLocaleString():'—';
-    var cpm=kpis.estimated_cpm?'$'+kpis.estimated_cpm:'—';
-    var roas=kpis.estimated_roas?kpis.estimated_roas+'x':'—';
-    var date=c.created_at?new Date(c.created_at).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
-    var sc=statusColor[c.status]||'#3d4460';
-    var sb=statusBg[c.status]||'#f4f5f9';
+    var imp=kpis.estimated_impressions?parseInt(kpis.estimated_impressions).toLocaleString():'--';
+    var cpm=kpis.estimated_cpm?'$'+kpis.estimated_cpm:'--';
+    var roas=kpis.estimated_roas?kpis.estimated_roas+'x':'--';
+    var date=fmt(c.created_at);
+    var sc={'active':'#166534','draft':'#713f12','paused':'#1e40af'}[c.status]||'#3d4460';
+    var sb={'active':'#dcfce7','draft':'#fef9c3','paused':'#dbeafe'}[c.status]||'#f4f5f9';
     return '<div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px">'
       +'<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">'
       +'<div>'
-      +'<div style="font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:var(--ink)">'+(c.brand||'Untitled')+' — '+(c.campaign_name||'Campaign')+'</div>'
-      +'<div style="font-size:12px;color:var(--muted);margin-top:3px">'+c.objective+' &middot; '+c.buying_model+' &middot; $'+c.budget+' budget &middot; Created '+date+'</div>'
+      +'<div style="font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:var(--ink)">'+(c.brand||'Untitled')+' \u2014 '+(c.campaign_name||'Campaign')+'</div>'
+      +'<div style="font-size:12px;color:var(--muted);margin-top:3px">'+c.objective+' \u00B7 '+c.buying_model+' \u00B7 $'+c.budget+' \u00B7 '+date+'</div>'
       +'</div>'
       +'<div style="display:flex;align-items:center;gap:8px">'
       +'<span style="font-size:11px;font-weight:700;color:'+sc+';background:'+sb+';padding:3px 10px;border-radius:20px">'+c.status.toUpperCase()+'</span>'
       +'<button onclick="openEditCamp('+c.id+')" style="background:none;border:1px solid var(--border);color:var(--soft);font-size:12px;font-weight:600;padding:5px 12px;border-radius:8px;cursor:pointer">Edit</button>'
       +'</div></div>'
       +(kpis.estimated_impressions?'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">'
-        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:#009e86">'+imp+'</div><div style="font-size:11px;color:var(--muted)">Est. Impressions</div></div>'
-        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:var(--ink)">'+cpm+'</div><div style="font-size:11px;color:var(--muted)">Est. CPM</div></div>'
-        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:var(--ink)">'+roas+'</div><div style="font-size:11px;color:var(--muted)">Est. ROAS</div></div>'
+        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:#009e86">'+imp+'</div><div style="font-size:11px;color:var(--muted)">Impressions</div></div>'
+        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:var(--ink)">'+cpm+'</div><div style="font-size:11px;color:var(--muted)">CPM</div></div>'
+        +'<div style="background:var(--surf);border-radius:8px;padding:10px;text-align:center"><div style="font-weight:700;font-size:15px;color:var(--ink)">'+roas+'</div><div style="font-size:11px;color:var(--muted)">ROAS</div></div>'
         +'</div>':'')
       +'</div>';
   }).join('');
@@ -180,14 +239,13 @@ function renderCampList(containerId, camps, type){
 
 function openEditCamp(id){
   var c=_allCampaigns.find(function(x){return x.id===id;});
-  if(!c) return;
-  var fd=c.form_data||{};
+  if(!c)return;
   document.getElementById('edit-id').value=id;
   document.getElementById('edit-brand').value=c.brand||'';
   document.getElementById('edit-name').value=c.campaign_name||'';
-  document.getElementById('edit-desc').value=c.description||fd.description||'';
+  document.getElementById('edit-desc').value=c.description||'';
   document.getElementById('edit-budget').value=c.budget||'50000';
-  document.getElementById('edit-kpi').value=c.kpi||fd.kpi||'';
+  document.getElementById('edit-kpi').value=c.kpi||'';
   document.getElementById('edit-obj').value=c.objective||'Awareness';
   document.getElementById('edit-buy').value=c.buying_model||'CPM';
   document.getElementById('edit-status').value=c.status||'active';
@@ -196,7 +254,10 @@ function openEditCamp(id){
 
 function saveEditCamp(){
   var id=document.getElementById('edit-id').value;
-  if(!id) return;
+  if(!id)return;
+  var _tok=localStorage.getItem('pievra_token')||'';
+  var headers={'Content-Type':'application/json'};
+  if(_tok) headers['Authorization']='Bearer '+_tok;
   var data={
     brand:document.getElementById('edit-brand').value,
     campaign_name:document.getElementById('edit-name').value,
@@ -208,39 +269,34 @@ function saveEditCamp(){
     status:document.getElementById('edit-status').value,
     protocols:['AdCP','MCP','ARTF']
   };
-  fetch('/api/campaign/'+id,{method:'PUT',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  fetch('/api/campaign/'+id,{method:'PUT',credentials:'include',headers:headers,body:JSON.stringify(data)})
   .then(function(r){return r.json();})
-  .then(function(d){
-    document.getElementById('editmod').classList.remove('open');
-    loadCampaigns();
-    var a=document.getElementById('camp-alert');
-    if(a){a.textContent='Campaign updated successfully.';a.className='alrt aok';a.style.display='block';setTimeout(function(){a.style.display='none';},4000);}
-  }).catch(function(){alert('Error saving. Please try again.');});
-}
-
-function confirmDeleteCamp(){
-  var id=document.getElementById('edit-id').value;
-  if(!id) return;
-  if(!confirm('Delete this campaign? This cannot be undone.')) return;
-  fetch('/api/campaign/'+id,{method:'DELETE',credentials:'include'})
   .then(function(){
     document.getElementById('editmod').classList.remove('open');
     loadCampaigns();
-  }).catch(function(){alert('Error deleting.');});
+    al('ca','Campaign updated.','ok');
+  }).catch(function(){alert('Error saving.');});
 }
 
-function nav(id){'''
+function confirmDeleteCamp(){
+  if(!confirm('Delete this campaign? Cannot be undone.'))return;
+  var id=document.getElementById('edit-id').value;
+  var _tok=localStorage.getItem('pievra_token')||'';
+  var headers={};
+  if(_tok) headers['Authorization']='Bearer '+_tok;
+  fetch('/api/campaign/'+id,{method:'DELETE',credentials:'include',headers:headers})
+  .then(function(){document.getElementById('editmod').classList.remove('open');loadCampaigns();})
+  .catch(function(){alert('Error deleting.');});
+}
 
-if old_js_marker in txt:
-    txt = txt.replace(old_js_marker, new_campaign_js)
-    print("Campaign JS inserted")
+init();
+</script>'''
 
-# Add loadCampaigns() call to init
-old_init_end = 'document.getElementById(\'load\').style.display=\'none\';'
-new_init_end = 'document.getElementById(\'load\').style.display=\'none\';\n    loadCampaigns();'
-if old_init_end in txt:
-    txt = txt.replace(old_init_end, new_init_end, 1)
-    print("loadCampaigns() added to init")
-
+txt = txt[:script_start] + new_script + txt[script_end:]
 open(path, 'w').write(txt)
-print(f"DONE — {len(txt)} bytes")
+print(f'Dashboard rebuilt: {len(new_script)} chars script, {len(txt)} total')
+
+# Verify
+import re
+fns = re.findall(r'function \w+\(', open(path).read())
+print('Functions:', fns)
