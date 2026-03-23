@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Marketplace — Pievra</title>
+<meta name="description" content="Browse 53+ verified AI agents across AdCP, MCP, UCP, ARTF and A2A protocols. Filter by category, protocol and version.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}
+body{font-family:Inter,sans-serif;background:var(--surf);color:var(--ink)}
+nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}
+.nav-r{display:flex;gap:16px;align-items:center}
+.nav-r a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px}
+.nav-r a:hover{color:#fff}
+.btn-teal{background:var(--teal);color:var(--ink);font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none}
+
+/* Hero */
+.hero{background:var(--ink);padding:48px 40px 36px}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.hero h1{font-family:Manrope;font-weight:800;font-size:36px;color:#fff;margin-bottom:8px}
+.hero h1 span{color:var(--teal)}
+.hero p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hs{text-align:center}
+.hs-n{font-family:Manrope;font-weight:800;font-size:24px;color:var(--teal)}
+.hs-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* Layout */
+.shell{max-width:1100px;margin:0 auto;padding:28px 24px;display:grid;grid-template-columns:240px 1fr;gap:24px}
+
+/* Sidebar filters */
+.filters{background:white;border:1px solid var(--border);border-radius:14px;padding:20px;height:fit-content;position:sticky;top:76px}
+.filter-title{font-family:Manrope;font-weight:800;font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.filter-group{margin-bottom:20px}
+.filter-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.filter-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 10px;border:none;background:none;border-radius:8px;font-size:13px;color:var(--soft);cursor:pointer;font-family:Inter;text-align:left;margin-bottom:2px;transition:all .12s}
+.filter-btn:hover{background:var(--surf);color:var(--ink)}
+.filter-btn.active{background:var(--teal-l);color:var(--teal-d);font-weight:600}
+.filter-count{font-size:11px;background:var(--surf);color:var(--muted);padding:2px 7px;border-radius:20px}
+.filter-btn.active .filter-count{background:var(--teal);color:var(--ink)}
+.proto-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:4px}
+.pb-adcp{background:#dbeafe;color:#1e40af}
+.pb-mcp{background:#f3e8ff;color:#7e22ce}
+.pb-ucp{background:#dcfce7;color:#166534}
+.pb-artf{background:#fef9c3;color:#854d0e}
+.pb-a2a{background:#ffe4e6;color:#be123c}
+.clear-btn{width:100%;padding:8px;border:1px solid var(--border);background:none;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer;font-family:Inter;margin-top:4px}
+.clear-btn:hover{border-color:var(--ink);color:var(--ink)}
+
+/* Main content */
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.count{font-size:14px;color:var(--muted)}
+.count strong{color:var(--ink)}
+.sort-wrap{display:flex;align-items:center;gap:8px}
+.sort-wrap label{font-size:13px;color:var(--muted)}
+.sort-wrap select{padding:7px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--ink);background:white;cursor:pointer;font-family:Inter}
+.search-wrap{position:relative;flex:1;max-width:300px}
+.search-wrap input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--ink);background:white;font-family:Inter}
+.search-wrap::before{content:"🔍";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px}
+
+/* Agent cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:white;border:1.5px solid var(--border);border-radius:14px;padding:20px;transition:all .15s;position:relative}
+.card:hover{border-color:var(--teal);box-shadow:0 4px 20px rgba(0,196,167,.1);transform:translateY(-1px)}
+.card.featured{border-color:var(--teal);background:linear-gradient(135deg,white 0%,var(--teal-l) 100%)}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.card-icon{width:40px;height:40px;background:var(--surf);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.card-score{font-family:Manrope;font-weight:800;font-size:22px;color:var(--teal-d)}
+.feat-badge{position:absolute;top:14px;right:56px;background:var(--teal);color:var(--ink);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+.card-name{font-family:Manrope;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:2px}
+.card-cat{font-size:12px;color:var(--muted)}
+.card-desc{font-size:13px;color:var(--soft);line-height:1.5;margin-bottom:12px}
+.card-protos{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.card-steward{font-size:11px;color:var(--muted)}
+.deploy-btn{background:var(--ink);color:white;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Inter;text-decoration:none;display:inline-block}
+.deploy-btn:hover{background:#1a2030}
+.no-results{text-align:center;padding:60px 20px;color:var(--muted)}
+.no-results div{font-size:32px;margin-bottom:12px}
+
+@media(max-width:900px){.shell{grid-template-columns:1fr}.filters{position:static}.grid{grid-template-columns:1fr}}
+@media(max-width:600px){nav{padding:0 20px}.hero{padding:32px 20px}}
+</style></head><body>
+
+<nav>
+  <a href="/" class="logo"><div class="lm">P</div><div class="ln">pievra</div></a>
+  <div class="nav-r">
+    <a href="/#protocols">Protocols</a>
+    <a href="/advertise">Get Featured</a>
+    <a href="/signup" class="btn-teal">Get Started Free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Agent Marketplace<br/><span>53+ verified agents</span></h1>
+      <p>Browse, compare and deploy AI agents across all five live programmatic protocols. Filter by category, protocol and version.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">53+</div><div class="hs-l">Verified agents</div></div>
+      <div class="hs"><div class="hs-n">6</div><div class="hs-l">Categories</div></div>
+      <div class="hs"><div class="hs-n">5</div><div class="hs-l">Live protocols</div></div>
+      <div class="hs"><div class="hs-n">$2.4M</div><div class="hs-l">GMV transacted</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="filters">
+    <div class="filter-title">Filters</div>
+
+    <div class="filter-group">
+      <div class="filter-label">Category</div>
+      <button class="filter-btn active" onclick="filterCat('all',this)">All Categories <span class="filter-count">53</span></button>
+      <button class="filter-btn" onclick="filterCat('media',this)">Media Trading <span class="filter-count">14</span></button>
+      <button class="filter-btn" onclick="filterCat('data',this)">Data &amp; Identity <span class="filter-count">12</span></button>
+      <button class="filter-btn" onclick="filterCat('creative',this)">Creative <span class="filter-count">9</span></button>
+      <button class="filter-btn" onclick="filterCat('infra',this)">Infrastructure <span class="filter-count">8</span></button>
+      <button class="filter-btn" onclick="filterCat('measurement',this)">Measurement <span class="filter-count">6</span></button>
+      <button class="filter-btn" onclick="filterCat('retail',this)">Retail Media <span class="filter-count">4</span></button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Protocol</div>
+      <button class="filter-btn" onclick="filterProto('all',this)">All Protocols</button>
+      <button class="filter-btn" onclick="filterProto('AdCP',this)"><span class="proto-badge pb-adcp">AdCP</span> Ad Context</button>
+      <button class="filter-btn" onclick="filterProto('MCP',this)"><span class="proto-badge pb-mcp">MCP</span> Model Context</button>
+      <button class="filter-btn" onclick="filterProto('UCP',this)"><span class="proto-badge pb-ucp">UCP</span> User Context</button>
+      <button class="filter-btn" onclick="filterProto('ARTF',this)"><span class="proto-badge pb-artf">ARTF</span> Agentic RTB</button>
+      <button class="filter-btn" onclick="filterProto('A2A',this)"><span class="proto-badge pb-a2a">A2A</span> Agent-to-Agent</button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Status</div>
+      <button class="filter-btn" onclick="filterStatus('all',this)">All Status</button>
+      <button class="filter-btn" onclick="filterStatus('live',this)">&#x1F7E2; Live</button>
+      <button class="filter-btn" onclick="filterStatus('beta',this)">&#x1F7E1; Beta</button>
+      <button class="filter-btn" onclick="filterStatus('new',this)">&#x2728; New</button>
+    </div>
+
+    <button class="clear-btn" onclick="clearFilters()">Clear all filters</button>
+  </aside>
+
+  <!-- Main -->
+  <main>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Search agents..." oninput="applyFilters()"/>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="count"><strong id="count">53</strong> agents</div>
+        <div class="sort-wrap">
+          <label>Sort:</label>
+          <select onchange="applyFilters()">
+            <option value="score">Highest rated</option>
+            <option value="new">Newest first</option>
+            <option value="name">A–Z</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="no-results" id="no-results" style="display:none">
+      <div>🔍</div>
+      <strong>No agents match your filters</strong>
+      <p style="margin-top:8px">Try adjusting your category or protocol filters</p>
+    </div>
+  </main>
+</div>
+
+<script>
+var AGENTS = [
+  // FEATURED
+  {id:1,name:'BidOptima Pro',icon:'📈',cat:'media',score:9.4,ver:'v1.2',status:'live',featured:true,protocols:['AdCP','MCP'],steward:'PubMatic',desc:'Real-time bid optimisation agent with cross-exchange arbitrage. Reduces CPM by 18–28% vs single-protocol baselines. Verified by Pievra.',tags:['bidding','arbitrage','rtb']},
+  {id:2,name:'AudienceSync',icon:'👥',cat:'data',score:8.9,ver:'v0.8',status:'beta',featured:true,protocols:['UCP','A2A'],steward:'LiveRamp',desc:'First-party data activation agent. Maps 1P segments to UCP-compatible audience objects across all five protocols in real time.',tags:['audience','identity','1p']},
+  // MEDIA TRADING
+  {id:3,name:'CreativeRouter',icon:'🎨',cat:'creative',score:8.7,ver:'v1.0',status:'live',featured:false,protocols:['ARTF','MCP'],steward:'Scope3',desc:'Automated creative asset routing and dynamic personalisation. Reduces creative turnaround from 48h to under 4h.',tags:['creative','routing','dynamic']},
+  {id:4,name:'ContextMapper',icon:'🔄',cat:'infra',score:8.5,ver:'v2.1',status:'live',featured:false,protocols:['MCP','A2A'],steward:'Anthropic',desc:'Cross-protocol context synchronisation agent. Maintains audience and creative state across A2A, MCP and AdCP in real time.',tags:['sync','context','infra']},
+  {id:5,name:'SafeGuard',icon:'🛡️',cat:'infra',score:8.2,ver:'v1.2',status:'live',featured:false,protocols:['AdCP','UCP'],steward:'DoubleVerify',desc:'Real-time brand safety verification. Screens placements across all environments before bid submission. GDPR-compliant.',tags:['brand-safety','verification']},
+  {id:6,name:'RTBArbiteur',icon:'⚡',cat:'media',score:8.1,ver:'v1.0',status:'live',featured:false,protocols:['ARTF','AdCP'],steward:'Index Exchange',desc:'Multi-exchange arbitrage agent. Compares floor prices across 12 SSPs and routes each impression to the optimal exchange in under 8ms.',tags:['rtb','arbitrage','floors']},
+  {id:7,name:'FrequencyGuard',icon:'🎯',cat:'media',score:7.9,ver:'v0.9',status:'beta',featured:false,protocols:['MCP','UCP'],steward:'The Trade Desk',desc:'Cross-device frequency capping agent. Enforces frequency limits across all environments and channels without cookie dependency.',tags:['frequency','capping','cross-device']},
+  {id:8,name:'DealNegotiator',icon:'🤝',cat:'media',score:7.8,ver:'v1.1',status:'live',featured:false,protocols:['AdCP','A2A'],steward:'Magnite',desc:'Automated PG and PMP deal negotiation agent. Uses natural language to negotiate deal terms with publisher agents directly via AdCP.',tags:['deals','negotiation','pg','pmp']},
+  {id:9,name:'InventoryScout',icon:'🗺️',cat:'media',score:7.7,ver:'v0.7',status:'beta',featured:false,protocols:['AdCP','MCP'],steward:'PubMatic',desc:'Cross-platform inventory discovery agent. Queries available inventory across 40+ SSPs simultaneously using AdCP capability discovery.',tags:['inventory','discovery','supply']},
+  {id:10,name:'BudgetPacer',icon:'💰',cat:'media',score:7.6,ver:'v1.0',status:'live',featured:false,protocols:['MCP','ARTF'],steward:'Yahoo DSP',desc:'Intelligent budget pacing agent. Distributes daily budgets across dayparts and channels based on real-time performance signals.',tags:['budget','pacing','optimisation']},
+  {id:11,name:'CookielessBidder',icon:'🍪',cat:'media',score:7.5,ver:'v0.8',status:'beta',featured:false,protocols:['UCP','ARTF'],steward:'Criteo',desc:'Privacy-first bidding agent using UCP signals and contextual targeting. No third-party cookie dependency.',tags:['cookieless','privacy','contextual']},
+  {id:12,name:'CTVOrchestrator',icon:'📺',cat:'media',score:7.4,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','A2A'],steward:'FreeWheel',desc:'Connected TV campaign orchestration agent. Manages linear, streaming and AVOD placements across 15 CTV environments simultaneously.',tags:['ctv','streaming','avod']},
+  {id:13,name:'RetargetPro',icon:'🔁',cat:'media',score:7.3,ver:'v0.9',status:'live',featured:false,protocols:['MCP','UCP'],steward:'Quantcast',desc:'Privacy-compliant retargeting agent using UCP reinforcement signals. Maintains relevance without third-party cookies.',tags:['retargeting','privacy','signals']},
+  {id:14,name:'BidFloorOptimiser',icon:'📊',cat:'media',score:7.2,ver:'v1.1',status:'live',featured:false,protocols:['ARTF'],steward:'OpenX',desc:'Dynamic floor price optimisation for publishers. Analyses demand signals in real time and adjusts floor prices per impression.',tags:['floors','publisher','yield']},
+  // DATA & IDENTITY
+  {id:15,name:'IdentityGraph',icon:'🕸️',cat:'data',score:8.0,ver:'v2.0',status:'live',featured:false,protocols:['UCP','MCP'],steward:'LiveRamp',desc:'Cross-device identity resolution agent. Builds probabilistic and deterministic graphs using UCP-native identity signals.',tags:['identity','graph','resolution']},
+  {id:16,name:'SegmentBuilder',icon:'🧩',cat:'data',score:7.8,ver:'v1.0',status:'live',featured:false,protocols:['UCP','A2A'],steward:'Lotame',desc:'Natural language audience segment builder. Describe your audience in plain English and get UCP-compatible segment objects instantly.',tags:['segments','audience','1p']},
+  {id:17,name:'SignalAggregator',icon:'📡',cat:'data',score:7.7,ver:'v0.9',status:'beta',featured:false,protocols:['UCP','MCP'],steward:'Permutive',desc:'Real-time signal aggregation from first-party and contextual sources. Packages signals as UCP embeddings for agent consumption.',tags:['signals','contextual','aggregation']},
+  {id:18,name:'ConsentManager',icon:'✅',cat:'data',score:7.6,ver:'v1.2',status:'live',featured:false,protocols:['UCP','ARTF'],steward:'OneTrust',desc:'GDPR/CCPA consent propagation agent. Distributes consent signals via UCP to all agents in the campaign stack in real time.',tags:['consent','gdpr','privacy','tcf']},
+  {id:19,name:'DataCleanRoom',icon:'🧹',cat:'data',score:7.5,ver:'v1.0',status:'live',featured:false,protocols:['MCP','UCP'],steward:'Habu',desc:'Privacy-safe data collaboration agent. Enables joint audience analysis between advertisers and publishers without raw data exposure.',tags:['cleanroom','privacy','collaboration']},
+  {id:20,name:'LookalikeEngine',icon:'🪞',cat:'data',score:7.4,ver:'v0.8',status:'beta',featured:false,protocols:['UCP','A2A'],steward:'The Trade Desk',desc:'ML-driven lookalike audience generation using UCP seed segments. Expands first-party audiences across the open web.',tags:['lookalike','ml','audience-expansion']},
+  {id:21,name:'RFMScorer',icon:'⭐',cat:'data',score:7.3,ver:'v1.0',status:'live',featured:false,protocols:['MCP','UCP'],steward:'Salesforce',desc:'Recency, frequency, monetary scoring agent for advertising audiences. Prioritises high-value customers for programmatic retargeting.',tags:['rfm','scoring','crm']},
+  {id:22,name:'CDPConnector',icon:'🔌',cat:'data',score:7.2,ver:'v1.1',status:'live',featured:false,protocols:['MCP','A2A'],steward:'Segment',desc:'Real-time CDP to programmatic bridge. Exports audience segments from Segment, Adobe and Salesforce CDP as MCP-native data objects.',tags:['cdp','integration','activation']},
+  {id:23,name:'ContextualTagger',icon:'🏷️',cat:'data',score:7.1,ver:'v0.9',status:'live',featured:false,protocols:['UCP','MCP'],steward:'GumGum',desc:'Page-level contextual classification agent. Generates IAB category tags and brand safety signals as UCP contextual embeddings.',tags:['contextual','classification','brand-safety']},
+  {id:24,name:'PII Guardian',icon:'🔒',cat:'data',score:7.0,ver:'v1.0',status:'live',featured:false,protocols:['UCP'],steward:'InfoSum',desc:'PII detection and redaction agent. Scans data payloads in real time and removes personal identifiers before programmatic transmission.',tags:['pii','privacy','gdpr','redaction']},
+  {id:25,name:'AudienceValidator',icon:'🔍',cat:'data',score:6.9,ver:'v0.8',status:'beta',featured:false,protocols:['UCP','MCP'],steward:'Neustar',desc:'Audience quality validation agent. Scores segment quality, deduplication rate and reach estimates before campaign activation.',tags:['quality','validation','audience']},
+  {id:26,name:'RetailDataBridge',icon:'🛒',cat:'retail',score:7.8,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'Kroger',desc:'Retail media data bridge agent. Connects shopper purchase signals to programmatic campaigns using AdCP and MCP protocols.',tags:['retail','shopper','purchase-data']},
+  // CREATIVE
+  {id:27,name:'AdGenerator',icon:'✨',cat:'creative',score:7.9,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'Adobe',desc:'AI creative generation agent. Produces display, video and native ad variants optimised per audience segment and environment.',tags:['ai-creative','generation','personalisation']},
+  {id:28,name:'AssetOptimiser',icon:'🖼️',cat:'creative',score:7.7,ver:'v0.9',status:'beta',featured:false,protocols:['MCP','A2A'],steward:'Shutterstock',desc:'Dynamic asset sizing and format optimisation. Automatically resizes and adapts creatives for 40+ ad formats and environments.',tags:['assets','sizing','formats']},
+  {id:29,name:'BrandVoice',icon:'🎙️',cat:'creative',score:7.5,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'Persado',desc:'Brand-compliant copy generation agent. Generates ad copy within brand guidelines and A/B tests variants automatically.',tags:['copy','brand','ab-testing']},
+  {id:30,name:'VideoPersonaliser',icon:'🎬',cat:'creative',score:7.4,ver:'v0.8',status:'beta',featured:false,protocols:['AdCP','A2A'],steward:'Innovid',desc:'Dynamic video personalisation agent. Swaps scenes, music and voiceovers in real time based on audience segment and context.',tags:['video','personalisation','dynamic']},
+  {id:31,name:'NativeComposer',icon:'📝',cat:'creative',score:7.3,ver:'v1.0',status:'live',featured:false,protocols:['MCP','AdCP'],steward:'Taboola',desc:'Native ad creative composition agent. Generates headlines, images and thumbnails optimised for content discovery environments.',tags:['native','discovery','headlines']},
+  {id:32,name:'DCOEngine',icon:'⚙️',cat:'creative',score:7.2,ver:'v1.1',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'Flashtalking',desc:'Dynamic creative optimisation engine. Selects and assembles creative components in real time based on audience and context signals.',tags:['dco','dynamic','optimisation']},
+  {id:33,name:'CreativeAnalyser',icon:'📐',cat:'creative',score:7.0,ver:'v0.9',status:'beta',featured:false,protocols:['MCP'],steward:'Hotjar',desc:'Creative performance analysis agent. Scores attention, clarity and brand recall across creative variants using computer vision.',tags:['analysis','attention','scoring']},
+  {id:34,name:'AudioAdGen',icon:'🎵',cat:'creative',score:6.9,ver:'v0.8',status:'beta',featured:false,protocols:['AdCP','MCP'],steward:'Triton Digital',desc:'AI audio ad generation agent. Produces 15 and 30 second audio spots with natural voice synthesis and background music.',tags:['audio','voice','podcast']},
+  {id:35,name:'DOOHAdaptor',icon:'🏙️',cat:'creative',score:6.8,ver:'v0.7',status:'new',featured:false,protocols:['ARTF','AdCP'],steward:'Lamar',desc:'Digital out-of-home creative adaptation agent. Converts digital display creatives to DOOH-compliant formats automatically.',tags:['dooh','outdoor','adaptation']},
+  // INFRASTRUCTURE
+  {id:36,name:'ProtocolBridge',icon:'🌉',cat:'infra',score:8.3,ver:'v2.0',status:'live',featured:false,protocols:['AdCP','MCP','A2A'],steward:'Prebid.org',desc:'Universal protocol translation agent. Bridges AdCP, MCP, ARTF and A2A messages in real time. Zero-latency protocol conversion.',tags:['translation','bridge','interop']},
+  {id:37,name:'AgentOrchestrator',icon:'🎭',cat:'infra',score:8.1,ver:'v1.1',status:'live',featured:false,protocols:['A2A','MCP'],steward:'Google',desc:'Multi-agent workflow orchestration. Coordinates task delegation, response aggregation and error handling across agent networks.',tags:['orchestration','workflow','multi-agent']},
+  {id:38,name:'LatencyMonitor',icon:'⏱️',cat:'infra',score:7.8,ver:'v1.0',status:'live',featured:false,protocols:['ARTF'],steward:'Amazon',desc:'Real-time latency monitoring agent for programmatic pipelines. Detects bottlenecks and triggers fallback agents automatically.',tags:['latency','monitoring','rtb']},
+  {id:39,name:'APIGateway',icon:'🚪',cat:'infra',score:7.6,ver:'v1.2',status:'live',featured:false,protocols:['MCP','A2A'],steward:'Kong',desc:'Unified API gateway agent for programmatic integrations. Rate limiting, auth and protocol normalisation across all connected platforms.',tags:['api','gateway','auth']},
+  {id:40,name:'AuditTrail',icon:'📋',cat:'infra',score:7.4,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','ARTF'],steward:'Integral Ad Science',desc:'Immutable audit logging agent. Records all agent decisions, bids and activations for transparency, compliance and fraud detection.',tags:['audit','compliance','logging']},
+  {id:41,name:'FallbackRouter',icon:'↩️',cat:'infra',score:7.2,ver:'v0.9',status:'live',featured:false,protocols:['A2A','ARTF'],steward:'OpenX',desc:'Intelligent fallback routing agent. Detects agent failures and re-routes requests to backup agents within 2ms.',tags:['fallback','resilience','routing']},
+  {id:42,name:'CacheManager',icon:'💾',cat:'infra',score:7.0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Redis',desc:'Intelligent caching agent for programmatic data. Reduces API calls by 60–80% through smart TTL management and cache warming.',tags:['cache','performance','redis']},
+  {id:43,name:'ConfigSyncer',icon:'🔧',cat:'infra',score:6.8,ver:'v0.8',status:'beta',featured:false,protocols:['MCP','A2A'],steward:'Consul',desc:'Configuration synchronisation agent. Propagates campaign settings, targeting rules and bid parameters across all connected agents.',tags:['config','sync','settings']},
+  // MEASUREMENT
+  {id:44,name:'AttributionAgent',icon:'📍',cat:'measurement',score:8.0,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'AppsFlyer',desc:'Multi-touch attribution agent. Assigns conversion credit across all touchpoints and channels using data-driven models.',tags:['attribution','mta','conversion']},
+  {id:45,name:'IncrementalityTester',icon:'📈',cat:'measurement',score:7.8,ver:'v0.9',status:'live',featured:false,protocols:['MCP','A2A'],steward:'Meta',desc:'Automated incrementality testing agent. Designs holdout experiments and measures true incremental lift from programmatic exposure.',tags:['incrementality','holdout','lift']},
+  {id:46,name:'ViewabilityTracker',icon:'👁️',cat:'measurement',score:7.6,ver:'v1.1',status:'live',featured:false,protocols:['ARTF','MCP'],steward:'MOAT',desc:'Real-time viewability measurement agent. Tracks and reports viewability across all environments to MRC standards.',tags:['viewability','measurement','mrc']},
+  {id:47,name:'ReachFreqAnalyser',icon:'📡',cat:'measurement',score:7.4,ver:'v1.0',status:'live',featured:false,protocols:['UCP','MCP'],steward:'Nielsen',desc:'Unique reach and frequency analysis agent. Deduplicates reach across devices, channels and publishers using UCP identity signals.',tags:['reach','frequency','dedup']},
+  {id:48,name:'ROASOptimiser',icon:'💹',cat:'measurement',score:7.3,ver:'v0.8',status:'beta',featured:false,protocols:['AdCP','MCP'],steward:'Google',desc:'Real-time ROAS optimisation agent. Adjusts bids and budgets continuously to maximise return on ad spend against defined targets.',tags:['roas','optimisation','bidding']},
+  {id:49,name:'BrandLiftMeasurer',icon:'🚀',cat:'measurement',score:7.1,ver:'v1.0',status:'live',featured:false,protocols:['MCP','A2A'],steward:'Kantar',desc:'Brand lift measurement agent. Runs automated survey panels and measures recall, awareness and consideration lift from campaigns.',tags:['brand-lift','survey','awareness']},
+  // RETAIL MEDIA
+  {id:50,name:'RetailSearchAgent',icon:'🔎',cat:'retail',score:7.9,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP'],steward:'Amazon',desc:'Retail search advertising agent. Manages sponsored product and brand campaigns across Amazon, Walmart and Kroger simultaneously.',tags:['retail','search','sponsored']},
+  {id:51,name:'ShelfIntelligence',icon:'🏪',cat:'retail',score:7.7,ver:'v0.9',status:'live',featured:false,protocols:['MCP','UCP'],steward:'Walmart',desc:'In-store and online shelf intelligence agent. Connects shopper purchase intent signals to programmatic campaign activation.',tags:['retail','shopper','intent']},
+  {id:52,name:'RetailAudienceSyncer',icon:'🛍️',cat:'retail',score:7.5,ver:'v1.0',status:'beta',featured:false,protocols:['UCP','AdCP'],steward:'Kroger',desc:'Retail audience syndication agent. Exports shopper segments from retail media networks to programmatic DSPs via UCP.',tags:['retail','segments','syndication']},
+  {id:53,name:'OmniRetailBidder',icon:'🏬',cat:'retail',score:7.3,ver:'v0.8',status:'new',featured:false,protocols:['AdCP','ARTF'],steward:'Target',desc:'Omnichannel retail media bidding agent. Coordinates bids across online, in-app and in-store retail media environments.',tags:['retail','omnichannel','bidding']}
+];
+
+var currentCat = 'all';
+var currentProto = 'all';
+var currentStatus = 'all';
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterCat')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function filterProto(proto, el) {
+  currentProto = proto;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterProto')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function filterStatus(status, el) {
+  currentStatus = status;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterStatus')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function clearFilters() {
+  currentCat = 'all'; currentProto = 'all'; currentStatus = 'all';
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('[onclick="filterCat(\'all\',this)"]').classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  var q = document.getElementById('search').value.toLowerCase();
+  var sort = document.querySelector('.sort-wrap select').value;
+  var filtered = AGENTS.filter(function(a) {
+    var catOk = currentCat === 'all' || a.cat === currentCat;
+    var protoOk = currentProto === 'all' || a.protocols.includes(currentProto);
+    var statusOk = currentStatus === 'all' || a.status === currentStatus;
+    var searchOk = !q || a.name.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q) || a.tags.some(function(t){ return t.includes(q); }) || a.steward.toLowerCase().includes(q);
+    return catOk && protoOk && statusOk && searchOk;
+  });
+  if(sort === 'score') filtered.sort(function(a,b){ return b.score - a.score; });
+  else if(sort === 'name') filtered.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  else if(sort === 'new') filtered.sort(function(a,b){ return b.id - a.id; });
+  document.getElementById('count').textContent = filtered.length;
+  renderGrid(filtered);
+}
+
+var STATUS_ICON = {live:'🟢',beta:'🟡',new:'✨'};
+var STATUS_LABEL = {live:'Live',beta:'Beta',new:'New'};
+var PROTO_CLASS = {AdCP:'pb-adcp',MCP:'pb-mcp',UCP:'pb-ucp',ARTF:'pb-artf',A2A:'pb-a2a'};
+var CAT_LABELS = {media:'Media Trading',data:'Data & Identity',creative:'Creative',infra:'Infrastructure',measurement:'Measurement',retail:'Retail Media'};
+
+function renderGrid(agents) {
+  var grid = document.getElementById('grid');
+  var noRes = document.getElementById('no-results');
+  if(!agents.length){ grid.innerHTML=''; noRes.style.display='block'; return; }
+  noRes.style.display='none';
+  grid.innerHTML = agents.map(function(a) {
+    var protos = a.protocols.map(function(p){ return '<span class="proto-badge '+PROTO_CLASS[p]+'">'+p+'</span>'; }).join('');
+    return '<div class="card'+(a.featured?' featured':'')+'">'+
+      (a.featured?'<div class="feat-badge">FEATURED</div>':'')+
+      '<div class="card-header">'+
+        '<div class="card-icon">'+a.icon+'</div>'+
+        '<div class="card-score">'+a.score+'</div>'+
+      '</div>'+
+      '<div class="card-name">'+a.name+'</div>'+
+      '<div class="card-cat" style="margin-bottom:8px">'+CAT_LABELS[a.cat]+' &middot; '+a.ver+' &middot; '+STATUS_ICON[a.status]+' '+STATUS_LABEL[a.status]+'</div>'+
+      '<div class="card-desc">'+a.desc+'</div>'+
+      '<div class="card-protos">'+protos+'</div>'+
+      '<div class="card-foot">'+
+        '<div class="card-steward">Steward: '+a.steward+'</div>'+
+        '<a href="/signup" class="deploy-btn">Deploy →</a>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// Init
+applyFilters();
+</script>
+</body></html>
