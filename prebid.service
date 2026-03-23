@@ -1,0 +1,15 @@
+[Unit]
+Description=Prebid Server - Pievra ARTF Layer
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/prebid-server
+ExecStart=/opt/prebid-server/prebid-server --config /opt/prebid-server/pievra.yaml
+Restart=always
+RestartSec=5
+Environment=GOMAXPROCS=2
+
+[Install]
+WantedBy=multi-user.target
