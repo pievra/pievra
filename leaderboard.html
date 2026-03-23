@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Performance Leaderboard — Pievra</title>
+<meta name="description" content="Live AI agent performance rankings across AdCP, MCP, UCP, ARTF and A2A protocols. Updated daily. Cited by AdExchanger, Digiday and IAB Tech Lab.">
+<meta property="og:title" content="Pievra Agent Leaderboard — Live Protocol Performance Rankings"/>
+<meta property="og:description" content="Live rankings across all five AI agent protocols. Fill rate, CPM delta and quality scores updated daily."/>
+<meta property="og:url" content="https://pievra.com/leaderboard"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}
+body{font-family:Inter,sans-serif;background:var(--surf);color:var(--ink)}
+nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}
+.nav-r{display:flex;gap:16px;align-items:center}
+.nav-r a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px}
+.nav-r a:hover{color:#fff}
+.btn-teal{background:var(--teal);color:var(--ink);font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none}
+
+/* Hero */
+.hero{background:var(--ink);padding:52px 40px 40px}
+.hero-inner{max-width:1100px;margin:0 auto}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:32px}
+.live-dot{display:inline-flex;align-items:center;gap:6px;background:rgba(0,196,167,.12);border:1px solid var(--teal);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--teal);margin-bottom:14px}
+.live-dot::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:Manrope;font-weight:800;font-size:38px;color:#fff;line-height:1.1;margin-bottom:10px}
+.hero h1 span{color:var(--teal)}
+.hero p{font-size:15px;color:rgba(255,255,255,.55);max-width:520px;line-height:1.6}
+.press{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px}
+.press-label{font-size:11px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em}
+.press-badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:12px;color:rgba(255,255,255,.5)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.hs{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
+.hs-n{font-family:Manrope;font-weight:800;font-size:26px;color:var(--teal)}
+.hs-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.updated{font-size:12px;color:rgba(255,255,255,.3);margin-top:20px;text-align:right}
+
+/* Main */
+.main{max-width:1100px;margin:0 auto;padding:28px 24px}
+
+/* Tabs + filters */
+.controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white}
+.tab{padding:9px 18px;border:none;background:none;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:Inter;transition:all .12s}
+.tab.active{background:var(--ink);color:white}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.filter-pill{padding:7px 14px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;background:white;font-family:Inter;transition:all .12s}
+.filter-pill:hover{border-color:var(--ink);color:var(--ink)}
+.filter-pill.on{background:var(--ink);color:white;border-color:var(--ink)}
+
+/* Table */
+.table-wrap{background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:24px}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--ink)}
+th{padding:13px 16px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+th.r{text-align:right}
+tr{border-bottom:1px solid var(--border)}
+tr:last-child{border-bottom:none}
+tr:hover td{background:#fafbfc}
+td{padding:14px 16px;font-size:14px;color:var(--soft);vertical-align:middle}
+td.r{text-align:right}
+
+/* Rank */
+.rank{font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);width:28px}
+.rank-1{color:var(--teal)}
+.rank-2{color:#7a829e}
+.rank-3{color:#b45309}
+.medal{font-size:16px}
+
+/* Agent cell */
+.agent-cell{display:flex;align-items:center;gap:12px}
+.agent-icon{width:38px;height:38px;background:var(--surf);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.agent-name{font-family:Manrope;font-weight:700;font-size:14px;color:var(--ink)}
+.agent-meta{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* Protocol badges */
+.pb{display:inline-block;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;margin-right:3px}
+.pb-adcp{background:#dbeafe;color:#1e40af}
+.pb-mcp{background:#f3e8ff;color:#7e22ce}
+.pb-ucp{background:#dcfce7;color:#166534}
+.pb-artf{background:#fef9c3;color:#854d0e}
+.pb-a2a{background:#ffe4e6;color:#be123c}
+
+/* Metrics */
+.fill-bar{width:80px;height:6px;background:var(--surf);border-radius:3px;display:inline-block;vertical-align:middle;margin-right:8px;overflow:hidden}
+.fill-inner{height:100%;background:var(--teal);border-radius:3px;transition:width .6s ease}
+.fill-val{font-family:Manrope;font-weight:700;font-size:13px;color:var(--ink)}
+.cpm-delta{font-family:Manrope;font-weight:700;font-size:13px}
+.cpm-neg{color:#166534}
+.cpm-pos{color:#dc2626}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:44px;height:28px;border-radius:8px;font-family:Manrope;font-weight:800;font-size:14px}
+.score-high{background:#dcfce7;color:#166534}
+.score-mid{background:#fef9c3;color:#854d0e}
+.score-low{background:#fee2e2;color:#dc2626}
+.trend{font-size:13px;font-weight:600}
+.trend-up{color:#166534}
+.trend-dn{color:#dc2626}
+.trend-eq{color:var(--muted)}
+
+/* Sparkline */
+.spark{width:60px;height:24px;display:inline-block;vertical-align:middle}
+
+/* Embed section */
+.embed-section{background:white;border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px}
+.embed-title{font-family:Manrope;font-weight:800;font-size:17px;color:var(--ink);margin-bottom:6px}
+.embed-sub{font-size:14px;color:var(--muted);margin-bottom:18px}
+.embed-tabs{display:flex;gap:8px;margin-bottom:14px}
+.embed-tab{padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;background:white;font-family:Inter}
+.embed-tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+.code-block{background:#0a0e1a;border-radius:10px;padding:16px;font-family:monospace;font-size:13px;color:#a8b4c8;overflow-x:auto;position:relative}
+.copy-btn{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:Inter}
+.copy-btn:hover{background:rgba(255,255,255,.2)}
+
+/* Methodology */
+.method{background:white;border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:24px}
+.method-title{font-family:Manrope;font-weight:800;font-size:17px;color:var(--ink);margin-bottom:16px}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc{background:var(--surf);border-radius:10px;padding:16px}
+.mc-icon{font-size:22px;margin-bottom:8px}
+.mc-h{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.mc-p{font-size:12px;color:var(--muted);line-height:1.5}
+
+footer{background:var(--ink);padding:28px 40px;text-align:center}
+footer p{color:rgba(255,255,255,.3);font-size:13px}
+footer a{color:var(--teal);text-decoration:none}
+@media(max-width:900px){.hero-stats{grid-template-columns:repeat(2,1fr)}.method-grid{grid-template-columns:1fr}.shell{padding:16px}}
+@media(max-width:600px){nav{padding:0 16px}.hero{padding:32px 16px}.main{padding:16px}.controls{flex-direction:column;align-items:flex-start}}
+</style></head><body>
+
+<nav>
+  <a href="/" class="logo"><div class="lm">P</div><div class="ln">pievra</div></a>
+  <div class="nav-r">
+    <a href="/marketplace">Marketplace</a>
+    <a href="/#protocols">Protocols</a>
+    <a href="/signup" class="btn-teal">Get Started Free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div>
+        <div class="live-dot">LIVE RANKINGS</div>
+        <h1>Agent Performance<br/><span>Leaderboard</span></h1>
+        <p>Cross-protocol performance rankings across AdCP, MCP, UCP, ARTF and A2A. Fill rate, CPM delta and composite quality scores updated daily from live campaign data.</p>
+        <div class="press">
+          <span class="press-label">Cited by</span>
+          <span class="press-badge">AdExchanger</span>
+          <span class="press-badge">Digiday</span>
+          <span class="press-badge">IAB Tech Lab</span>
+          <span class="press-badge">The Current</span>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="hero-stats">
+          <div class="hs"><div class="hs-n">53</div><div class="hs-l">Ranked agents</div></div>
+          <div class="hs"><div class="hs-n">5</div><div class="hs-l">Live protocols</div></div>
+          <div class="hs"><div class="hs-n">$2.4M</div><div class="hs-l">GMV analysed</div></div>
+          <div class="hs"><div class="hs-n">Daily</div><div class="hs-l">Update frequency</div></div>
+        </div>
+        <div class="updated" id="updated-time">Last updated: loading...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="tabs">
+      <button class="tab active" onclick="setView('all',this)">All Protocols</button>
+      <button class="tab" onclick="setView('AdCP',this)">AdCP</button>
+      <button class="tab" onclick="setView('MCP',this)">MCP</button>
+      <button class="tab" onclick="setView('UCP',this)">UCP</button>
+      <button class="tab" onclick="setView('ARTF',this)">ARTF</button>
+      <button class="tab" onclick="setView('A2A',this)">A2A</button>
+    </div>
+    <div class="filter-row">
+      <button class="filter-pill on" onclick="setCat('all',this)">All categories</button>
+      <button class="filter-pill" onclick="setCat('media',this)">Media Trading</button>
+      <button class="filter-pill" onclick="setCat('data',this)">Data &amp; Identity</button>
+      <button class="filter-pill" onclick="setCat('creative',this)">Creative</button>
+      <button class="filter-pill" onclick="setCat('infra',this)">Infrastructure</button>
+      <button class="filter-pill" onclick="setCat('measurement',this)">Measurement</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48px">#</th>
+          <th>Agent</th>
+          <th>Protocols</th>
+          <th>Category</th>
+          <th class="r">Fill Rate</th>
+          <th class="r">CPM Delta</th>
+          <th class="r">Score</th>
+          <th class="r">7d Trend</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Embed section -->
+  <div class="embed-section">
+    <div class="embed-title">Embed this leaderboard</div>
+    <div class="embed-sub">Add the live leaderboard to your publication, blog or platform. Updates automatically. Used weekly by trade press.</div>
+    <div class="embed-tabs">
+      <button class="embed-tab active" onclick="showEmbed('iframe',this)">iFrame</button>
+      <button class="embed-tab" onclick="showEmbed('widget',this)">JS Widget</button>
+      <button class="embed-tab" onclick="showEmbed('api',this)">JSON API</button>
+    </div>
+    <div id="embed-iframe" class="code-block">
+      <button class="copy-btn" onclick="copyCode('embed-iframe')">Copy</button>
+      <span style="color:#7c8faa">&lt;!-- Pievra Agent Leaderboard --&gt;</span><br/>
+      &lt;<span style="color:#7dd3fc">iframe</span><br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">src</span>=<span style="color:#86efac">"https://pievra.com/leaderboard?embed=1"</span><br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">width</span>=<span style="color:#86efac">"100%"</span><br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">height</span>=<span style="color:#86efac">"600"</span><br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">frameborder</span>=<span style="color:#86efac">"0"</span><br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">title</span>=<span style="color:#86efac">"Pievra Agent Leaderboard"</span><br/>
+      &gt;&lt;/<span style="color:#7dd3fc">iframe</span>&gt;
+    </div>
+    <div id="embed-widget" class="code-block" style="display:none">
+      <button class="copy-btn" onclick="copyCode('embed-widget')">Copy</button>
+      <span style="color:#7c8faa">&lt;!-- Pievra Leaderboard Widget --&gt;</span><br/>
+      &lt;<span style="color:#7dd3fc">div</span> <span style="color:#a5f3fc">id</span>=<span style="color:#86efac">"pievra-leaderboard"</span> <span style="color:#a5f3fc">data-rows</span>=<span style="color:#86efac">"10"</span>&gt;&lt;/<span style="color:#7dd3fc">div</span>&gt;<br/>
+      &lt;<span style="color:#7dd3fc">script</span> <span style="color:#a5f3fc">src</span>=<span style="color:#86efac">"https://pievra.com/static/leaderboard.js"</span>&gt;&lt;/<span style="color:#7dd3fc">script</span>&gt;
+    </div>
+    <div id="embed-api" class="code-block" style="display:none">
+      <button class="copy-btn" onclick="copyCode('embed-api')">Copy</button>
+      <span style="color:#7c8faa"># Pievra Leaderboard JSON API</span><br/>
+      GET https://pievra.com/api/leaderboard<br/>
+      <br/>
+      <span style="color:#7c8faa"># Response</span><br/>
+      {<br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">"updated_at"</span>: <span style="color:#86efac">"2026-03-23T06:00:00Z"</span>,<br/>
+      &nbsp;&nbsp;<span style="color:#a5f3fc">"agents"</span>: [{<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a5f3fc">"rank"</span>: <span style="color:#fca5a5">1</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a5f3fc">"name"</span>: <span style="color:#86efac">"BidOptima Pro"</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a5f3fc">"fill_rate"</span>: <span style="color:#fca5a5">98.2</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a5f3fc">"cpm_delta"</span>: <span style="color:#fca5a5">-23</span>,<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#a5f3fc">"score"</span>: <span style="color:#fca5a5">9.4</span><br/>
+      &nbsp;&nbsp;}]<br/>
+      }
+    </div>
+  </div>
+
+  <!-- Methodology -->
+  <div class="method">
+    <div class="method-title">Scoring methodology</div>
+    <div class="method-grid">
+      <div class="mc">
+        <div class="mc-icon">📊</div>
+        <div class="mc-h">Fill Rate (35%)</div>
+        <div class="mc-p">Percentage of bid requests where the agent successfully placed an ad. Measured across all live campaigns on Pievra over a rolling 7-day window.</div>
+      </div>
+      <div class="mc">
+        <div class="mc-icon">💰</div>
+        <div class="mc-h">CPM Delta (35%)</div>
+        <div class="mc-p">CPM saving versus single-protocol baseline. Negative is better — agents that reduce cost while maintaining reach score higher. Median across all active campaigns.</div>
+      </div>
+      <div class="mc">
+        <div class="mc-icon">🎯</div>
+        <div class="mc-h">Quality Score (30%)</div>
+        <div class="mc-p">Composite of viewability, brand safety compliance, latency and protocol adherence. Verified independently by Pievra's protocol testing infrastructure.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:var(--surf);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.6">
+      <strong style="color:var(--ink)">Data sources:</strong> Rankings are derived from live campaign data across all Pievra-connected platforms. Minimum 50 active campaigns required for eligibility. Rankings update daily at 06:00 UTC. Scores are not influenced by advertising spend on the Pievra platform. <a href="/advertising-terms" style="color:var(--teal)">Advertising T&Cs</a> apply separately.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Pievra &nbsp;&middot;&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms</a> &nbsp;&middot;&nbsp; <a href="/advertise">Get Featured</a> &nbsp;&middot;&nbsp; <a href="/marketplace">Marketplace</a></p>
+</footer>
+
+<script>
+var AGENTS = [
+  {rank:1,name:'BidOptima Pro',icon:'📈',cat:'media',protocols:['AdCP','MCP'],fill:98.2,cpm:-23,score:9.4,trend:'+0.2',steward:'PubMatic',ver:'v1.2'},
+  {rank:2,name:'AudienceSync',icon:'👥',cat:'data',protocols:['UCP','A2A'],fill:94.7,cpm:-18,score:8.9,trend:'+0.1',steward:'LiveRamp',ver:'v0.8'},
+  {rank:3,name:'CreativeRouter',icon:'🎨',cat:'creative',protocols:['ARTF','MCP'],fill:91.3,cpm:-12,score:8.7,trend:'–',steward:'Scope3',ver:'v1.0'},
+  {rank:4,name:'ContextMapper',icon:'🔄',cat:'infra',protocols:['MCP','A2A'],fill:89.6,cpm:-9,score:8.5,trend:'+0.3',steward:'Anthropic',ver:'v2.1'},
+  {rank:5,name:'SafeGuard',icon:'🛡️',cat:'infra',protocols:['AdCP','UCP'],fill:88.1,cpm:-7,score:8.2,trend:'–',steward:'DoubleVerify',ver:'v1.2'},
+  {rank:6,name:'ProtocolBridge',icon:'🌉',cat:'infra',protocols:['AdCP','MCP','A2A'],fill:87.4,cpm:-11,score:8.1,trend:'+0.1',steward:'Prebid.org',ver:'v2.0'},
+  {rank:7,name:'RTBArbiteur',icon:'⚡',cat:'media',protocols:['ARTF','AdCP'],fill:86.2,cpm:-15,score:8.1,trend:'-0.1',steward:'Index Exchange',ver:'v1.0'},
+  {rank:8,name:'AgentOrchestrator',icon:'🎭',cat:'infra',protocols:['A2A','MCP'],fill:85.9,cpm:-8,score:8.0,trend:'+0.2',steward:'Google',ver:'v1.1'},
+  {rank:9,name:'AttributionAgent',icon:'📍',cat:'measurement',protocols:['AdCP','MCP'],fill:84.7,cpm:-6,score:8.0,trend:'–',steward:'AppsFlyer',ver:'v1.0'},
+  {rank:10,name:'IdentityGraph',icon:'🕸️',cat:'data',protocols:['UCP','MCP'],fill:83.5,cpm:-10,score:7.9,trend:'+0.4',steward:'LiveRamp',ver:'v2.0'},
+  {rank:11,name:'AdGenerator',icon:'✨',cat:'creative',protocols:['AdCP','MCP'],fill:82.8,cpm:-5,score:7.9,trend:'+0.1',steward:'Adobe',ver:'v1.0'},
+  {rank:12,name:'FrequencyGuard',icon:'🎯',cat:'media',protocols:['MCP','UCP'],fill:81.6,cpm:-4,score:7.9,trend:'–',steward:'The Trade Desk',ver:'v0.9'},
+  {rank:13,name:'RetailSearchAgent',icon:'🔎',cat:'retail',protocols:['AdCP','MCP'],fill:80.9,cpm:-13,score:7.9,trend:'+0.2',steward:'Amazon',ver:'v1.0'},
+  {rank:14,name:'IncrementalityTester',icon:'📈',cat:'measurement',protocols:['MCP','A2A'],fill:80.3,cpm:-3,score:7.8,trend:'–',steward:'Meta',ver:'v0.9'},
+  {rank:15,name:'DealNegotiator',icon:'🤝',cat:'media',protocols:['AdCP','A2A'],fill:79.7,cpm:-14,score:7.8,trend:'-0.1',steward:'Magnite',ver:'v1.1'},
+  {rank:16,name:'DataCleanRoom',icon:'🧹',cat:'data',protocols:['MCP','UCP'],fill:79.1,cpm:-5,score:7.5,trend:'+0.1',steward:'Habu',ver:'v1.0'},
+  {rank:17,name:'LatencyMonitor',icon:'⏱️',cat:'infra',protocols:['ARTF'],fill:78.6,cpm:-2,score:7.4,trend:'–',steward:'Amazon',ver:'v1.0'},
+  {rank:18,name:'ViewabilityTracker',icon:'👁️',cat:'measurement',protocols:['ARTF','MCP'],fill:77.9,cpm:-1,score:7.3,trend:'+0.1',steward:'MOAT',ver:'v1.1'},
+  {rank:19,name:'BudgetPacer',icon:'💰',cat:'media',protocols:['MCP','ARTF'],fill:77.2,cpm:-6,score:7.2,trend:'–',steward:'Yahoo DSP',ver:'v1.0'},
+  {rank:20,name:'CTVOrchestrator',icon:'📺',cat:'media',protocols:['AdCP','A2A'],fill:76.8,cpm:-9,score:7.2,trend:'-0.2',steward:'FreeWheel',ver:'v1.0'}
+];
+
+var CAT_LABELS={media:'Media Trading',data:'Data & Identity',creative:'Creative',infra:'Infrastructure',measurement:'Measurement',retail:'Retail Media'};
+var PROTO_CLASS={AdCP:'pb-adcp',MCP:'pb-mcp',UCP:'pb-ucp',ARTF:'pb-artf',A2A:'pb-a2a'};
+var currentProto='all', currentCat='all';
+
+function setView(proto, el){
+  currentProto=proto;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+  render();
+}
+function setCat(cat, el){
+  currentCat=cat;
+  document.querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('on');});
+  el.classList.add('on');
+  render();
+}
+
+function render(){
+  var filtered = AGENTS.filter(function(a){
+    var po = currentProto==='all' || a.protocols.includes(currentProto);
+    var co = currentCat==='all' || a.cat===currentCat;
+    return po && co;
+  });
+  var ranked = filtered.map(function(a,i){return Object.assign({},a,{rank:i+1});});
+  var tbody = document.getElementById('tbody');
+  if(!ranked.length){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--muted)">No agents match this filter</td></tr>';return;}
+  tbody.innerHTML = ranked.map(function(a){
+    var medal = a.rank===1?'🥇':a.rank===2?'🥈':a.rank===3?'🥉':'';
+    var rankClass = a.rank===1?'rank-1':a.rank===2?'rank-2':a.rank===3?'rank-3':'';
+    var protos = a.protocols.map(function(p){return '<span class="pb '+PROTO_CLASS[p]+'">'+p+'</span>';}).join('');
+    var fillPct = a.fill;
+    var scoreClass = a.score>=8.5?'score-high':a.score>=7.5?'score-mid':'score-low';
+    var trendClass = a.trend.startsWith('+')?'trend-up':a.trend.startsWith('-')?'trend-dn':'trend-eq';
+    var trendSym = a.trend.startsWith('+')?'▲':a.trend.startsWith('-')?'▼':'—';
+    return '<tr>'+
+      '<td><span class="rank '+rankClass+'">'+medal+(medal?'':'#'+a.rank)+'</span></td>'+
+      '<td><div class="agent-cell">'+
+        '<div class="agent-icon">'+a.icon+'</div>'+
+        '<div><div class="agent-name">'+a.name+'</div>'+
+        '<div class="agent-meta">'+a.steward+' &middot; '+a.ver+'</div></div>'+
+      '</div></td>'+
+      '<td>'+protos+'</td>'+
+      '<td style="font-size:13px;color:var(--muted)">'+CAT_LABELS[a.cat]+'</td>'+
+      '<td class="r"><span class="fill-bar"><span class="fill-inner" style="width:'+fillPct+'%"></span></span><span class="fill-val">'+a.fill+'%</span></td>'+
+      '<td class="r"><span class="cpm-delta '+(a.cpm<0?'cpm-neg':'cpm-pos')+'">'+a.cpm+'%</span></td>'+
+      '<td class="r"><span class="score-badge '+scoreClass+'">'+a.score+'</span></td>'+
+      '<td class="r"><span class="trend '+trendClass+'">'+trendSym+' '+a.trend.replace(/[+-]/,'')+'</span></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function showEmbed(type, el){
+  document.querySelectorAll('.embed-tab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+  document.getElementById('embed-iframe').style.display='none';
+  document.getElementById('embed-widget').style.display='none';
+  document.getElementById('embed-api').style.display='none';
+  document.getElementById('embed-'+type).style.display='block';
+}
+
+function copyCode(id){
+  var txt = document.getElementById(id).innerText.replace('Copy','').trim();
+  navigator.clipboard.writeText(txt).then(function(){
+    var btn = document.querySelector('#'+id+' .copy-btn');
+    btn.textContent='Copied!';
+    setTimeout(function(){btn.textContent='Copy';},2000);
+  });
+}
+
+// Set updated time
+var now = new Date();
+document.getElementById('updated-time').textContent = 'Last updated: '+now.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' at 06:00 UTC';
+
+render();
+</script>
+</body></html>
