@@ -1,0 +1,82 @@
+<!-- CAMPAIGN MANAGER SECTION - inject into dashboard -->
+<div id="sec-manager" style="display:none;padding:0">
+
+  <!-- Toolbar -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+    <div>
+      <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:18px;color:var(--ink)">Campaign Manager</div>
+      <div style="font-size:13px;color:var(--muted)" id="cm-count">Loading...</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="CampaignManager.exportCSV()" style="display:flex;align-items:center;gap:5px;border:1px solid var(--border);background:white;color:var(--soft);font-size:12px;font-weight:600;padding:7px 12px;border-radius:8px;cursor:pointer">📄 CSV</button>
+      <button onclick="CampaignManager.exportXLSX()" style="display:flex;align-items:center;gap:5px;border:1px solid var(--border);background:white;color:var(--soft);font-size:12px;font-weight:600;padding:7px 12px;border-radius:8px;cursor:pointer">📊 Excel</button>
+      <button onclick="CampaignManager.exportEmail()" style="display:flex;align-items:center;gap:5px;border:1px solid var(--border);background:white;color:var(--soft);font-size:12px;font-weight:600;padding:7px 12px;border-radius:8px;cursor:pointer">📧 Email</button>
+      <button onclick="CampaignManager.load()" style="border:none;background:var(--teal);color:var(--ink);font-size:12px;font-weight:700;padding:7px 12px;border-radius:8px;cursor:pointer">↻ Refresh</button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;background:white;border:1px solid var(--border);border-radius:12px;padding:14px">
+    <input id="cm-search" type="text" placeholder="🔍 Search campaigns, brands, SNs..." oninput="CampaignManager.setFilter('search',this.value)"
+      style="flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:Inter,sans-serif;color:var(--ink)">
+    <select onchange="CampaignManager.setFilter('status',this.value)"
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:Inter,sans-serif;color:var(--ink);background:white;cursor:pointer">
+      <option value="all">All Status</option>
+      <option value="active">Active</option>
+      <option value="paused">Paused</option>
+      <option value="draft">Draft</option>
+      <option value="archived">Archived</option>
+    </select>
+    <select onchange="CampaignManager.setFilter('objective',this.value)"
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:Inter,sans-serif;color:var(--ink);background:white;cursor:pointer">
+      <option value="all">All Objectives</option>
+      <option value="Awareness">Awareness</option>
+      <option value="Consideration">Consideration</option>
+      <option value="Conversion">Conversion</option>
+      <option value="Retention">Retention</option>
+    </select>
+    <select id="cm-filter-advertiser" onchange="CampaignManager.setFilter('advertiser',this.value)"
+      style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:Inter,sans-serif;color:var(--ink);background:white;cursor:pointer">
+      <option value="all">All Advertisers</option>
+    </select>
+  </div>
+
+  <!-- Bulk action bar -->
+  <div id="cm-bulk-bar" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;background:#0a0e1a;border-radius:10px;padding:12px 16px;margin-bottom:12px">
+    <span id="cm-bulk-count" style="font-size:13px;font-weight:700;color:white"></span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button onclick="CampaignManager.bulkStatus('active')" style="border:none;background:#dcfce7;color:#166534;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer">▶ Set Active</button>
+      <button onclick="CampaignManager.bulkStatus('paused')" style="border:none;background:#dbeafe;color:#1e40af;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer">⏸ Pause</button>
+      <button onclick="CampaignManager.bulkStatus('archived')" style="border:none;background:#f3f4f6;color:#6b7280;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer">📦 Archive</button>
+      <button onclick="CampaignManager.exportCSV()" style="border:none;background:rgba(255,255,255,.1);color:white;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer">📄 Export Selected</button>
+    </div>
+    <button onclick="CampaignManager.selectAll(false)" style="margin-left:auto;border:none;background:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer">✕ Clear</button>
+  </div>
+
+  <!-- Table -->
+  <div style="background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:1000px">
+      <thead>
+        <tr style="background:var(--ink)">
+          <th style="padding:12px;width:32px"><input type="checkbox" id="cm-select-all" onchange="CampaignManager.selectAll(this.checked)" style="width:14px;height:14px;accent-color:#00c4a7"></th>
+          <th data-sort="customer_sn" onclick="CampaignManager.sortBy('customer_sn')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Customer<span class="sort-arrow"> ↕</span></th>
+          <th data-sort="brand" onclick="CampaignManager.sortBy('brand')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Brand / Advertiser<span class="sort-arrow"> ↕</span></th>
+          <th data-sort="campaign_name" onclick="CampaignManager.sortBy('campaign_name')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Campaign<span class="sort-arrow"> ↕</span></th>
+          <th style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">Flight SN</th>
+          <th data-sort="status" onclick="CampaignManager.sortBy('status')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Status<span class="sort-arrow"> ↕</span></th>
+          <th data-sort="objective" onclick="CampaignManager.sortBy('objective')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Objective<span class="sort-arrow"> ↕</span></th>
+          <th data-sort="budget" onclick="CampaignManager.sortBy('budget')" style="padding:12px 10px;text-align:right;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Budget<span class="sort-arrow"> ↕</span></th>
+          <th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">CPM</th>
+          <th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">Impressions</th>
+          <th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">ROAS</th>
+          <th data-sort="flight_start" onclick="CampaignManager.sortBy('flight_start')" style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;white-space:nowrap">Start<span class="sort-arrow"> ↕</span></th>
+          <th style="padding:12px 10px;text-align:left;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);white-space:nowrap">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cm-table-body">
+        <tr><td colspan="13" style="text-align:center;padding:48px;color:var(--muted)">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
