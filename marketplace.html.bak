@@ -1,0 +1,636 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Advertising Directory,Every AI Agent Across AdCP, MCP, UCP, ARTF & A2A | Pievra</title>
+<meta name="description" content="The open directory of every verified AI agent, MCP server, and protocol tool in agentic advertising. One page covering AdCP, IAB AAMP, Prebid, A2A, and the IAB Agent Registry,so you don't have to visit each one separately.">
+<link rel="canonical" href="https://pievra.com/marketplace"/>
+<meta property="og:title" content="Agentic Advertising Directory,Every AI Agent Across All 5 Protocols"/>
+<meta property="og:description" content="26 verified agents, MCP servers, and protocol tools from AdCP, IAB AAMP, Prebid, A2A, and the IAB Agent Registry. One searchable page for marketers, traders, and builders."/>
+<meta property="og:url" content="https://pievra.com/marketplace"/>
+<meta property="og:type" content="website"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}
+body{font-family:Inter,sans-serif;background:var(--surf);color:var(--ink)}
+nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}
+.nav-r{display:flex;gap:16px;align-items:center}
+.nav-r a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px}
+.nav-r a:hover{color:#fff}
+.btn-teal{background:var(--teal);color:var(--ink);font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none}
+
+/* Hero */
+.hero{background:var(--ink);padding:48px 40px 36px}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.hero h1{font-family:Manrope;font-weight:800;font-size:36px;color:#fff;margin-bottom:8px}
+.hero h1 span{color:var(--teal)}
+.hero p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hs{text-align:center}
+.hs-n{font-family:Manrope;font-weight:800;font-size:24px;color:var(--teal)}
+.hs-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* Layout */
+.shell{max-width:1100px;margin:0 auto;padding:28px 24px;display:grid;grid-template-columns:240px 1fr;gap:24px}
+
+/* Sidebar filters */
+.filters{background:white;border:1px solid var(--border);border-radius:14px;padding:20px;height:fit-content;position:sticky;top:76px}
+.filter-title{font-family:Manrope;font-weight:800;font-size:13px;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.filter-group{margin-bottom:20px}
+.filter-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.filter-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:7px 10px;border:none;background:none;border-radius:8px;font-size:13px;color:var(--soft);cursor:pointer;font-family:Inter;text-align:left;margin-bottom:2px;transition:all .12s}
+.filter-btn:hover{background:var(--surf);color:var(--ink)}
+.filter-btn.active{background:var(--teal-l);color:var(--teal-d);font-weight:600}
+.filter-count{font-size:11px;background:var(--surf);color:var(--muted);padding:2px 7px;border-radius:20px}
+.filter-btn.active .filter-count{background:var(--teal);color:var(--ink)}
+.proto-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:4px}
+.pb-adcp{background:#dbeafe;color:#1e40af}
+.pb-mcp{background:#f3e8ff;color:#7e22ce}
+.pb-ucp{background:#dcfce7;color:#166534}
+.pb-artf{background:#fef9c3;color:#854d0e}
+.pb-a2a{background:#ffe4e6;color:#be123c}
+.clear-btn{width:100%;padding:8px;border:1px solid var(--border);background:none;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer;font-family:Inter;margin-top:4px}
+.clear-btn:hover{border-color:var(--ink);color:var(--ink)}
+
+/* Main content */
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.count{font-size:14px;color:var(--muted)}
+.count strong{color:var(--ink)}
+.sort-wrap{display:flex;align-items:center;gap:8px}
+.sort-wrap label{font-size:13px;color:var(--muted)}
+.sort-wrap select{padding:7px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--ink);background:white;cursor:pointer;font-family:Inter}
+.search-wrap{position:relative;flex:1;max-width:300px}
+.search-wrap input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--ink);background:white;font-family:Inter}
+.search-wrap::before{content:"🔍";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px}
+
+/* Agent cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:white;border:1.5px solid var(--border);border-radius:14px;padding:20px;transition:all .15s;position:relative}
+.card:hover{border-color:var(--teal);box-shadow:0 4px 20px rgba(0,196,167,.1);transform:translateY(-1px)}
+.card.featured{border-color:var(--teal);background:linear-gradient(135deg,white 0%,var(--teal-l) 100%)}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.card-icon{width:40px;height:40px;background:var(--surf);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.card-score{font-family:Manrope;font-weight:800;font-size:22px;color:var(--teal-d)}
+.feat-badge{position:absolute;top:14px;right:56px;background:var(--teal);color:var(--ink);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+.card-name{font-family:Manrope;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:2px}
+.card-cat{font-size:12px;color:var(--muted)}
+.card-desc{font-size:13px;color:var(--soft);line-height:1.5;margin-bottom:12px}
+.card-protos{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.card-steward{font-size:11px;color:var(--muted)}
+.deploy-btn{background:var(--ink);color:white;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:Inter;text-decoration:none;display:inline-block}
+.deploy-btn:hover{background:#1a2030}
+.no-results{text-align:center;padding:60px 20px;color:var(--muted)}
+.no-results div{font-size:32px;margin-bottom:12px}
+
+@media(max-width:900px){.shell{grid-template-columns:1fr}.filters{position:static}.grid{grid-template-columns:1fr}}
+@media(max-width:600px){nav{padding:0 20px}.hero{padding:32px 20px}}
+</style></head><body>
+
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Agentic Advertising Directory<br/><span>Every agent. Every protocol. One page.</span></h1>
+      <p>The open directory of every verified AI agent, MCP server, and protocol tool across AdCP, IAB AAMP, Prebid, A2A, and the IAB Agent Registry. One place instead of five,for marketers, traders, publishers, and builders.</p>
+      <div id="hero-list-btn" style="display:none;margin-top:16px">
+        <button onclick="openSubmitForm()" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:14px;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;font-family:Inter,sans-serif;display:inline-flex;align-items:center;gap:8px">&#x1F916; List Your Agent in the Marketplace</button>
+        <button onclick="openMySubmissions()" id="my-submissions-btn" style="display:none;background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);font-weight:600;font-size:13px;padding:10px 18px;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif;margin-left:10px">My Submissions</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">26</div><div class="hs-l">Listed agents</div></div>
+      <div class="hs"><div class="hs-n">6</div><div class="hs-l">Categories</div></div>
+      <div class="hs"><div class="hs-n">5</div><div class="hs-l">Protocols</div></div>
+      <div class="hs"><div class="hs-n">Open</div><div class="hs-l">Early access</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THIS PAGE EXISTS -->
+<div style="max-width:1100px;margin:0 auto;padding:20px 24px 0">
+  <div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start">
+    <div>
+      <div style="font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);margin-bottom:6px">Why this directory exists</div>
+      <div style="font-size:13px;color:var(--soft);line-height:1.7">Agentic advertising tools are scattered across five protocol ecosystems,AdCP, IAB AAMP, Prebid, A2A, and the IAB Agent Registry. This directory aggregates them into one searchable page so you can find what exists without visiting each repo and registry separately.</div>
+    </div>
+    <div>
+      <div style="font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);margin-bottom:6px">Sources we track</div>
+      <div style="font-size:13px;color:var(--soft);line-height:1.7">
+        <a href="https://github.com/adcontextprotocol" target="_blank" style="color:var(--teal-d)">AdCP GitHub</a> ·
+        <a href="https://github.com/IABTechLab/AAMP" target="_blank" style="color:var(--teal-d)">IAB AAMP</a> ·
+        <a href="https://github.com/prebid/salesagent" target="_blank" style="color:var(--teal-d)">Prebid</a> ·
+        <a href="https://github.com/a2aproject/A2A" target="_blank" style="color:var(--teal-d)">A2A Protocol</a> ·
+        <a href="https://tools.iabtechlab.com/agent-registry" target="_blank" style="color:var(--teal-d)">IAB Agent Registry</a>
+        <div style="margin-top:6px;color:var(--muted)">Every listing links to its source. No synthetic entries.</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);margin-bottom:6px">Who this is for</div>
+      <div style="font-size:13px;color:var(--soft);line-height:1.7"><strong>Marketers:</strong> see what tools exist before your agency pitches them.<br/><strong>Traders:</strong> find buyer/seller agents you can deploy today.<br/><strong>Builders:</strong> discover SDKs, reference implementations, and MCP servers to build on.</div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="filters">
+    <div class="filter-title">Filters</div>
+
+    <div class="filter-group">
+      <div class="filter-label">Category</div>
+      <button class="filter-btn active" onclick="filterCat('all',this)">All Categories <span class="filter-count">26</span></button>
+      <button class="filter-btn" onclick="filterCat('media',this)">Media Trading <span class="filter-count">9</span></button>
+      <button class="filter-btn" onclick="filterCat('data',this)">Data &amp; Identity <span class="filter-count">5</span></button>
+      <button class="filter-btn" onclick="filterCat('creative',this)">Creative <span class="filter-count">1</span></button>
+      <button class="filter-btn" onclick="filterCat('infra',this)">Infrastructure <span class="filter-count">9</span></button>
+      <button class="filter-btn" onclick="filterCat('measurement',this)">Measurement <span class="filter-count">1</span></button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Protocol</div>
+      <button class="filter-btn" onclick="filterProto('all',this)">All Protocols</button>
+      <button class="filter-btn" onclick="filterProto('AdCP',this)"><span class="proto-badge pb-adcp">AdCP</span> Ad Context</button>
+      <button class="filter-btn" onclick="filterProto('MCP',this)"><span class="proto-badge pb-mcp">MCP</span> Model Context</button>
+      <button class="filter-btn" onclick="filterProto('UCP',this)"><span class="proto-badge pb-ucp">UCP</span> User Context</button>
+      <button class="filter-btn" onclick="filterProto('ARTF',this)"><span class="proto-badge pb-artf">ARTF</span> Agentic RTB</button>
+      <button class="filter-btn" onclick="filterProto('A2A',this)"><span class="proto-badge pb-a2a">A2A</span> Agent-to-Agent</button>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Status</div>
+      <button class="filter-btn" onclick="filterStatus('all',this)">All Status</button>
+      <button class="filter-btn" onclick="filterStatus('live',this)">&#x1F7E2; Live</button>
+      <button class="filter-btn" onclick="filterStatus('beta',this)">&#x1F7E1; Beta</button>
+      <button class="filter-btn" onclick="filterStatus('new',this)">&#x2728; New</button>
+    </div>
+
+    <button class="clear-btn" onclick="clearFilters()">Clear all filters</button>
+  </aside>
+
+  <!-- Main -->
+  <main>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Search agents..." oninput="applyFilters()"/>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="count"><strong id="count">26</strong> agents</div>
+        <div class="sort-wrap">
+          <label>Sort:</label>
+          <select onchange="applyFilters()">
+            <option value="score">Highest rated</option>
+            <option value="new">Newest first</option>
+            <option value="name">A–Z</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="no-results" id="no-results" style="display:none">
+      <div>🔍</div>
+      <strong>No agents match your filters</strong>
+      <p style="margin-top:8px">Try adjusting your category or protocol filters</p>
+    </div>
+  </main>
+</div>
+
+<script>
+var AGENTS = [
+  // ── REFERENCE IMPLEMENTATIONS (AdCP) ──
+  {id:1,name:'AdCP Protocol Server',icon:'📋',cat:'infra',score:0,ver:'v2.0',status:'live',featured:true,protocols:['AdCP','MCP'],steward:'AgenticAdvertising.org',desc:'Official reference implementation of the Ad Context Protocol. Campaign negotiation, deal management, media buy/creative/signals/accounts protocols with Express server, JSON schemas and OpenAPI specs.',tags:['adcp','reference','protocol'],link:'https://github.com/adcontextprotocol/adcp'},
+  {id:2,name:'Prebid Sales Agent',icon:'🏷️',cat:'media',score:0,ver:'v1.0',status:'live',featured:true,protocols:['AdCP','MCP','A2A'],steward:'Prebid.org',desc:'Open-source publisher-side AI agent that automates programmatic ad sales. Exposes inventory via MCP, integrates with Google Ad Manager and Kevel. Deploy via Docker in 2 minutes.',tags:['prebid','publisher','sales','inventory'],link:'https://github.com/prebid/salesagent'},
+  {id:3,name:'AdCP Client SDK (TypeScript)',icon:'📦',cat:'infra',score:0,ver:'v1.0',status:'live',featured:false,protocols:['AdCP'],steward:'AgenticAdvertising.org',desc:'Official TypeScript/JavaScript SDK for building AdCP clients and servers. Handles protocol translation, negotiation payloads, and deal state management.',tags:['sdk','typescript','client'],link:'https://github.com/adcontextprotocol/adcp-client'},
+  {id:4,name:'AdCP Client (Python)',icon:'🐍',cat:'infra',score:0,ver:'v0.1',status:'beta',featured:false,protocols:['AdCP'],steward:'AgenticAdvertising.org',desc:'Python library for interacting with AdCP servers. Lightweight client for building buyer agents and campaign automation tools.',tags:['sdk','python','client'],link:'https://github.com/adcontextprotocol/adcp-client-python'},
+  {id:5,name:'AdCP Signals Agent',icon:'📡',cat:'data',score:0,ver:'v1.0',status:'beta',featured:false,protocols:['AdCP','MCP'],steward:'AgenticAdvertising.org',desc:'Reference implementation of an AdCP Signals Activation agent using MCP. Supports audience signals (demographic, behavioral) and contextual signals (content classification, intent).',tags:['signals','audience','contextual'],link:'https://github.com/adcontextprotocol/signals-agent'},
+  {id:6,name:'AdCP Creative Agent',icon:'🎨',cat:'creative',score:0,ver:'v1.0',status:'beta',featured:false,protocols:['AdCP','MCP'],steward:'AgenticAdvertising.org',desc:'Reference implementation of an AdCP creative agent. AI-powered creative generation and optimisation across formats, compliant with the AdCP creative protocol.',tags:['creative','generation','formats'],link:'https://github.com/adcontextprotocol/creative-agent'},
+
+  // ── IAB TECH LAB (AAMP) ──
+  {id:7,name:'IAB Buyer Agent',icon:'🛒',cat:'media',score:0,ver:'v1.0',status:'live',featured:true,protocols:['MCP','A2A'],steward:'IAB Tech Lab',desc:'AI-powered media buying system built on CrewAI and IAB OpenDirect 2.1. Receives campaign briefs, allocates budget across channels, researches seller inventory, and books deals programmatically.',tags:['buyer','dsp','opendirect','crewai'],link:'https://github.com/IABTechLab/buyer-agent'},
+  {id:8,name:'IAB Seller Agent',icon:'📰',cat:'media',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP','A2A'],steward:'IAB Tech Lab',desc:'AI-powered inventory management system for publishers and SSPs. Manages seller operations through Claude with 45+ MCP tools. Integrates with Google Ad Manager, FreeWheel, PubMatic, Index Exchange, and Magnite.',tags:['seller','publisher','ssp','inventory'],link:'https://github.com/IABTechLab/seller-agent'},
+  {id:9,name:'IAB Agentic Direct',icon:'🔗',cat:'infra',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP','A2A'],steward:'IAB Tech Lab',desc:'Schema-driven A2A + MCP implementation for OpenDirect v2.1. Dual buyer/seller agents with auto-generated tools from OpenAPI spec. JSON-RPC 2.0 protocol for agent communication.',tags:['a2a','opendirect','schema','bridge'],link:'https://github.com/IABTechLab/agentic-direct'},
+  {id:10,name:'Agentic RTB Framework (ARTF)',icon:'⚡',cat:'infra',score:0,ver:'v1.0',status:'live',featured:false,protocols:['ARTF','MCP','A2A'],steward:'IAB Tech Lab',desc:'Go/Rust implementation of the ARTF v1.0 spec. Containerised architecture for agent-driven OpenRTB auctions,reduces bid request latency up to 80% by co-locating agents in the same data centre.',tags:['rtb','auction','latency','containers'],link:'https://github.com/IABTechLab/agentic-rtb-framework'},
+  {id:11,name:'Agentic Audiences (UCP)',icon:'👥',cat:'data',score:0,ver:'v1.0',status:'live',featured:false,protocols:['UCP','MCP'],steward:'IAB Tech Lab / LiveRamp',desc:'Open standard for exchanging privacy-safe audience signals between agents. 128-dimensional embeddings encode identity, contextual, and reinforcement signals. Donated by LiveRamp, governed by IAB Tech Lab.',tags:['audience','privacy','embeddings','identity'],link:'https://github.com/IABTechLab/agentic-audiences'},
+  {id:12,name:'IAB Registry Agent Example',icon:'🔍',cat:'infra',score:0,ver:'v0.1',status:'beta',featured:false,protocols:['MCP'],steward:'IAB Tech Lab',desc:'ADK TypeScript agent that interacts with the IAB Tech Lab Agent Registry MCP server. Browse entries and search for registered agents programmatically.',tags:['registry','discovery','adk'],link:'https://github.com/IABTechLab/registry-agent-example'},
+  {id:13,name:'AAMP Hub',icon:'🏛️',cat:'infra',score:0,ver:'v1.0',status:'live',featured:false,protocols:['AdCP','MCP','A2A','ARTF','UCP'],steward:'IAB Tech Lab',desc:'Central hub for Agentic Advertising Management Protocols (AAMP). Links to all IAB Tech Lab agentic repos: buyer agent, seller agent, ARTF, agentic audiences, registry, and agentic direct.',tags:['hub','aamp','central','governance'],link:'https://github.com/IABTechLab/AAMP'},
+
+  // ── IAB AGENT REGISTRY (live registered MCP agents) ──
+  {id:14,name:'Amazon Ads MCP',icon:'📊',cat:'media',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Amazon',desc:'Standardised MCP access layer for Amazon Ads. Transforms complex multi-field API operations into conversational queries for campaign data, metrics, and reporting. Registered in the IAB Agent Registry.',tags:['amazon','ads','campaign','metrics'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:15,name:'PubMatic MCP',icon:'📡',cat:'media',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'PubMatic',desc:'Supply-side platform MCP server for agentic integration. Registered in the IAB Agent Registry with GPP ID verification.',tags:['ssp','pubmatic','supply'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:16,name:'Equativ MCP',icon:'📺',cat:'media',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Equativ',desc:'Supply-side platform MCP server for agentic ad serving and inventory management. Registered in the IAB Agent Registry.',tags:['ssp','equativ','adserving'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:17,name:'Optable Audience Agent',icon:'🔒',cat:'data',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Optable',desc:'Privacy-preserving audience infrastructure deployed to private networks. MCP agent for privacy-safe data collaboration and audience activation. Private deployment model.',tags:['privacy','audience','cleanroom'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:18,name:'Dstillery MCP',icon:'🧪',cat:'data',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Dstillery',desc:'Data provider MCP server for audience intelligence and targeting capabilities. Registered in the IAB Agent Registry.',tags:['data','targeting','audience'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:19,name:'Burt Intelligence MCP',icon:'📈',cat:'measurement',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Burt Corp',desc:'Analytics MCP server for agentic advertising measurement. Available in EU and US deployments for data residency compliance. Registered in the IAB Agent Registry.',tags:['analytics','measurement','eu'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:20,name:'HyperMindZ Campaign Orchestrator',icon:'🎯',cat:'media',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'HyperMindZ',desc:'Manages contractual and operational aspects of media buying. Order management system for campaign orchestration via MCP. Registered in the IAB Agent Registry.',tags:['oms','campaign','orchestration'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:21,name:'Mixpeek MCP Server',icon:'💾',cat:'data',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'Mixpeek',desc:'Data management platform MCP server for agentic advertising infrastructure. Registered in the IAB Agent Registry.',tags:['dmp','data','management'],link:'https://tools.iabtechlab.com/agent-registry'},
+  {id:22,name:'IAB Agent Registry MCP',icon:'🗂️',cat:'infra',score:0,ver:'v1.0',status:'live',featured:false,protocols:['MCP'],steward:'IAB Tech Lab',desc:'Meta-layer MCP server enabling programmatic discovery of all registered agents in the IAB Tech Lab Agent Registry. Query the registry from any MCP-compatible agent.',tags:['registry','discovery','meta'],link:'https://tools.iabtechlab.com/agent-registry'},
+
+  // ── A2A PROTOCOL ──
+  {id:23,name:'A2A Protocol SDK',icon:'🤝',cat:'infra',score:0,ver:'v0.3',status:'live',featured:false,protocols:['A2A'],steward:'Linux Foundation / Google',desc:'Official Agent2Agent protocol SDKs (Python, Go, JS, Java, .NET). Enables agents built on different frameworks to discover, negotiate, and collaborate securely. 22.8k GitHub stars.',tags:['a2a','sdk','interoperability','google'],link:'https://github.com/a2aproject/A2A'},
+
+  // ── COMMUNITY / THIRD PARTY ──
+  {id:24,name:'IAB Deals MCP Server',icon:'🤝',cat:'media',score:0,ver:'v0.1',status:'beta',featured:false,protocols:['MCP','AdCP'],steward:'HyperMindZ.ai',desc:'Reference implementation for IAB Tech Lab Agentic Task Force. MCP server for programmatic deal management and negotiation.',tags:['deals','negotiation','iab'],link:'https://github.com/Hypermindz-AI/iab-deals-mcp-server'},
+  {id:25,name:'AdTech MCP Suite',icon:'🧰',cat:'infra',score:0,ver:'v1.0',status:'beta',featured:false,protocols:['MCP'],steward:'Community',desc:'10 production-grade MCP servers for advertising technology. Multi-agent hierarchies with Random Forest, Isolation Forest, Thompson Sampling, and Markov Chains.',tags:['ml','multi-agent','suite'],link:'https://github.com/Samrajtheailyceum/adtech-mcp-suite'},
+  {id:26,name:'Unified Ads MCP',icon:'📢',cat:'media',score:0,ver:'v1.0',status:'beta',featured:false,protocols:['MCP'],steward:'Promobase',desc:'MCP server enabling AI assistants to manage advertising campaigns programmatically across Facebook Ads, Google Ads, and TikTok Ads from a single interface.',tags:['facebook','google','tiktok','campaign'],link:'https://github.com/promobase/unified-ads-mcp'}
+];
+
+var currentCat = 'all';
+var currentProto = 'all';
+var currentStatus = 'all';
+
+function filterCat(cat, el) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterCat')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function filterProto(proto, el) {
+  currentProto = proto;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterProto')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function filterStatus(status, el) {
+  currentStatus = status;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ if(b.getAttribute('onclick') && b.getAttribute('onclick').includes('filterStatus')) b.classList.remove('active'); });
+  el.classList.add('active');
+  applyFilters();
+}
+function clearFilters() {
+  currentCat = 'all'; currentProto = 'all'; currentStatus = 'all';
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelector('[onclick="filterCat(\'all\',this)"]').classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  var q = document.getElementById('search').value.toLowerCase();
+  var sort = document.querySelector('.sort-wrap select').value;
+  var filtered = AGENTS.filter(function(a) {
+    var catOk = currentCat === 'all' || a.cat === currentCat;
+    var protoOk = currentProto === 'all' || a.protocols.includes(currentProto);
+    var statusOk = currentStatus === 'all' || a.status === currentStatus;
+    var searchOk = !q || a.name.toLowerCase().includes(q) || a.desc.toLowerCase().includes(q) || a.tags.some(function(t){ return t.includes(q); }) || a.steward.toLowerCase().includes(q);
+    return catOk && protoOk && statusOk && searchOk;
+  });
+  if(sort === 'score') filtered.sort(function(a,b){ return b.score - a.score; });
+  else if(sort === 'name') filtered.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  else if(sort === 'new') filtered.sort(function(a,b){ return b.id - a.id; });
+  document.getElementById('count').textContent = filtered.length;
+  renderGrid(filtered);
+}
+
+var STATUS_ICON = {live:'🟢',beta:'🟡',new:'✨'};
+var STATUS_LABEL = {live:'Live',beta:'Beta',new:'New'};
+var PROTO_CLASS = {AdCP:'pb-adcp',MCP:'pb-mcp',UCP:'pb-ucp',ARTF:'pb-artf',A2A:'pb-a2a'};
+var CAT_LABELS = {media:'Media Trading',data:'Data & Identity',creative:'Creative',infra:'Infrastructure',measurement:'Measurement',retail:'Retail Media'};
+
+function renderGrid(agents) {
+  var grid = document.getElementById('grid');
+  var noRes = document.getElementById('no-results');
+  if(!agents.length){ grid.innerHTML=''; noRes.style.display='block'; return; }
+  noRes.style.display='none';
+  grid.innerHTML = agents.map(function(a) {
+    var protos = a.protocols.map(function(p){ return '<span class="proto-badge '+PROTO_CLASS[p]+'">'+p+'</span>'; }).join('');
+    return '<div class="card'+(a.featured?' featured':'')+'">'+
+      (a.featured?'<div class="feat-badge">FEATURED</div>':'')+
+      '<div class="card-header">'+
+        '<div class="card-icon">'+a.icon+'</div>'+
+        '<div style="font-size:11px;font-weight:600;color:'+(a.status==='live'?'#166534':a.status==='beta'?'#854d0e':'#7a829e')+'">'+STATUS_ICON[a.status]+' '+STATUS_LABEL[a.status]+'</div>'+
+      '</div>'+
+      '<div class="card-name">'+a.name+'</div>'+
+      '<div class="card-cat" style="margin-bottom:8px">'+CAT_LABELS[a.cat]+' · '+a.ver+'</div>'+
+      '<div class="card-desc">'+a.desc+'</div>'+
+      '<div class="card-protos">'+protos+'</div>'+
+      '<div class="card-foot">'+
+        '<div class="card-steward">'+a.steward+'</div>'+
+        (a.link?'<a href="'+a.link+'" target="_blank" class="deploy-btn">View →</a>':'<span class="deploy-btn" style="opacity:.5">Coming soon</span>')+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// Init
+applyFilters();
+
+// Auto-deploy if arriving via ?deploy= param from homepage
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var slug = params.get('deploy');
+  if(!slug) return;
+  var agent = AGENTS.find(function(a){ return a.name.toLowerCase().replace(/\s+/g,'') === slug.toLowerCase().replace(/-/g,''); });
+  if(agent) deployAgent(agent.id);
+  // Clean URL
+  window.history.replaceState({}, '', '/marketplace');
+})();
+
+// ── AUTH CHECK ──────────────────────────────────────────────────────────────
+var _mpUser = null;
+var _mpTok = localStorage.getItem('pievra_token') || '';
+(function(){
+  if(!_mpTok) return;
+  fetch('/auth/me', {credentials:'include', headers:{'Authorization':'Bearer '+_mpTok}})
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(u){
+    if(!u) return;
+    _mpUser = u;
+    document.getElementById('nav-guest').style.display = 'none';
+    document.getElementById('nav-user').style.display = 'inline-flex';
+    document.getElementById('hero-list-btn').style.display = 'block';
+    document.getElementById('my-submissions-btn').style.display = 'inline-block';
+  }).catch(function(){});
+})();
+
+// ── DEPLOY AGENT ────────────────────────────────────────────────────────────
+function deployAgent(agentId){
+  var agent = AGENTS.find(function(a){ return a.id === agentId; });
+  if(!agent) return;
+
+  // Store selected agent in localStorage for the planner to pick up
+  var deployed = JSON.parse(localStorage.getItem('pievra_deploy_agents') || '[]');
+  var already = deployed.some(function(d){ return d.id === agent.id; });
+  if(!already){
+    deployed.push({
+      id: agent.id, name: agent.name, icon: agent.icon,
+      protocols: agent.protocols, steward: agent.steward,
+      score: agent.score, cat: agent.cat
+    });
+    localStorage.setItem('pievra_deploy_agents', JSON.stringify(deployed));
+  }
+
+  // Show confirmation toast
+  var toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#0a0e1a;color:white;padding:16px 28px;border-radius:12px;z-index:10000;font-size:14px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.3);display:flex;align-items:center;gap:12px';
+  toast.innerHTML = '<span style="font-size:20px">'+agent.icon+'</span><div><div>'+agent.name+(already?' is already':' added to your')+ ' campaign stack</div><div style="font-size:12px;color:#00c4a7;margin-top:2px">'+(already?'':''+deployed.length+' agent'+(deployed.length>1?'s':'')+' selected · ')+'<a href="/dashboard" style="color:#00c4a7;text-decoration:underline">Open Campaign Planner →</a></div></div>';
+  document.body.appendChild(toast);
+  setTimeout(function(){ toast.remove(); }, 4000);
+}
+
+// ── SUBMIT FORM ─────────────────────────────────────────────────────────────
+function openSubmitForm(){
+  document.getElementById('agent-submit-modal').style.display = 'flex';
+}
+function closeSubmitForm(){
+  document.getElementById('agent-submit-modal').style.display = 'none';
+}
+
+function submitAgent(){
+  var name = document.getElementById('as-name').value.trim();
+  var cat = document.getElementById('as-cat').value;
+  var desc = document.getElementById('as-desc').value.trim();
+  var steward = document.getElementById('as-steward').value.trim();
+  var icon = document.getElementById('as-icon').value.trim() || '🤖';
+  var version = document.getElementById('as-version').value.trim() || 'v1.0';
+  var website = document.getElementById('as-website').value.trim();
+  var featured = document.getElementById('as-featured').checked;
+
+  var protos = [];
+  document.querySelectorAll('.as-proto:checked').forEach(function(cb){ protos.push(cb.value); });
+
+  // Validate
+  var eb = document.getElementById('as-error');
+  eb.style.display = 'none';
+  if(!name || !cat || !desc){
+    eb.textContent = 'Please fill in agent name, category, and description.';
+    eb.style.display = 'block';
+    return;
+  }
+  if(!protos.length){
+    eb.textContent = 'Select at least one protocol.';
+    eb.style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('as-submit-btn');
+  btn.textContent = 'Submitting...'; btn.disabled = true;
+
+  fetch('/api/agent/submit', {
+    method: 'POST', credentials: 'include',
+    headers: {'Content-Type':'application/json', 'Authorization':'Bearer '+_mpTok},
+    body: JSON.stringify({name:name, category:cat, description:desc, steward:steward, icon:icon, version:version, website:website, protocols:protos, featured_request:featured})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    btn.textContent = 'Submit for Review'; btn.disabled = false;
+    if(d.error){ eb.textContent = d.error; eb.style.display = 'block'; return; }
+    closeSubmitForm();
+    // Show success
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#0a0e1a;color:white;padding:16px 28px;border-radius:12px;z-index:10000;font-size:15px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.3)';
+    toast.innerHTML = '&#x2705; Agent submitted for review! You will be notified once verified.';
+    document.body.appendChild(toast);
+    setTimeout(function(){ toast.remove(); }, 5000);
+    // Reset form
+    document.getElementById('as-name').value = '';
+    document.getElementById('as-desc').value = '';
+    document.getElementById('as-steward').value = '';
+    document.getElementById('as-website').value = '';
+    document.getElementById('as-featured').checked = false;
+    document.querySelectorAll('.as-proto').forEach(function(cb){ cb.checked = false; });
+  })
+  .catch(function(){
+    btn.textContent = 'Submit for Review'; btn.disabled = false;
+    eb.textContent = 'Network error. Please try again.'; eb.style.display = 'block';
+  });
+}
+
+// ── MY SUBMISSIONS ──────────────────────────────────────────────────────────
+function openMySubmissions(){
+  var panel = document.getElementById('my-submissions-panel');
+  panel.style.display = 'flex';
+  var body = document.getElementById('ms-body');
+  body.innerHTML = '<div style="text-align:center;padding:32px;color:#7a829e">Loading...</div>';
+
+  fetch('/api/agent/my-submissions', {
+    credentials:'include',
+    headers:{'Authorization':'Bearer '+_mpTok}
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    var subs = d.submissions || [];
+    if(!subs.length){
+      body.innerHTML = '<div style="text-align:center;padding:40px;color:#7a829e"><div style="font-size:32px;margin-bottom:10px">&#x1F4ED;</div><div style="font-weight:600;color:#0a0e1a;margin-bottom:6px">No submissions yet</div><div>List your first agent to get started</div></div>';
+      return;
+    }
+    var STATUS_S = {pending:{bg:'#fef9c3',color:'#854d0e',label:'Pending Review'},approved:{bg:'#dcfce7',color:'#166534',label:'Approved'},rejected:{bg:'#fee2e2',color:'#dc2626',label:'Rejected'}};
+    body.innerHTML = subs.map(function(s){
+      var st = STATUS_S[s.status] || STATUS_S.pending;
+      var protos = (s.protocols||[]).map(function(p){ return '<span class="proto-badge '+PROTO_CLASS[p]+'">'+p+'</span>'; }).join(' ');
+      return '<div style="background:#f4f5f9;border-radius:12px;padding:16px;margin-bottom:10px">'
+        +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'
+        +'<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">'+(s.icon||'🤖')+'</span><div><div style="font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#0a0e1a">'+s.name+'</div><div style="font-size:12px;color:#7a829e">'+CAT_LABELS[s.category]+' · '+s.version+(s.featured_request?' · ⭐ Featured requested':'')+'</div></div></div>'
+        +'<span style="font-size:11px;font-weight:700;background:'+st.bg+';color:'+st.color+';padding:3px 10px;border-radius:20px">'+st.label+'</span>'
+        +'</div>'
+        +'<div style="font-size:13px;color:#3d4460;margin-bottom:8px">'+s.description+'</div>'
+        +'<div>'+protos+'</div>'
+        +(s.review_notes?'<div style="margin-top:8px;font-size:12px;color:#854d0e;background:#fef9c3;padding:8px 12px;border-radius:8px">Review note: '+s.review_notes+'</div>':'')
+        +'</div>';
+    }).join('');
+  })
+  .catch(function(){
+    body.innerHTML = '<div style="text-align:center;padding:32px;color:#dc2626">Error loading submissions.</div>';
+  });
+}
+function closeMySubmissions(){
+  document.getElementById('my-submissions-panel').style.display = 'none';
+}
+</script>
+
+<!-- AGENT SUBMIT MODAL -->
+<div id="agent-submit-modal" style="display:none;position:fixed;inset:0;background:rgba(10,14,26,.6);z-index:9000;align-items:center;justify-content:center">
+  <div style="background:white;border-radius:16px;padding:32px;max-width:640px;width:95%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0a0e1a">List Your Agent</div>
+      <button onclick="closeSubmitForm()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#7a829e">&times;</button>
+    </div>
+    <div style="background:#f4f5f9;border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:#3d4460;line-height:1.6">
+      &#x1F6C8; All agent submissions are <b>reviewed and verified</b> by the Pievra team before being listed publicly in the marketplace. You will be notified once your agent is approved.
+    </div>
+    <div id="as-error" style="display:none;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px"></div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Agent Name <span style="color:#dc2626">*</span></label>
+      <input id="as-name" type="text" placeholder="e.g. My Ad Agent" style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none"/>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+      <div>
+        <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Category <span style="color:#dc2626">*</span></label>
+        <select id="as-cat" style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;background:white;outline:none">
+          <option value="">Select category...</option>
+          <option value="media">Media Trading</option>
+          <option value="data">Data & Identity</option>
+          <option value="creative">Creative</option>
+          <option value="infra">Infrastructure</option>
+          <option value="measurement">Measurement</option>
+          <option value="retail">Retail Media</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Icon (emoji)</label>
+        <input id="as-icon" type="text" value="🤖" style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none"/>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Description <span style="color:#dc2626">*</span></label>
+      <textarea id="as-desc" rows="3" placeholder="Describe what your agent does, its key capabilities and differentiators..." style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none;resize:vertical"></textarea>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:8px">Supported Protocols <span style="color:#dc2626">*</span></label>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#3d4460;cursor:pointer"><input type="checkbox" class="as-proto" value="AdCP" style="accent-color:#00c4a7"/> <span class="proto-badge pb-adcp">AdCP</span></label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#3d4460;cursor:pointer"><input type="checkbox" class="as-proto" value="MCP" style="accent-color:#00c4a7"/> <span class="proto-badge pb-mcp">MCP</span></label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#3d4460;cursor:pointer"><input type="checkbox" class="as-proto" value="UCP" style="accent-color:#00c4a7"/> <span class="proto-badge pb-ucp">UCP</span></label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#3d4460;cursor:pointer"><input type="checkbox" class="as-proto" value="ARTF" style="accent-color:#00c4a7"/> <span class="proto-badge pb-artf">ARTF</span></label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#3d4460;cursor:pointer"><input type="checkbox" class="as-proto" value="A2A" style="accent-color:#00c4a7"/> <span class="proto-badge pb-a2a">A2A</span></label>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+      <div>
+        <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Steward / Company</label>
+        <input id="as-steward" type="text" placeholder="e.g. Your company name" style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none"/>
+      </div>
+      <div>
+        <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Version</label>
+        <input id="as-version" type="text" value="v1.0" style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none"/>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <label style="font-size:13px;font-weight:600;color:#0a0e1a;display:block;margin-bottom:6px">Website / Documentation URL</label>
+      <input id="as-website" type="text" placeholder="https://..." style="width:100%;padding:11px 14px;border:1.5px solid #e2e4ed;border-radius:8px;font-size:14px;font-family:Inter,sans-serif;color:#0a0e1a;outline:none"/>
+    </div>
+
+    <!-- Featured option -->
+    <div style="background:linear-gradient(135deg,#fff 0%,#e0faf6 100%);border:2px solid #00c4a7;border-radius:12px;padding:20px;margin-bottom:20px">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <input id="as-featured" type="checkbox" style="accent-color:#00c4a7;width:18px;height:18px;margin-top:2px;flex-shrink:0"/>
+        <div>
+          <div style="font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#0a0e1a;margin-bottom:4px">⭐ Request Featured Placement</div>
+          <div style="font-size:13px;color:#3d4460;line-height:1.6;margin-bottom:8px">Get your agent highlighted at the top of the marketplace with a <b>FEATURED</b> badge and premium positioning. Featured agents receive <b>5x more visibility</b> and deployment clicks.</div>
+          <div style="font-size:12px;color:#009e86;font-weight:600">Paid advertising service - our team will contact you with pricing after submission.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px">
+      <button onclick="closeSubmitForm()" style="flex:1;padding:12px;border:1px solid #e2e4ed;background:none;color:#3d4460;font-weight:600;font-size:14px;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif">Cancel</button>
+      <button id="as-submit-btn" onclick="submitAgent()" style="flex:1;padding:12px;background:#0a0e1a;color:white;font-weight:700;font-size:14px;border:none;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif">Submit for Review</button>
+    </div>
+  </div>
+</div>
+
+<!-- MY SUBMISSIONS PANEL -->
+<div id="my-submissions-panel" style="display:none;position:fixed;inset:0;background:rgba(10,14,26,.6);z-index:9000;align-items:center;justify-content:center">
+  <div style="background:white;border-radius:16px;padding:32px;max-width:640px;width:95%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:20px;color:#0a0e1a">My Agent Submissions</div>
+      <button onclick="closeMySubmissions()" style="background:none;border:none;font-size:24px;cursor:pointer;color:#7a829e">&times;</button>
+    </div>
+    <div id="ms-body"></div>
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button onclick="closeMySubmissions()" style="flex:1;padding:10px;border:1px solid #e2e4ed;background:none;color:#3d4460;font-weight:600;font-size:13px;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif">Close</button>
+      <button onclick="closeMySubmissions();openSubmitForm()" style="flex:1;padding:10px;background:#0a0e1a;color:white;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer;font-family:Inter,sans-serif">+ Submit New Agent</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink);padding:32px 40px;margin-top:48px">
+  <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:20px">&#x1F419;</span>
+        <span style="font-family:Manrope;font-weight:800;font-size:16px;color:white">pievra</span>
+        <span style="font-size:10px;font-weight:700;color:var(--teal);background:rgba(0,196,167,.12);border:1px solid var(--teal);padding:2px 8px;border-radius:20px">DIRECTORY</span>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.35);max-width:400px;line-height:1.6">The open directory of agentic advertising tools. Bookmark this page,we update it as new agents, MCP servers, and protocol tools ship across all five ecosystems.</p>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Sources</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="https://github.com/adcontextprotocol" target="_blank" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">AdCP GitHub</a>
+          <a href="https://github.com/IABTechLab/AAMP" target="_blank" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">IAB AAMP</a>
+          <a href="https://tools.iabtechlab.com/agent-registry" target="_blank" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">IAB Agent Registry</a>
+          <a href="https://github.com/a2aproject/A2A" target="_blank" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">A2A Protocol</a>
+          <a href="https://github.com/prebid/salesagent" target="_blank" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">Prebid</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Pievra</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="/" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">Home</a>
+          <a href="/#protocols" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">Protocol Guide</a>
+          <a href="/terms" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">Terms</a>
+          <a href="/privacy" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.08)">
+    <p style="font-size:12px;color:rgba(255,255,255,.25)">&copy; 2026 Pievra. This directory is independently maintained. Agent data is sourced from public GitHub repositories and the IAB Tech Lab Agent Registry. Pievra is not affiliated with any listed agent or steward.</p>
+  </div>
+</footer>
+
+</body></html>

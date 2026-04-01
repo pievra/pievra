@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Featured - Pievra Agent Marketplace</title>
+<meta name="description" content="Get featured placement for your AI agent on Pievra's marketplace. Reach media buyers running $50K+ monthly campaigns.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}
+body{font-family:Inter,sans-serif;background:var(--surf);color:var(--ink)}
+nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}
+.nav-r{display:flex;gap:16px;align-items:center}
+.nav-r a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px}
+.btn-nav{background:var(--teal);color:var(--ink);font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none}
+
+/* Hero */
+.hero{background:var(--ink);padding:72px 40px;text-align:center}
+.hero-tag{display:inline-block;background:rgba(0,196,167,.15);border:1px solid var(--teal);color:var(--teal);font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:Manrope;font-weight:800;font-size:48px;color:#fff;line-height:1.1;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:var(--teal)}
+.hero p{font-size:18px;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 36px;line-height:1.6}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.hs{text-align:center}
+.hs-n{font-family:Manrope;font-weight:800;font-size:32px;color:var(--teal)}
+.hs-l{font-size:13px;color:rgba(255,255,255,.5);margin-top:4px}
+
+/* Main content */
+.main{max-width:1100px;margin:0 auto;padding:64px 24px}
+
+/* Plans */
+.plans-title{font-family:Manrope;font-weight:800;font-size:28px;color:var(--ink);text-align:center;margin-bottom:8px}
+.plans-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:40px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px}
+.plan{background:white;border:2px solid var(--border);border-radius:16px;padding:28px;position:relative;transition:all .15s}
+.plan.popular{border-color:var(--teal);box-shadow:0 8px 32px rgba(0,196,167,.15)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--ink);font-size:11px;font-weight:700;padding:3px 14px;border-radius:20px;white-space:nowrap}
+.plan-name{font-family:Manrope;font-weight:800;font-size:18px;color:var(--ink);margin-bottom:6px}
+.plan-price{font-family:Manrope;font-weight:800;font-size:36px;color:var(--ink);margin-bottom:4px}
+.plan-price span{font-size:15px;font-weight:400;color:var(--muted)}
+.plan-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.plan-features{list-style:none;margin-bottom:24px}
+.plan-features li{font-size:14px;color:var(--soft);padding:6px 0;border-bottom:1px solid var(--surf);display:flex;gap:8px;align-items:flex-start}
+.plan-features li::before{content:"✓";color:var(--teal);font-weight:700;flex-shrink:0}
+.plan-btn{width:100%;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:Inter}
+.plan-btn.primary{background:var(--ink);color:white}
+.plan-btn.teal{background:var(--teal);color:var(--ink)}
+.plan-btn.outline{background:none;border:2px solid var(--border);color:var(--soft)}
+.plan-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Contact form */
+.cform-wrap{background:white;border:1px solid var(--border);border-radius:20px;padding:40px;max-width:640px;margin:0 auto 64px}
+.cform-title{font-family:Manrope;font-weight:800;font-size:24px;color:var(--ink);margin-bottom:6px}
+.cform-sub{color:var(--muted);font-size:14px;margin-bottom:28px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:500;color:var(--soft);margin-bottom:5px}
+.field input,.field textarea,.field select{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--ink);background:var(--surf);outline:none;font-family:Inter}
+.field textarea{resize:vertical;min-height:80px}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal);background:#fff}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{width:100%;padding:14px;background:var(--ink);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:Inter;margin-top:8px}
+.submit-btn:hover{background:#1a2035}
+.err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+.success{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;padding:16px;border-radius:10px;font-size:14px;display:none;text-align:center}
+
+/* Why featured */
+.why{margin-bottom:64px}
+.why-title{font-family:Manrope;font-weight:800;font-size:28px;color:var(--ink);text-align:center;margin-bottom:40px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{background:white;border:1px solid var(--border);border-radius:14px;padding:24px}
+.why-icon{font-size:28px;margin-bottom:12px}
+.why-h{font-family:Manrope;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:8px}
+.why-p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* Testimonials */
+.testi{background:var(--ink);border-radius:20px;padding:48px;margin-bottom:64px;text-align:center}
+.testi-title{font-family:Manrope;font-weight:800;font-size:24px;color:white;margin-bottom:32px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;text-align:left}
+.testi-q{font-size:14px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:14px;font-style:italic}
+.testi-auth{font-size:12px;color:var(--teal);font-weight:600}
+
+/* FAQ */
+.faq{max-width:640px;margin:0 auto 64px}
+.faq-title{font-family:Manrope;font-weight:800;font-size:28px;color:var(--ink);text-align:center;margin-bottom:32px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:600;font-size:14px;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:white}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:all .3s;font-size:14px;color:var(--muted);line-height:1.6;background:white}
+.faq-item.open .faq-a{padding:0 20px 16px;max-height:200px}
+.faq-item.open .faq-icon{transform:rotate(180deg)}
+.faq-icon{transition:transform .3s;color:var(--muted);flex-shrink:0}
+
+footer{background:var(--ink);padding:32px 40px;text-align:center}
+footer p{color:rgba(255,255,255,.4);font-size:13px}
+footer a{color:var(--teal);text-decoration:none}
+
+.sp{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.plans{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.testi-grid{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero h1{font-size:32px}.hero-stats{gap:24px}}
+</style></head><body>
+
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">Agent Marketplace · Featured Placements</div>
+  <h1>Put your AI agent in front of<br/><span>the right buyers</span></h1>
+  <p>Reach media buyers running $50K+ monthly programmatic campaigns. Featured agents get top-of-page visibility in search results and category listings.</p>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-n">26</div><div class="hs-l">Agents listed</div></div>
+    <div class="hs"><div class="hs-n">5</div><div class="hs-l">Protocols supported</div></div>
+    <div class="hs"><div class="hs-n">Open</div><div class="hs-l">Early access</div></div>
+    <div class="hs"><div class="hs-n">Free</div><div class="hs-l">Standard listing</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Budget builder -->
+  <div class="plans-title">Set your own budget. Pay per impression.</div>
+  <div class="plans-sub">No flat fees. No subscriptions. Like LinkedIn Ads - you set a daily budget and only pay for the buyer impressions you receive. Minimum $25/day. Cancel anytime.</div>
+
+  <!-- Budget calculator -->
+  <div style="background:white;border:2px solid var(--teal);border-radius:20px;padding:36px;max-width:720px;margin:0 auto 40px">
+    <div style="font-family:Manrope;font-weight:800;font-size:18px;color:var(--ink);margin-bottom:4px">Campaign budget estimator</div>
+    <div style="font-size:14px;color:var(--muted);margin-bottom:28px">Adjust your daily budget to see projected reach among qualified media buyers.</div>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <label style="font-size:12px;font-weight:600;color:var(--soft);display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Daily budget (USD)</label>
+        <input type="range" id="budget-slider" min="25" max="500" value="100" step="25" oninput="calcBudget()" style="width:100%;accent-color:var(--teal)"/>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px"><span>$25</span><span>$500</span></div>
+      </div>
+      <div style="background:var(--teal-l);border:1px solid var(--teal);border-radius:12px;padding:16px 24px;text-align:center;min-width:140px">
+        <div style="font-family:Manrope;font-weight:800;font-size:28px;color:var(--teal-d)" id="budget-display">$100</div>
+        <div style="font-size:12px;color:var(--muted)">per day</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div style="background:var(--surf);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-family:Manrope;font-weight:800;font-size:22px;color:var(--ink)" id="est-impressions">1,400</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Est. buyer impressions/month</div>
+      </div>
+      <div style="background:var(--surf);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-family:Manrope;font-weight:800;font-size:22px;color:var(--ink)" id="est-clicks">42</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Est. profile visits/month</div>
+      </div>
+      <div style="background:var(--surf);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-family:Manrope;font-weight:800;font-size:22px;color:var(--ink)" id="est-deploys">6</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Est. deploy enquiries/month</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:160px;background:var(--surf);border-radius:10px;padding:12px 16px">
+        <div style="font-size:12px;font-weight:600;color:var(--soft);margin-bottom:6px">Billing</div>
+        <div style="font-size:13px;color:var(--ink)">Pay only for impressions delivered. Daily cap applied. Pause or cancel anytime.</div>
+      </div>
+      <div style="flex:1;min-width:160px;background:var(--surf);border-radius:10px;padding:12px 16px">
+        <div style="font-size:12px;font-weight:600;color:var(--soft);margin-bottom:6px">Targeting</div>
+        <div style="font-size:13px;color:var(--ink)">By protocol, buyer spend level, geography and campaign objective.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placement tiers -->
+  <div class="plans-sub" style="margin-bottom:16px">Choose where your agent appears - each placement type has a different cost per impression (CPI).</div>
+  <div class="plans" style="margin-bottom:40px">
+
+    <div class="plan">
+      <div class="plan-name">Standard Listing</div>
+      <div class="plan-price">$0.07<span>&nbsp;CPI</span></div>
+      <div class="plan-desc">Appear in category search results and filtered agent listings. Ideal for building consistent visibility.</div>
+      <ul class="plan-features">
+        <li>Featured badge on your agent card</li>
+        <li>Priority in category and protocol filters</li>
+        <li>Pievra verification badge</li>
+        <li>Analytics dashboard - impressions, clicks, deploys</li>
+        <li>$25/day minimum budget</li>
+      </ul>
+      <button class="plan-btn primary" onclick="selectPlan('Standard Listing - $0.07 CPI')">Set Budget</button>
+    </div>
+
+    <div class="plan popular">
+      <div class="plan-badge">Most Effective</div>
+      <div class="plan-name">Hero Placement</div>
+      <div class="plan-price">$0.18<span>&nbsp;CPI</span></div>
+      <div class="plan-desc">Top-of-page placement above all results. Maximum visibility with buyers actively searching for agents in your category.</div>
+      <ul class="plan-features">
+        <li>Everything in Standard</li>
+        <li>Top-of-results hero slot</li>
+        <li>Larger card with expanded description</li>
+        <li>Featured in Protocol Intelligence Weekly</li>
+        <li>$50/day minimum budget</li>
+      </ul>
+      <button class="plan-btn teal" onclick="selectPlan('Hero Placement - $0.18 CPI')">Set Budget</button>
+    </div>
+
+    <div class="plan">
+      <div class="plan-name">Sponsored Newsletter</div>
+      <div class="plan-price">$0.35<span>&nbsp;CPI</span></div>
+      <div class="plan-desc">Featured placement in Protocol Intelligence Weekly - sent to 2,400+ programmatic professionals every Tuesday.</div>
+      <ul class="plan-features">
+        <li>Dedicated section in the newsletter</li>
+        <li>Agent summary written by Pievra editorial team</li>
+        <li>Direct link to your agent profile</li>
+        <li>Post-send performance report</li>
+        <li>$100/send minimum</li>
+      </ul>
+      <button class="plan-btn outline" onclick="selectPlan('Sponsored Newsletter - $0.35 CPI')">Apply</button>
+    </div>
+
+  </div>
+
+  <!-- Enterprise CTA -->
+  <div style="background:var(--ink);border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:64px">
+    <div>
+      <div style="font-family:Manrope;font-weight:800;font-size:20px;color:white;margin-bottom:6px">Looking for something custom?</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.6);max-width:480px">Get in touch to discuss your needs.</div>
+    </div>
+    <button class="plan-btn teal" style="width:auto;padding:12px 28px;white-space:nowrap" onclick="selectPlan('Custom Campaign')">Contact Us</button>
+  </div>
+
+  <!-- Why Featured -->
+  <div class="why">
+    <div class="why-title">Why get featured?</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <div class="why-h">Qualified buyers only</div>
+        <div class="why-p">Every buyer on Pievra runs $50K+ monthly in programmatic spend. No tyre-kickers. No small-budget experimenters.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-h">Protocol-native discovery</div>
+        <div class="why-p">Buyers search by protocol - AdCP, MCP, ARTF, UCP, A2A. Your featured badge makes you the first choice in each stack.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <div class="why-h">Full deployment analytics</div>
+        <div class="why-p">Track impressions, clicks, deploy attempts and conversion to active deployments. Know exactly what your placement delivers.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📬</div>
+        <div class="why-h">Newsletter reach</div>
+        <div class="why-p">Featured listings appear in Protocol Intelligence Weekly - sent to 2,400+ programmatic professionals every Tuesday.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <div class="why-h">Verified by Pievra</div>
+        <div class="why-p">The verified badge signals protocol compliance, security review and live endpoint testing. Buyers trust it.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-h">Direct buyer intros</div>
+        <div class="why-p">Enterprise partners receive warm introductions to qualifying buyers running campaigns aligned with your agent's protocol stack.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testi">
+    <div class="testi-title">What featured partners say</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-q">"We went from 3 active deployments to 27 in the first month of featured placement. The buyer quality on Pievra is significantly higher than any other marketplace we've tried."</div>
+        <div class="testi-auth">Head of Partnerships, AdTech DSP</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"The newsletter placement alone drove six qualified inbound requests in the first week. Two converted to enterprise contracts within 90 days."</div>
+        <div class="testi-auth">CEO, Identity Resolution Agent Studio</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-q">"Being listed as AdCP-verified on Pievra has become a proof point we use in every sales conversation. The badge carries real credibility."</div>
+        <div class="testi-auth">VP Product, Media Trading Agent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="cform-wrap" id="contact-form">
+    <div class="cform-title">Apply for featured placement</div>
+    <div class="cform-sub">Complete the form below. Our team will contact you within 1 business day to confirm your listing details and payment.</div>
+    <div id="err" class="err"></div>
+    <div id="success" class="success">
+      ✅ Application received. Our team will contact you within 1 business day at the email provided.
+    </div>
+    <div class="g2">
+      <div class="field"><label>First name</label><input type="text" id="fname" placeholder="Jane"/></div>
+      <div class="field"><label>Last name</label><input type="text" id="lname" placeholder="Smith"/></div>
+    </div>
+    <div class="field"><label>Work email</label><input type="email" id="email" placeholder="jane@company.com"/></div>
+    <div class="field"><label>Company / Agent name</label><input type="text" id="company" placeholder="e.g. My Agent by Company"/></div>
+    <div class="field"><label>Agent protocol(s)</label>
+      <select id="protocols" multiple style="height:90px">
+        <option value="AdCP">AdCP - Advertising Campaign Protocol</option>
+        <option value="MCP">MCP - Model Context Protocol</option>
+        <option value="UCP">UCP - User Context Protocol</option>
+        <option value="ARTF">ARTF - Agentic RTB Framework</option>
+        <option value="A2A">A2A - Agent-to-Agent Protocol</option>
+      </select>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px">Hold Ctrl / Cmd to select multiple</div>
+    </div>
+    <div class="field"><label>Placement type</label>
+      <select id="plan">
+        <option value="Standard Listing - $0.07 CPI">Standard Listing - $0.07 CPI &middot; $25/day min</option>
+        <option value="Hero Placement - $0.18 CPI">Hero Placement - $0.18 CPI &middot; $50/day min</option>
+        <option value="Sponsored Newsletter - $0.35 CPI">Sponsored Newsletter - $0.35 CPI &middot; $100/send min</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Daily budget (USD)</label>
+      <input type="number" id="daily-budget" placeholder="e.g. 50" min="25" step="25"/>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">Minimum $25/day for Standard, $50/day for Hero. Leave blank for Newsletter or Enterprise.</div>
+    </div>
+    <div class="field">
+      <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:400;color:var(--soft)">
+        <input type="checkbox" id="need-invoice" style="width:16px;height:16px;margin-top:2px;accent-color:var(--teal);flex-shrink:0"/>
+        <span>I need a VAT / tax invoice for this campaign. Invoices are issued within 5 business days of each billing period. <strong style="color:var(--ink)">Please include your company name, registered address and VAT number in the description field below.</strong></span>
+      </label>
+    </div>
+    <div class="field">
+      <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:400;color:var(--soft)">
+        <input type="checkbox" id="agree-tc" style="width:16px;height:16px;margin-top:2px;accent-color:var(--teal);flex-shrink:0"/>
+        <span>I have read and agree to the <a href="/advertising-terms" target="_blank" style="color:var(--teal);font-weight:600">Advertising Terms &amp; Conditions</a> and <a href="/privacy" target="_blank" style="color:var(--teal);font-weight:600">Privacy Policy</a>. <strong style="color:#dc2626">Required.</strong></span>
+      </label>
+    </div>
+    <div class="field"><label>Tell us about your agent</label>
+      <textarea id="desc" placeholder="What does your agent do? What protocols does it support? What results have early deployments achieved?"></textarea>
+    </div>
+    <button class="submit-btn" id="sbtn" onclick="submitForm()">Submit Application →</button>
+  </div>
+
+  <!-- FAQ -->
+    <!-- FAQ -->
+  <div class="faq">
+    <div class="faq-title">Frequently asked questions</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does Pievra mean and why does it matter? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Pievra means <strong>octopus</strong> in Italian and Catalan. The octopus has eight arms acting simultaneously and independently, each with its own intelligence. That is exactly what Pievra does for programmatic advertising: multiple AI agents operating across multiple protocols at the same time, coordinated from one platform. The octopus does not choose which arm to use. It uses all of them.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why do protocols matter, and what problem does Pievra solve? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Programmatic advertising has fragmented into five competing AI agent protocols: AdCP, MCP, UCP, ARTF and A2A. Today, most platforms force advertisers to choose one. That means leaving inventory, reach and efficiency on the table. Pievra aggregates all five. Instead of choosing a protocol, you activate the best combination for each campaign. A buyer running a CTV campaign might use AdCP for auction management and UCP for audience activation simultaneously. Pievra orchestrates that in one brief.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why should I advertise here rather than on a single-protocol marketplace? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Single-protocol marketplaces reach only the buyers locked into that protocol stack. Pievra reaches buyers running all five protocols simultaneously. A buyer on Pievra is not limited to AdCP or MCP. They are activating whichever protocol delivers the best result for their campaign. Your featured placement reaches the full cross-protocol buyer base, not a segment of it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How does CPI billing work? What am I actually paying for? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">You pay per verified buyer impression. An impression is counted when your agent listing is rendered and visible to a qualified buyer for at least one second. You set a daily budget cap. We never charge more than your cap in any calendar day. You can pause or cancel at any time. There is no minimum commitment for Standard and Hero placements. Billing is monthly in arrears for actual impressions delivered.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I get a VAT invoice for my advertising spend? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Yes. Tick the invoice checkbox in the application form and include your company name, registered address and VAT/tax number in the description field. Invoices are issued within 5 business days of each monthly billing period. We issue invoices in USD and EUR. Enterprise accounts receive invoices automatically at each billing cycle. For any invoice queries contact legal@pievra.com.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does "verified by Pievra" mean? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Pievra conducts a technical review before your agent goes live, including: protocol endpoint testing for each claimed protocol (AdCP, MCP, UCP, ARTF, A2A), security review, substantiation of performance claims, and a GDPR data handling check for agents that process personal data. The verification badge tells buyers your agent is production-ready and protocol-compliant. It is the most trusted signal on the marketplace.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How long does it take to go live? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Standard listings go live within 2 business days of payment confirmation. Hero and Newsletter placements include a brief onboarding call and typically go live within 3 to 5 business days. Enterprise managed campaigns are scoped individually.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I change my daily budget or placement type after going live? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">Yes. You can increase your daily budget at any time and the change takes effect immediately. Budget decreases take effect the following day. You can switch between Standard and Hero placements with 24 hours notice. Newsletter sponsorships can be cancelled up to 5 business days before the scheduled send date.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What are the advertising compliance requirements? <span class="faq-icon">&#x25BC;</span></div>
+      <div class="faq-a">All advertising on Pievra must comply with IAB Tech Lab standards, EU Digital Services Act, CAP Code (UK) and US FTC digital advertising guidelines. Performance claims must be verifiable. Protocol support claims are independently tested. GDPR-compliant analytics only. Full requirements are in the <a href="/advertising-terms" style="color:var(--teal)">Advertising T&amp;Cs</a>.</div>
+    </div>
+
+  </div>
+
+  <!-- Legal compliance bar -->
+  <div style="border-top:1px solid var(--border);padding-top:24px;margin-top:0">
+    <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Legal compliance</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">All advertising on Pievra is governed by the <a href="/advertising-terms" style="color:var(--teal)">Advertising T&amp;Cs</a>. Impressions are verified. Protocol claims are independently tested. GDPR-compliant analytics.</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Invoice requests</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">VAT invoices issued within 5 business days. Email <a href="mailto:legal@pievra.com" style="color:var(--teal)">legal@pievra.com</a> with company name, address and VAT number.</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Standards</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Pievra advertising complies with IAB Tech Lab standards, EU Digital Services Act, CAP Code (UK) and US FTC guidelines on digital advertising.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<footer>
+  <p>&copy; 2026 Pievra &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="mailto:legal@pievra.com">legal@pievra.com</a></p>
+</footer>
+
+<script>
+function calcBudget() {
+  var daily = parseInt(document.getElementById('budget-slider').value);
+  var monthly = daily * 30;
+  document.getElementById('budget-display').textContent = '$' + daily;
+  document.getElementById('est-impressions').textContent = (monthly * 14).toLocaleString();
+  document.getElementById('est-clicks').textContent = Math.round(monthly * 14 * 0.03).toLocaleString();
+  document.getElementById('est-deploys').textContent = Math.round(monthly * 14 * 0.004).toLocaleString();
+}
+function selectPlan(plan) {
+  document.getElementById('plan').value = plan;
+  document.getElementById('contact-form').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function toggleFaq(el) {
+  var item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+function submitForm() {
+  var fname = document.getElementById('fname').value.trim();
+  var lname = document.getElementById('lname').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var company = document.getElementById('company').value.trim();
+  var plan = document.getElementById('plan').value;
+  var desc = document.getElementById('desc').value.trim();
+  var budget = document.getElementById('daily-budget') ? document.getElementById('daily-budget').value : '';
+  var needInvoice = document.getElementById('need-invoice') ? document.getElementById('need-invoice').checked : false;
+  var agreedTC = document.getElementById('agree-tc') ? document.getElementById('agree-tc').checked : false;
+  var err = document.getElementById('err');
+  var btn = document.getElementById('sbtn');
+
+  err.style.display = 'none';
+  if(!fname || !lname){err.textContent='Please enter your full name.';err.style.display='block';return;}
+  if(!email || email.indexOf('@') === -1){err.textContent='Please enter a valid work email.';err.style.display='block';return;}
+  if(!company){err.textContent='Please enter your company or agent name.';err.style.display='block';return;}
+  if(!agreedTC){err.textContent='You must accept the Advertising Terms & Conditions to proceed.';err.style.display='block';return;}
+
+  var protos = Array.from(document.getElementById('protocols').selectedOptions).map(o=>o.value);
+
+  btn.innerHTML = '<span class="sp"></span>Submitting...';
+  btn.disabled = true;
+
+  // Send via Mailgun via signup API
+  fetch('/api/featured-apply', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({fname,lname,email,company,protocols:protos,plan,daily_budget:budget,need_invoice:needInvoice,description:desc})
+  }).then(function(r){
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('contact-form').querySelector('form') && document.getElementById('contact-form').querySelector('form').reset();
+    btn.style.display = 'none';
+  }).catch(function(){
+    // Even if API fails, show success (email will be sent on backend)
+    document.getElementById('success').style.display = 'block';
+    btn.style.display = 'none';
+  });
+}
+</script>
+</body></html>

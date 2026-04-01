@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title id="pt">Forgot Password - Pievra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e}
+body{font-family:Inter,sans-serif;background:var(--surf);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:32px;text-decoration:none}
+.lm{width:36px;height:36px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.lm span{width:26px;height:26px;background:var(--teal);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:18px;color:var(--ink)}
+.card{background:white;border-radius:16px;padding:40px;width:100%;max-width:420px;box-shadow:0 4px 24px rgba(10,14,26,.08)}
+h1{font-family:Manrope;font-weight:800;font-size:22px;color:var(--ink);margin-bottom:6px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:22px;line-height:1.6}
+.field{margin-bottom:14px}
+label{display:block;font-size:13px;font-weight:500;color:#3d4460;margin-bottom:5px}
+input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--ink);background:var(--surf);outline:none}
+input:focus{border-color:var(--teal);background:white}
+.pwb{height:4px;border-radius:2px;background:var(--border);margin-top:5px}
+.pwbar{height:100%;border-radius:2px;transition:all .3s;width:0}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;background:var(--ink);color:white}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+.back{display:block;text-align:center;margin-top:14px;font-size:13px;color:var(--teal);text-decoration:none}
+.rclink{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);text-align:center}
+.sp{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style></head><body>
+<a href="/" class="logo"><div class="lm">🐙</div><div class="ln">pievra</div></a>
+<div class="card" id="card"></div>
+<script>
+const params=new URLSearchParams(location.search);
+const rtoken=params.get('token');
+const isReset=location.pathname.includes('reset-password')&&rtoken;
+const card=document.getElementById('card');
+function shErr(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';}
+function shOk(m){const e=document.getElementById('ok');e.textContent=m;e.style.display='block';document.getElementById('err').style.display='none';}
+function cpw(pw){const bar=document.getElementById('pwbar');
+const s=[pw.length>=8,pw.length>=12,/[A-Z]/.test(pw),/[0-9]/.test(pw)].filter(Boolean).length;
+const cfg=['0%,transparent','25%,#dc2626','60%,#f59e0b','85%,#10b981','100%,#00c4a7'][Math.min(s,4)];
+const[w,bg]=cfg.split(',');bar.style.width=w;bar.style.background=bg;}
+if(isReset){
+  document.getElementById('pt').textContent='Set New Password - Pievra';
+  card.innerHTML='<h1>Set new password</h1><p class="sub">Choose a strong password for your Pievra account.</p><div id="err" class="err"></div><div id="ok" class="ok"></div><div class="field"><label>New password</label><input type="password" id="p1" placeholder="Minimum 8 characters" oninput="cpw(this.value)"/><div class="pwb"><div class="pwbar" id="pwbar"></div></div></div><div class="field"><label>Confirm password</label><input type="password" id="p2" placeholder="Repeat your new password"/></div><button class="btn" id="rbtn" onclick="doReset()">Set new password</button><a href="/signin" class="back">← Back to sign in</a>';
+} else {
+  card.innerHTML='<h1>Forgot password?</h1><p class="sub">Enter your email and we will send you a password reset link.</p><div id="err" class="err"></div><div id="ok" class="ok"></div><div class="field"><label>Work email</label><input type="email" id="em" placeholder="you@company.com"/></div><button class="btn" id="fbtn" onclick="doForgot()">Send reset link</button><a href="/signin" class="back">← Back to sign in</a><div class="rclink"><p style="font-size:12px;color:var(--muted);margin-bottom:6px">Lost access to your email?</p><a href="/account-recovery" style="font-size:13px;color:var(--teal);text-decoration:none;font-weight:600">Use a recovery code →</a></div>';
+}
+async function doForgot(){
+  const em=document.getElementById('em').value.trim(),btn=document.getElementById('fbtn');
+  if(!em){shErr('Please enter your email.');return;}
+  btn.innerHTML='<span class="sp"></span>Sending...';btn.disabled=true;
+  try{await fetch('/auth/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em})});
+  shOk('If an account exists, a reset link has been sent. Check your inbox.');
+  document.getElementById('em').disabled=true;}
+  catch(e){shErr('Network error.');}
+  finally{btn.innerHTML='Send reset link';btn.disabled=false;}
+}
+async function doReset(){
+  const p1=document.getElementById('p1').value,p2=document.getElementById('p2').value,btn=document.getElementById('rbtn');
+  if(p1.length<8){shErr('Password must be at least 8 characters.');return;}
+  if(p1!==p2){shErr('Passwords do not match.');return;}
+  btn.innerHTML='<span class="sp"></span>Saving...';btn.disabled=true;
+  try{const r=await fetch('/auth/reset/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:rtoken,password:p1})});
+  const d=await r.json();
+  if(!r.ok){shErr(d.detail||'Reset failed. The link may have expired.');return;}
+  shOk('Password updated. Redirecting to sign in...');
+  setTimeout(()=>window.location.href='/signin',2000);}
+  catch(e){shErr('Network error.');}
+  finally{btn.innerHTML='Set new password';btn.disabled=false;}
+}
+</script></body></html>

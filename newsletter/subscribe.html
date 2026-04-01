@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Protocol Intelligence Weekly - Pievra Newsletter</title>
+<meta name="description" content="The only newsletter covering every AI agent protocol update in programmatic advertising. Free. Every Tuesday."/>
+<link rel="canonical" href="https://pievra.com/newsletter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- GA4 Analytics - consent-gated (GDPR/CNIL compliant) -->
+<script src="/static/consent.js"></script>
+<style>
+:root {
+  --ink: #18181B;
+  --ink-soft: #52525B;
+  --ink-muted: #71717A;
+  --surface: #FEFDFB;
+  --surface-2: #F9F8F6;
+  --surface-card: #FFFFFF;
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --accent-light: #FFF7ED;
+  --accent-border: #FDBA74;
+  --border: #E4E4E7;
+  --border-strong: #D4D4D8;
+  --radius: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+
+.nav-logo { display: inline-block; text-decoration: none; }
+
+
+
+
+
+
+
+
+
+
+
+/* HERO */
+.hero {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 80px 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+h1 em { font-style: italic; color: var(--accent); }
+
+.hero-desc {
+  font-size: 17px; color: var(--ink-muted); line-height: 1.75;
+  margin-bottom: 36px; font-weight: 400;
+}
+
+.proof-row {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+.proof-item { display: flex; align-items: center; gap: 8px; }
+.proof-num { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--ink); }
+.proof-label { font-size: 13px; color: var(--ink-muted); }
+.proof-divider { width: 1px; height: 28px; background: var(--border); }
+
+/* FORM CARD */
+.form-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 8px 40px rgba(24,24,27,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent), #FDBA74);
+}
+.form-card-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-light); border: 1px solid var(--accent-border);
+  color: var(--accent-hover); font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+.form-card h2 {
+  font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400;
+  color: var(--ink); margin-bottom: 8px; letter-spacing: -0.5px;
+}
+.form-card p { font-size: 14px; color: var(--ink-muted); margin-bottom: 24px; line-height: 1.6; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--ink); margin-bottom: 6px; letter-spacing: 0.3px;
+}
+.form-group input, .form-group select {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--ink);
+  background: var(--surface-2); transition: all .2s; outline: none;
+}
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--accent); background: var(--surface-card);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.1);
+}
+.form-group input::placeholder { color: var(--ink-muted); }
+
+/* Consent checkboxes */
+.consent-group { margin-bottom: 20px; }
+.consent-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px; border-radius: 10px; margin-bottom: 10px;
+  background: var(--surface-2); border: 1.5px solid var(--border);
+  transition: border-color .2s;
+}
+.consent-item:hover { border-color: var(--accent); }
+.consent-item input[type=checkbox] {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+  cursor: pointer; accent-color: var(--accent);
+}
+.consent-item label {
+  font-size: 12px; color: var(--ink-muted); line-height: 1.5; cursor: pointer;
+}
+.consent-item label strong { color: var(--ink); }
+.consent-item label a { color: var(--accent); text-decoration: none; }
+.consent-item label a:hover { text-decoration: underline; }
+.required-star { color: #dc2626; }
+
+.btn-subscribe {
+  width: 100%; padding: 16px;
+  background: var(--accent); color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: all .2s; letter-spacing: -0.3px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-subscribe:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,.25); }
+.btn-subscribe:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.form-legal {
+  font-size: 11px; color: var(--ink-muted); line-height: 1.6;
+  margin-top: 16px; padding: 12px; background: var(--surface-2);
+  border-radius: 8px; border: 1px solid var(--border);
+}
+.form-legal a { color: var(--accent); text-decoration: none; }
+
+/* Success state */
+.success-state {
+  display: none; text-align: center; padding: 20px 0;
+}
+.success-state .check { font-size: 48px; margin-bottom: 16px; }
+.success-state h3 { font-family: 'Instrument Serif', serif; font-size: 24px; font-weight: 400; margin-bottom: 8px; }
+.success-state p { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
+
+/* PREVIEW SECTION */
+.preview-section {
+  background: var(--surface-2);
+  padding: 80px 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.preview-inner { max-width: 960px; margin: 0 auto; }
+.preview-header { text-align: center; margin-bottom: 56px; }
+.preview-header h2 { font-family: 'Instrument Serif', serif; font-size: 40px; font-weight: 400; color: var(--ink); letter-spacing: -1.5px; margin-bottom: 12px; }
+.preview-header p { font-size: 16px; color: var(--ink-muted); max-width: 480px; margin: 0 auto; }
+
+/* Newsletter preview mockup */
+.nl-preview {
+  background: var(--surface-card); border-radius: 20px;
+  overflow: hidden; box-shadow: 0 24px 80px rgba(24,24,27,.1);
+  max-width: 680px; margin: 0 auto; border: 1px solid var(--border);
+}
+.nl-header { background: var(--ink); padding: 28px 36px; border-bottom: 3px solid var(--accent); }
+.nl-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.nl-brand { display: flex; align-items: center; gap: 10px; }
+.nl-brand-mark { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 18px; color: white; }
+.nl-brand-mark .nl-dot { color: var(--accent); }
+.nl-issue { font-size: 11px; color: #71717A; font-family: 'Plus Jakarta Sans', sans-serif; }
+.nl-subject { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: white; line-height: 1.2; }
+.nl-meta { font-size: 12px; color: #71717A; margin-top: 6px; }
+.nl-body { padding: 32px 36px; }
+.nl-section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.nl-headline { font-family: 'Instrument Serif', serif; font-size: 18px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+.nl-body-text { font-size: 14px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 20px; }
+.nl-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+.nl-protocol-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.nl-protocol-row:last-child { border-bottom: none; }
+.nl-proto-badge { font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
+.nl-proto-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+.nl-proto-change { font-size: 11px; margin-left: auto; white-space: nowrap; }
+.change-up { color: #16a34a; }
+.change-neutral { color: #6b7280; }
+.nl-footer { padding: 20px 36px; background: var(--surface-2); border-top: 1px solid var(--border); }
+.nl-footer p { font-size: 11px; color: var(--ink-muted); line-height: 1.6; }
+.nl-footer a { color: var(--accent); text-decoration: none; }
+
+/* WHAT YOU GET */
+.features-section { max-width: 960px; margin: 0 auto; padding: 80px 40px; }
+.features-header { margin-bottom: 48px; }
+.features-header h2 { font-family: 'Instrument Serif', serif; font-size: 36px; font-weight: 400; letter-spacing: -1px; margin-bottom: 8px; }
+.features-header p { font-size: 16px; color: var(--ink-muted); }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.feature-card {
+  padding: 28px; background: var(--surface-card); border: 1px solid var(--border);
+  border-radius: var(--radius); transition: all .2s;
+}
+.feature-card:hover { box-shadow: 0 8px 32px rgba(24,24,27,.08); transform: translateY(-2px); }
+.feature-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+.feature-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.feature-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
+
+/* TESTIMONIAL */
+.testimonial-section { background: var(--surface-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 40px; }
+.testimonial-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.testimonial-quote { font-family: 'Instrument Serif', serif; font-size: clamp(20px, 3vw, 28px); font-style: italic; font-weight: 400; color: var(--ink); line-height: 1.4; margin-bottom: 24px; }
+.testimonial-attr { font-size: 13px; color: var(--ink-muted); }
+.testimonial-attr strong { color: var(--ink); }
+
+/* FOOTER */
+footer { max-width: 960px; margin: 0 auto; padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-left p { font-size: 13px; color: var(--ink-muted); }
+.footer-right { display: flex; gap: 20px; }
+.footer-right a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color .2s; }
+.footer-right a:hover { color: var(--accent); }
+
+/* UNSUBSCRIBE PAGE */
+.unsub-section { max-width: 520px; margin: 80px auto; padding: 0 40px; text-align: center; }
+.unsub-section h1 { font-family: 'Instrument Serif', serif; font-size: 36px; font-weight: 400; margin-bottom: 12px; }
+.unsub-section p { font-size: 16px; color: var(--ink-muted); margin-bottom: 32px; }
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 40px; }
+  .features-grid { grid-template-columns: 1fr; }
+  
+  .preview-section, .features-section, .testimonial-section { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav style="background:var(--surface,#FEFDFB);height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border,#E4E4E7)">
+<div style="justify-self:start"><a href="/" style="text-decoration:none;display:inline-block"><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--ink,#18181B);letter-spacing:-0.5px">pievra<span style="color:var(--accent,#F97316)">.</span></span></a></div>
+<div style="display:flex;gap:4px;align-items:center;justify-self:center">
+<a href="/marketplace" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Marketplace</a>
+<a href="/partners" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Partners</a>
+<a href="/news" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">News</a>
+<a href="/news/analytics" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Analytics</a>
+<a href="/careers" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Careers</a>
+</div>
+<div style="display:flex;gap:4px;align-items:center;justify-self:end">
+<a href="/signin" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Sign In</a>
+<a href="/signup" style="background:var(--accent,#F97316);color:white;font-weight:700;text-decoration:none;font-size:14px;padding:8px 14px;border-radius:8px;transition:all .2s">Sign Up Free</a>
+</div>
+</nav>
+
+<!-- HERO + FORM -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Every Tuesday &middot; Free &middot; GDPR Compliant
+    </div>
+    <h1>Protocol<br/><em>Intelligence</em><br/>Weekly</h1>
+    <p class="hero-desc">The only briefing tracking every AI agent protocol shaping programmatic advertising. Protocol version updates, integration guides, agent performance benchmarks, and community insights - delivered every Tuesday morning.</p>
+    <div class="proof-row">
+      <div class="proof-item">
+        <span class="proof-num">Growing</span>
+        <span class="proof-label">subscribers</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-num">5</span>
+        <span class="proof-label">protocols covered</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-num">Every<br/>Tuesday</span>
+        <span class="proof-label">7:00 AM CET</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBSCRIPTION FORM -->
+  <div class="form-card" id="subscribe-card">
+    <div class="form-card-tag">Weekly briefing</div>
+    <h2>Subscribe free</h2>
+    <p>Join Growing programmatic professionals following the agentic advertising protocol stack.</p>
+
+    <div id="subscribe-form">
+      <div class="form-group">
+        <label for="sub-firstname">First name <span class="required-star">*</span></label>
+        <input type="text" id="sub-firstname" placeholder="Your first name" required/>
+      </div>
+      <div class="form-group">
+        <label for="sub-email">Work email <span class="required-star">*</span></label>
+        <input type="email" id="sub-email" placeholder="you@company.com" required/>
+      </div>
+      <div class="form-group">
+        <label for="sub-role">Your role</label>
+        <select id="sub-role">
+          <option value="">Select your role (optional)</option>
+          <option>Agency / Media Buyer</option>
+          <option>Publisher / SSP</option>
+          <option>DSP / Ad Tech Platform</option>
+          <option>Brand / Advertiser</option>
+          <option>Data / Identity Provider</option>
+          <option>Consultant / Advisor</option>
+          <option>Investor</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <!-- GDPR CONSENT SECTION -->
+      <div class="consent-group">
+        <div class="consent-item">
+          <input type="checkbox" id="consent-newsletter" required/>
+          <label for="consent-newsletter">
+            <strong>Newsletter consent <span class="required-star">*</span></strong><br/>
+            I agree to receive the Pievra Protocol Intelligence Weekly newsletter every Tuesday. I understand my email address will be stored and processed for this purpose. I can unsubscribe at any time by clicking the unsubscribe link in any email.
+          </label>
+        </div>
+        <div class="consent-item">
+          <input type="checkbox" id="consent-privacy" required/>
+          <label for="consent-privacy">
+            <strong>Privacy Policy <span class="required-star">*</span></strong><br/>
+            I have read and accept the <a href="/privacy" target="_blank">Privacy Policy</a> and understand how Pievra processes my personal data in accordance with the GDPR and French data protection law (CNIL).
+          </label>
+        </div>
+        <div class="consent-item">
+          <input type="checkbox" id="consent-marketing"/>
+          <label for="consent-marketing">
+            <strong>Marketing communications (optional)</strong><br/>
+            I agree to receive occasional product updates, platform announcements, and event invitations from Pievra. This consent is separate from the newsletter and can be withdrawn independently.
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-subscribe" id="sub-btn" onclick="handleSubscribe()">
+        Subscribe to Protocol Intelligence Weekly &rarr;
+      </button>
+
+      <div class="form-legal">
+        <strong>Your data rights:</strong> You may withdraw consent, request access to, correction, or deletion of your data at any time by emailing <a href="mailto:privacy@pievra.com">privacy@pievra.com</a> or clicking "Unsubscribe" in any email. Data controller: Pievra &middot; DPO: <a href="mailto:dpo@pievra.com">dpo@pievra.com</a> &middot; Supervisory authority: <a href="https://www.cnil.fr" target="_blank">CNIL (France)</a>. Consent records are stored and timestamped in compliance with GDPR Article 7.
+      </div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="success-state">
+      <div class="check">&#127881;</div>
+      <h3>You're subscribed!</h3>
+      <p>Welcome to Protocol Intelligence Weekly. You'll receive your first issue next Tuesday at 7:00 AM CET.<br/><br/>Check your inbox for a confirmation email with your consent receipt and unsubscribe instructions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER PREVIEW -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <div class="preview-header">
+      <h2>What you'll receive</h2>
+      <p>A sample of what Protocol Intelligence Weekly looks like every Tuesday morning.</p>
+    </div>
+    <div class="nl-preview">
+      <div class="nl-header">
+        <div class="nl-header-top">
+          <div class="nl-brand">
+            <span class="nl-brand-mark">pievra<span class="nl-dot">.</span></span>
+          </div>
+          <span class="nl-issue">Issue #14 &middot; Tuesday, 18 March 2025</span>
+        </div>
+        <div class="nl-subject">Protocol Intelligence Weekly - ARTF Public Comment Closes Jan 15, AdCP v2.5 Ships</div>
+        <div class="nl-meta">Delivered to Growing programmatic professionals &middot; 8 min read</div>
+      </div>
+      <div class="nl-body">
+        <div class="nl-section-label">This week in protocols</div>
+        <div class="nl-headline">ARTF public comment period closes in 48 hours - here is what changed</div>
+        <div class="nl-body-text">IAB Tech Lab's Agentic RTB Framework v1.0 comment window shuts on 15 January 2026. The Container Project Working Group has received 34 formal submissions. Three changes are likely in the finalised spec: authentication model for container-to-container calls, latency SLA definitions for agent mutations, and a governance escalation path for disputed mutations. If you haven't submitted your comment, the GitHub repo is still accepting pull requests...</div>
+        <hr class="nl-divider"/>
+        <div class="nl-section-label">Protocol version tracker</div>
+        <div class="nl-protocol-row">
+          <span class="nl-proto-badge" style="background:#dbeafe;color:#1d4ed8">AdCP</span>
+          <span class="nl-proto-title">v2.5 &rarr; v3.0 RC2</span>
+          <span class="nl-proto-change change-up">&uarr; Updated</span>
+        </div>
+        <div class="nl-protocol-row">
+          <span class="nl-proto-badge" style="background:#d1fae5;color:#065f46">MCP</span>
+          <span class="nl-proto-title">Spec 2025-11-25</span>
+          <span class="nl-proto-change change-neutral">&rarr; Stable</span>
+        </div>
+        <div class="nl-protocol-row">
+          <span class="nl-proto-badge" style="background:#ede9fe;color:#5b21b6">A2A</span>
+          <span class="nl-proto-title">v0.3</span>
+          <span class="nl-proto-change change-neutral">&rarr; Stable</span>
+        </div>
+        <div class="nl-protocol-row">
+          <span class="nl-proto-badge" style="background:#fce7f3;color:#9d174d">ARTF</span>
+          <span class="nl-proto-title">v1.0 public comment</span>
+          <span class="nl-proto-change change-up">&#9888; Closes Jan 15</span>
+        </div>
+        <div class="nl-protocol-row">
+          <span class="nl-proto-badge" style="background:#fef3c7;color:#92400e">UCP/AA</span>
+          <span class="nl-proto-title">Agentic Audiences</span>
+          <span class="nl-proto-change change-up">&uarr; New repo commits</span>
+        </div>
+        <hr class="nl-divider"/>
+        <div class="nl-section-label">Pievra marketplace update</div>
+        <div class="nl-body-text">26 verified agents now listed across AdCP, MCP, UCP, ARTF, and A2A. Featured: Prebid Sales Agent (open source, Docker deploy in 2 min), IAB Buyer Agent (CrewAI + OpenDirect 2.1), and 10 agents in the IAB Tech Lab Agent Registry...</div>
+      </div>
+      <div class="nl-footer">
+        <p>You're receiving this because you subscribed at pievra.com/newsletter &middot; <a href="#">Unsubscribe</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; Pievra &middot; pievra.com &middot; Consent ID: c_xxxxxxxx &middot; Your data is processed in accordance with GDPR Article 6(1)(a). To exercise your rights, email <a href="mailto:privacy@pievra.com">privacy@pievra.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="features-section">
+  <div class="features-header">
+    <h2>Six things every Tuesday</h2>
+    <p>Automated by Pievra's intelligence agents. Edited by humans before send.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">&#128225;</span>
+      <div class="feature-title">Protocol version tracker</div>
+      <div class="feature-desc">Every protocol version change across AdCP, MCP, A2A, ARTF, and Agentic Audiences - automatically detected and summarised.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128300;</span>
+      <div class="feature-title">Deep analysis</div>
+      <div class="feature-desc">One in-depth technical breakdown per issue - integration guides, architecture patterns, and implementation observations from the community.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#127942;</span>
+      <div class="feature-title">Agent leaderboard</div>
+      <div class="feature-desc">Weekly ranking of top-performing agents in the Pievra Marketplace by fill rate, CPM delta, and protocol compatibility score.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128478;&#65039;</span>
+      <div class="feature-title">Industry news digest</div>
+      <div class="feature-desc">Curated headlines from ExchangeWire, AdExchanger, Digiday, and the IAB Tech Lab - filtered for agentic advertising relevance.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128172;</span>
+      <div class="feature-title">Community highlights</div>
+      <div class="feature-desc">Top comments and discussions from the Pievra News community - the most insightful observations from practitioners this week.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">&#128197;</span>
+      <div class="feature-title">What's coming next week</div>
+      <div class="feature-desc">Protocol working group meetings, comment deadlines, and Pievra product updates to put in your calendar before next Tuesday.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-section">
+  <div class="testimonial-inner">
+    <div class="testimonial-quote">"The only newsletter that covers the protocol stack at the level of technical detail I actually need. No fluff. Just what changed, why it matters, and what to do about it."</div>
+    <div class="testimonial-attr"><strong>First testimonial slot</strong> - reserved for your first subscriber quote after launch</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <p>&copy; 2025 Pievra &middot; Protocol Intelligence Weekly &middot; Automated by Pievra agents &middot; Edited by humans</p>
+    <p>Data controller: Pievra &middot; DPO: <a href="mailto:dpo@pievra.com" style="color:var(--accent)">dpo@pievra.com</a> &middot; <a href="https://www.cnil.fr" style="color:var(--accent)">CNIL registered</a></p>
+  </div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy & GDPR</a>
+    <a href="/terms">Terms</a>
+    <a href="/newsletter/unsubscribe">Unsubscribe</a>
+  </div>
+</footer>
+
+<script>
+function handleSubscribe() {
+  const email = document.getElementById('sub-email').value;
+  const name = document.getElementById('sub-firstname').value;
+  const consentNewsletter = document.getElementById('consent-newsletter').checked;
+  const consentPrivacy = document.getElementById('consent-privacy').checked;
+
+  // Validation
+  if (!name.trim()) { alert('Please enter your first name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid work email address.'); return; }
+  if (!consentNewsletter) { alert('Newsletter consent is required to subscribe.'); return; }
+  if (!consentPrivacy) { alert('You must accept the Privacy Policy to subscribe.'); return; }
+
+  // Log consent (production: send to backend with timestamp)
+  const consentRecord = {
+    email,
+    name: name.trim(),
+    role: document.getElementById('sub-role').value,
+    consent_newsletter: true,
+    consent_privacy: true,
+    consent_marketing: document.getElementById('consent-marketing').checked,
+    timestamp: new Date().toISOString(),
+    ip_collected: true,
+    consent_id: 'c_' + Math.random().toString(36).substr(2,12),
+    source: 'pievra.com/newsletter',
+    gdpr_basis: 'consent_art6_1a'
+  };
+  console.log('GDPR consent record:', JSON.stringify(consentRecord));
+
+  // GA4 event
+  gtag && gtag('event', 'newsletter_subscribe', {
+    event_category: 'conversion',
+    event_label: consentRecord.role || 'unknown'
+  });
+
+  // Show success
+  document.getElementById('subscribe-form').style.display = 'none';
+  document.getElementById('success-state').style.display = 'block';
+
+  // Production: POST to /api/newsletter/subscribe with consentRecord
+}
+</script>
+</body>
+</html>

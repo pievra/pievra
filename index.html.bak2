@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pievra - Run AI Agent Campaigns Across Every Programmatic Protocol</title>
+<meta name="description" content="Pievra connects media buyers, publishers and data providers through one platform. Plan, auction and execute AI-powered campaigns across AdCP, MCP, UCP, ARTF and A2A simultaneously."/>
+<meta name="keywords" content="AI agent orchestration, programmatic advertising, AdCP, MCP, UCP, ARTF, A2A, agentic advertising, protocol orchestration, media buying AI"/>
+<meta property="og:title" content="Pievra - Run AI Agent Campaigns Across Every Programmatic Protocol"/>
+<meta property="og:description" content="One platform to plan, auction and execute AI-powered ad campaigns across all five agentic advertising protocols. For agencies, publishers and data providers."/>
+<meta property="og:url" content="https://pievra.com"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Pievra - Run AI Agent Campaigns Across Every Protocol"/>
+<link rel="canonical" href="https://pievra.com"/>
+
+<!-- GA4 Analytics - consent-gated (GDPR/CNIL compliant) -->
+<script src="/static/consent.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #0a0e1a;
+  --ink-soft: #3d4460;
+  --ink-muted: #7a829e;
+  --surface: #ffffff;
+  --surface-2: #f4f5f9;
+  --surface-3: #ebedf5;
+  --teal: #00c4a7;
+  --teal-dark: #009e86;
+  --teal-light: #e0faf6;
+  --coral: #ff5e3a;
+  --navy: #0a0e1a;
+  --blue: #2563eb;
+  --border: #e2e4ed;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(10,14,26,0.08);
+  --shadow-lg: 0 12px 48px rgba(10,14,26,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5 { font-family: 'Manrope', sans-serif; line-height: 1.15; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+}
+.logo-mark {
+  width: 36px; height: 36px; background: var(--ink);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: var(--teal);
+  letter-spacing: -1px;
+}
+.logo-text { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; color: var(--ink); }
+.logo-badge {
+  font-size: 10px; font-weight: 600; color: var(--teal-dark);
+  background: var(--teal-light); border: 1px solid var(--teal);
+  padding: 2px 8px; border-radius: 20px; letter-spacing: 0.5px;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--ink-soft);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.btn-ghost {
+  padding: 8px 16px; font-size: 14px; font-weight: 500;
+  color: var(--ink-soft); background: none; border: none; cursor: pointer;
+  border-radius: 8px; transition: background 0.2s; font-family: 'Inter', sans-serif;
+}
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-primary {
+  padding: 8px 20px; font-size: 14px; font-weight: 600;
+  color: white; background: var(--ink); border: none; cursor: pointer;
+  border-radius: 8px; transition: all 0.2s; font-family: 'Inter', sans-serif;
+}
+.btn-primary:hover { background: #1a2035; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  padding: 140px 24px 80px;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,196,167,0.10) 0%, transparent 70%);
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 20px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-bottom: 32px;
+}
+.hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 80px); font-weight: 800;
+  color: var(--ink); letter-spacing: -2px; margin-bottom: 24px;
+}
+.hero h1 .accent { color: var(--teal); }
+.hero-sub {
+  font-size: 18px; color: var(--ink-soft); max-width: 600px;
+  margin: 0 auto 40px; font-weight: 400; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+.btn-teal {
+  padding: 14px 28px; background: var(--teal); color: white;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,196,167,0.3); }
+.btn-outline {
+  padding: 14px 28px; background: transparent; color: var(--ink);
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+.btn-dark {
+  padding: 14px 28px; background: var(--ink); color: white;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-dark:hover { background: #1a2035; transform: translateY(-2px); }
+
+/* Code block */
+.code-block {
+  background: var(--ink); border-radius: var(--radius-lg);
+  padding: 28px 32px; max-width: 640px; margin: 0 auto 56px;
+  text-align: left; border: 1px solid #1e2540;
+}
+.code-block pre { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8; color: #a8b0cc; overflow-x: auto; }
+.code-block .kw { color: var(--teal); }
+.code-block .str { color: #ffd580; }
+.code-block .fn { color: #82aaff; }
+.code-block .cm { color: #4a5270; font-style: italic; }
+
+/* Stats */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; max-width: 800px; margin: 0 auto;
+}
+.stat-cell {
+  background: white; padding: 28px 20px; text-align: center;
+}
+.stat-num { font-family: 'Manrope', sans-serif; font-size: 32px; font-weight: 800; color: var(--teal); margin-bottom: 4px; }
+.stat-label { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+
+/* Trust bar */
+.trust-bar {
+  background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 20px 24px;
+}
+.trust-bar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.trust-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--ink-muted); text-transform: uppercase; }
+.trust-items { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+.trust-badge {
+  width: 26px; height: 26px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 900; color: white; letter-spacing: 0;
+}
+
+/* ── WHO IT'S FOR ── */
+.section { padding: 96px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: var(--ink); letter-spacing: -1.5px; margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--ink-soft); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
+
+.for-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.for-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 32px; background: white; transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.for-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--teal); opacity: 0; transition: opacity 0.2s;
+}
+.for-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.for-card:hover::before { opacity: 1; }
+.for-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+.for-role { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+.for-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; }
+.for-kpi {
+  background: var(--teal-light); border: 1px solid var(--teal);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 13px; font-weight: 600; color: var(--teal-dark);
+}
+.for-kpi span { color: var(--ink-muted); font-weight: 400; }
+
+/* How it works */
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+.how-steps::before {
+  content: ''; position: absolute; top: 28px; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+.how-step { text-align: center; position: relative; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--ink); color: var(--teal);
+  font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; position: relative; z-index: 1;
+}
+.step-title { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.step-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ── WHY PIEVRA ── */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.why-copy h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+.why-copy p { font-size: 16px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 28px; }
+.prebid-box {
+  background: var(--surface-2); border-left: 3px solid var(--teal);
+  padding: 20px 24px; border-radius: 0 10px 10px 0;
+}
+.prebid-box strong { font-size: 13px; font-weight: 700; color: var(--ink); display: block; margin-bottom: 6px; }
+.prebid-box p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+.moat-cards { display: grid; gap: 14px; }
+.moat-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; display: flex; align-items: flex-start; gap: 16px; transition: box-shadow 0.2s;
+}
+.moat-card:hover { box-shadow: var(--shadow); }
+.moat-tag {
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+}
+.moat-tag.hard { background: #fef2f2; color: #b91c1c; }
+.moat-tag.grow { background: var(--teal-light); color: var(--teal-dark); }
+.moat-info h4 { font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.moat-info p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ── CAMPAIGN PLANNER ── */
+#planner { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.planner-form {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 40px; box-shadow: var(--shadow);
+}
+.form-step { margin-bottom: 36px; }
+.step-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-col { display: flex; flex-direction: column; gap: 6px; }
+label { font-size: 13px; font-weight: 600; color: var(--ink); }
+label .hint { font-weight: 400; color: var(--ink-muted); }
+input[type=text], input[type=email], select, textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif;
+  color: var(--ink); background: white; transition: border-color 0.2s;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,196,167,0.12); }
+textarea { resize: vertical; min-height: 80px; }
+.btn-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.btn-grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; }
+.btn-grid-3 { display: flex; gap: 8px; }
+.toggle-btn {
+  padding: 10px 8px; border: 1.5px solid var(--border); border-radius: 8px;
+  background: white; font-size: 13px; font-family: 'Inter', sans-serif;
+  font-weight: 600; cursor: pointer; transition: all 0.18s; text-align: left;
+  color: var(--ink-soft);
+}
+.toggle-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+.toggle-btn .sub { display: block; font-size: 11px; font-weight: 400; opacity: 0.7; margin-top: 2px; }
+.interests { display: flex; flex-wrap: wrap; gap: 8px; }
+.interest-tag {
+  padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 20px;
+  font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+  background: white; color: var(--ink-soft); font-family: 'Inter', sans-serif;
+}
+.interest-tag.active { background: var(--ink); color: white; border-color: var(--ink); }
+.env-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.env-btn {
+  padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  background: white; font-size: 13px; font-family: 'Inter', sans-serif;
+  font-weight: 500; cursor: pointer; transition: all 0.18s; text-align: left;
+  color: var(--ink-soft);
+}
+.env-btn.active { background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark); }
+
+/* Gate overlay */
+.planner-gate {
+  position: relative;
+}
+.gate-overlay {
+  position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(244,245,249,0.97) 65%);
+  border-radius: var(--radius-lg); display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 48px; z-index: 10;
+}
+.gate-box {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 32px 40px; text-align: center; max-width: 440px;
+  box-shadow: var(--shadow-lg);
+}
+.gate-box h3 { font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.gate-box p { font-size: 14px; color: var(--ink-soft); margin-bottom: 24px; }
+.gate-input-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.gate-input-row input { flex: 1; }
+.gate-note { font-size: 12px; color: var(--ink-muted); }
+
+.generate-btn {
+  width: 100%; padding: 16px; background: var(--ink); color: white;
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 16px;
+  border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; margin-top: 8px;
+}
+.generate-btn:hover { background: #1a2035; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,14,26,0.2); }
+
+/* ── PROTOCOLS ── */
+.protocols-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.protocol-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; transition: all 0.2s;
+}
+.protocol-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.protocol-head { padding: 24px; border-bottom: 1px solid var(--border); }
+.protocol-title-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.protocol-icon { font-size: 28px; }
+.protocol-name { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 700; }
+.protocol-ver { font-size: 12px; color: var(--ink-muted); }
+.badge-live { background: #dcfce7; color: #166534; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.badge-beta { background: #fef9c3; color: #854d0e; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.protocol-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 12px; }
+.protocol-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ptag { background: var(--surface-2); font-size: 11px; padding: 3px 10px; border-radius: 20px; color: var(--ink-soft); font-weight: 500; }
+.protocol-steward { font-size: 12px; color: var(--ink-muted); margin-top: 10px; }
+.protocol-foot {
+  padding: 14px 24px; background: var(--surface-2);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
+}
+.protocol-foot:hover { color: var(--ink); }
+
+/* Filter bar */
+.filter-bar { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 8px 20px; border-radius: 8px; border: 1.5px solid var(--border);
+  background: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+  font-family: 'Inter', sans-serif; color: var(--ink-soft);
+}
+.filter-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+/* ── MARKETPLACE ── */
+.marketplace-section { background: var(--surface-2); border-top: 1px solid var(--border); }
+.marketplace-preview { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 40px; }
+.agent-card {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; transition: all 0.2s;
+}
+.agent-card:hover { box-shadow: var(--shadow); border-color: var(--teal); }
+.agent-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.agent-name { font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 700; }
+.agent-score { font-size: 20px; font-weight: 800; font-family: 'Manrope', sans-serif; color: var(--teal); }
+.agent-desc { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.5; }
+.agent-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.agent-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--teal-light); color: var(--teal-dark); }
+
+/* List your agent */
+.list-agent-section {
+  background: var(--ink); color: white;
+  padding: 80px 24px;
+}
+.list-agent-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.list-agent-copy h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; color: white; margin-bottom: 16px; letter-spacing: -1.5px; }
+.list-agent-copy p { color: #8892b0; font-size: 16px; line-height: 1.8; margin-bottom: 32px; }
+.list-steps { display: flex; flex-direction: column; gap: 28px; }
+.list-step { display: flex; gap: 20px; }
+.step-circle {
+  width: 44px; height: 44px; border-radius: 50%; background: rgba(0,196,167,0.15);
+  color: var(--teal); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.list-step h4 { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px; }
+.list-step p { font-size: 14px; color: #8892b0; }
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+.price-card {
+  border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+  padding: 36px; background: white; transition: all 0.2s; position: relative;
+}
+.price-card.featured {
+  border-color: var(--teal); background: var(--ink);
+  transform: scale(1.04);
+  box-shadow: 0 20px 60px rgba(0,196,167,0.2);
+}
+.price-popular {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--teal); color: white; font-size: 11px; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px; white-space: nowrap;
+}
+.price-name { font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.price-desc { font-size: 14px; color: var(--ink-muted); margin-bottom: 28px; }
+.featured .price-desc { color: #8892b0; }
+.price-amount { margin-bottom: 28px; }
+.price-amount .num { font-family: 'Manrope', sans-serif; font-size: 48px; font-weight: 800; letter-spacing: -2px; }
+.price-amount .per { font-size: 16px; color: var(--ink-muted); margin-left: 4px; }
+.featured .price-amount .per { color: #8892b0; }
+.price-roi {
+  background: var(--teal-light); border: 1px solid var(--teal);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 24px;
+  font-size: 13px; font-weight: 600; color: var(--teal-dark);
+}
+.featured .price-roi { background: rgba(0,196,167,0.15); color: var(--teal); }
+.price-cta {
+  width: 100%; padding: 14px; border-radius: 10px;
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px;
+  cursor: pointer; transition: all 0.2s; border: none; margin-bottom: 28px;
+}
+.price-cta.light { background: var(--surface-2); color: var(--ink); }
+.price-cta.light:hover { background: var(--surface-3); }
+.price-cta.teal { background: var(--teal); color: white; }
+.price-cta.teal:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,196,167,0.3); }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+.check { color: var(--teal); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.featured .price-features li { color: #ccd6f6; }
+
+/* Transaction note */
+.txn-note {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px 28px; text-align: center; margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto;
+}
+.txn-note p { font-size: 14px; color: var(--ink-soft); }
+.txn-note strong { color: var(--ink); }
+
+/* ── COMMUNITY ── */
+.community-section { background: var(--ink); color: white; }
+.repos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 56px; }
+.repo-card {
+  background: #111827; border: 1px solid #1e2540; border-radius: var(--radius);
+  padding: 24px; transition: all 0.2s; text-decoration: none;
+}
+.repo-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+.repo-card h3 { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
+.repo-card p { font-size: 13px; color: #8892b0; line-height: 1.5; margin-bottom: 16px; }
+.repo-stats { display: flex; gap: 16px; font-size: 12px; color: #4a5270; }
+.repo-stats span { display: flex; align-items: center; gap: 4px; }
+
+/* Agent leaderboard section */
+.leaderboard-teaser {
+  background: #111827; border: 1px solid #1e2540; border-radius: var(--radius-lg);
+  padding: 32px; margin-top: 32px;
+}
+.leaderboard-teaser h3 { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; color: white; margin-bottom: 8px; }
+.leaderboard-teaser p { font-size: 14px; color: #8892b0; margin-bottom: 20px; }
+.leaderboard-row {
+  display: grid; grid-template-columns: 40px 1fr 80px 80px 80px;
+  gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid #1e2540;
+  font-size: 13px;
+}
+.leaderboard-row.head { color: #4a5270; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+.rank { font-family: 'Manrope', sans-serif; font-weight: 800; color: var(--teal); }
+.agent-n { color: white; font-weight: 600; }
+.metric { color: #8892b0; text-align: right; }
+.metric.good { color: var(--teal); font-weight: 700; }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,196,167,0.08) 0%, transparent 70%),
+              var(--ink);
+  border-top: 1px solid #1e2540; border-bottom: 1px solid #1e2540;
+  padding: 96px 24px; text-align: center;
+}
+.cta-banner h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 800; color: white; letter-spacing: -2px; margin-bottom: 20px; }
+.cta-banner p { font-size: 18px; color: #8892b0; max-width: 500px; margin: 0 auto 40px; }
+
+/* ── FOOTER ── */
+footer {
+  background: #060810; color: #4a5270;
+  border-top: 1px solid #0e1220; padding: 64px 24px 40px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: #4a5270; line-height: 1.7; margin-top: 12px; max-width: 220px; }
+.footer-col h4 { font-size: 13px; font-weight: 700; color: #8892b0; margin-bottom: 16px; letter-spacing: 0.5px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 13px; color: #4a5270; text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--teal); }
+.footer-bottom {
+  border-top: 1px solid #0e1220; padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom p { font-size: 13px; }
+.octopus-tag { color: var(--teal); font-style: italic; }
+
+/* ── MODAL for gate ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(10,14,26,0.7); z-index: 1000;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: white; border-radius: var(--radius-lg); padding: 48px;
+  max-width: 480px; width: 100%; box-shadow: var(--shadow-lg);
+  transform: translateY(20px); transition: transform 0.25s;
+}
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.modal-box h2 { font-family: 'Manrope', sans-serif; font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.modal-box p { font-size: 15px; color: var(--ink-soft); margin-bottom: 28px; line-height: 1.7; }
+.modal-box input { margin-bottom: 12px; }
+.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--ink-muted); }
+
+/* ── FEATURED / PREMIUM AGENT PLACEMENTS ── */
+.featured-banner {
+  background: linear-gradient(135deg, #0a0e1a 0%, #0f1829 100%);
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.featured-banner-label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; color: var(--teal);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.featured-banner-label::before {
+  content: '★'; font-size: 14px;
+}
+.featured-banner p {
+  font-size: 13px; color: #8892b0; margin: 0;
+}
+.featured-banner a {
+  font-size: 13px; font-weight: 600; color: var(--teal);
+  text-decoration: none; white-space: nowrap; border: 1px solid var(--teal);
+  padding: 6px 16px; border-radius: 6px; transition: all 0.2s;
+}
+.featured-banner a:hover { background: var(--teal); color: white; }
+
+.agent-card.premium {
+  border: 1.5px solid var(--teal);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf9 100%);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,196,167,0.12);
+}
+.agent-card.premium::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal), #00e5c4);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.premium-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--ink); color: var(--teal);
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  margin-bottom: 10px;
+}
+.premium-badge::before { content: '★'; font-size: 10px; }
+
+/* ── NEW PROTOCOL BADGE ── */
+.badge-new {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white; font-size: 10px; font-weight: 800;
+  padding: 2px 8px; border-radius: 20px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* SEO section hidden from display, visible to crawlers */
+.seo-text { position: absolute; left: -9999px; }
+
+/* Marketplace sort bar */.marketplace-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.marketplace-sort {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--ink-muted);
+}
+.marketplace-sort select {
+  padding: 6px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 13px; font-family: 'Inter', sans-serif; color: var(--ink);
+  background: white; cursor: pointer; width: auto;
+}
+.marketplace-count {
+  font-size: 13px; color: var(--ink-muted);
+}
+.marketplace-count strong { color: var(--ink); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .for-cards, .how-steps, .why-grid, .protocols-grid,
+  .marketplace-preview, .pricing-grid, .repos-grid,
+  .list-agent-inner, .footer-top { grid-template-columns: 1fr; }
+
+  .price-card.featured { transform: none; }
+  .nav-links { display: none; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .how-steps::before { display: none; }
+}
+</style>
+<script src="/static/pievra_widgets.js"></script>
+</head>
+<body>
+
+<!-- MODAL: Email Gate -->
+<div class="modal-overlay" id="gateModal">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div style="font-size:36px;margin-bottom:16px">🐙</div>
+    <h2>Access your campaign plan</h2>
+    <p>Create a free Pievra account to generate, save and activate your cross-protocol campaign plan.</p>
+    <label>Your work email</label>
+    <input type="email" id="gateEmail" placeholder="you@agency.com" style="margin-top:6px"/>
+    <button class="btn-teal" onclick="window.location.href='/signup'" style="margin-top:4px;width:100%;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;background:#00c4a7;color:#0a0e1a">Create free account â</button>
+    <p style="font-size:12px;color:var(--ink-muted);margin-top:12px;text-align:center">Free forever. No credit card. Cancel anytime.</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">🐙</div>
+      <span class="logo-text">pievra</span>
+      <span class="logo-badge">OPEN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#planner">Campaign Planner</a>
+      <a href="#protocols">Protocols</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="/news">News</a>
+      <a href="/partners">Partners</a>
+      <a href="#learn">Learn</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-ghost" onclick="window.location.href='/signin'">Sign In</button>
+      <button class="btn-ghost" onclick="window.location.href='/request-demo'">Request Demo</button>
+      <button class="btn-primary" id="nav-signup-btn" onclick="window.location.href='/signup'">Sign Up Free</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-pill">
+      <span class="dot"></span>
+      Protocol-neutral - Open core - All five protocols
+    </div>
+    <h1>One campaign. <span class="accent">Five protocols.</span> Zero lock-in.</h1>
+    <p class="hero-sub">Pievra orchestrates programmatic campaigns across AdCP, MCP, UCP, ARTF and A2A simultaneously. Free planning simulator, agent marketplace and protocol learning hub,master the stack before it goes mainstream.</p>
+    <div class="hero-actions">
+      <a href="#planner" class="btn-teal">🗺 Plan a Campaign (Free)</a>
+      <a href="#learn" class="btn-outline">📚 Learn Protocols</a>
+      <a href="https://github.com/pievra" target="_blank" class="btn-dark">⬡ View Source</a>
+    </div>
+
+    <div class="code-block">
+      <pre><span class="cm">// Orchestrate across every protocol from one call</span>
+<span class="kw">const</span> campaign = <span class="kw">new</span> <span class="fn">PievraSession</span>({
+  protocols: [<span class="str">'AdCP'</span>, <span class="str">'MCP'</span>, <span class="str">'A2A'</span>, <span class="str">'UCP'</span>, <span class="str">'ARTF'</span>],
+  budget: <span class="str">50000</span>,
+  objective: <span class="str">'ROAS > 2.8'</span>,
+});
+
+<span class="kw">const</span> result = <span class="kw">await</span> campaign.<span class="fn">execute</span>();
+<span class="cm">// → 8 agents activated across 3 protocols.</span></pre>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-cell"><div class="stat-num">5</div><div class="stat-label">Protocols</div></div>
+      <div class="stat-cell"><div class="stat-num">3</div><div class="stat-label">Open Repos</div></div>
+      <div class="stat-cell"><div class="stat-num">Free</div><div class="stat-label">Early Access</div></div>
+      <div class="stat-cell"><div class="stat-num">MIT</div><div class="stat-label">Licensed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-label">Governed by</span>
+    <div class="trust-items">
+      <div class="trust-item"><div class="trust-badge" style="background:#1a56db">AAO</div>Agentic Advertising Org</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#dc2626">IAB</div>IAB Tech Lab</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#1e3a5f">LF</div>Linux Foundation</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#15803d">G</div>Google</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#4b5563">A</div>Anthropic</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="section-tag">Who It's For</div>
+    <h2 class="section-title">Three audiences.<br/>One orchestration layer.</h2>
+    <p class="section-sub">Whether you buy, sell, or power ad campaigns - Pievra connects you across all five AI protocols from day one.</p>
+
+    <div class="for-cards">
+      <div class="for-card">
+        <span class="for-icon">📊</span>
+        <div class="for-role">Media Buyers & Agencies</div>
+        <div class="for-desc">Run campaigns across all five AI advertising protocols at once. No separate integrations. No protocol lock-in. One activation interface replaces five vendor relationships.</div>
+        <div class="for-kpi"><a href="/for-agencies" style="color:inherit;text-decoration:none">Learn more about Pievra for Agencies →</a></div>
+      </div>
+      <div class="for-card">
+        <span class="for-icon">📡</span>
+        <div class="for-role">Publishers & SSPs</div>
+        <div class="for-desc">Make your supply available to every AI buying protocol through a single listing. More demand sources, higher fill rates. Receive standardised bid requests regardless of which protocol the buyer runs.</div>
+        <div class="for-kpi"><a href="/for-publishers" style="color:inherit;text-decoration:none">Learn more about Pievra for Publishers →</a></div>
+      </div>
+      <div class="for-card">
+        <span class="for-icon">🧬</span>
+        <div class="for-role">Data & Identity Providers</div>
+        <div class="for-desc">Expose audience segments as callable agents within the marketplace. Connect UCP and first-party data assets to live campaign execution. Earn per query or on a revenue share model without custom DSP/SSP integrations.</div>
+        <div class="for-kpi">New revenue stream: <span>zero integration cost</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--surface-2);border-top:1px solid var(--border);padding-top:80px;padding-bottom:80px">
+  <div class="section-inner">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title" style="margin-bottom:56px">Three steps to cross-protocol execution</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Define your campaign or list your agent</div>
+        <div class="step-desc">5 minutes. Set objectives, budget, audience and target environments. Pievra auto-selects the optimal protocol stack.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Pievra matches agents via live auction</div>
+        <div class="step-desc">The eight-arm orchestration layer connects DSP and SSP agents across all active protocols simultaneously in real time.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Campaign executes. Analytics stream live.</div>
+        <div class="step-desc">Monitor ROAS, CPM delta and agent performance benchmarks across protocols from a single dashboard. Export or automate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PIEVRA -->
+<section class="section">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-copy">
+        <div class="section-tag">Why Pievra</div>
+        <h2>The Prebid analogy - for the agentic era</h2>
+        <p>Prebid unified demand across SSPs. Pievra does the same for AI agent protocols. In programmatic advertising, Prebid became essential infrastructure by standardising how demand flows across supply sources. Pievra applies the same pattern to AI agent orchestration - one integration layer across all five protocols.</p>
+        <div class="prebid-box">
+          <strong>The Prebid Analogy</strong>
+          <p>Just as Prebid became essential infrastructure for ad tech, Pievra is becoming essential infrastructure for AI agent orchestration across protocols. Eight arms reaching everywhere simultaneously.</p>
+        </div>
+      </div>
+      <div class="moat-cards">
+        <div class="moat-card">
+          <div><span class="moat-tag hard">Hard to replicate</span></div>
+          <div class="moat-info">
+            <h4>Agent Registry Data</h4>
+            <p>Comprehensive catalog of AI agents with performance metrics and capabilities across all protocols.</p>
+          </div>
+        </div>
+        <div class="moat-card">
+          <div><span class="moat-tag grow">Growing moat</span></div>
+          <div class="moat-info">
+            <h4>Governance Position</h4>
+            <p>Founding member of AAO with influence over protocol standards and framework evolution.</p>
+          </div>
+        </div>
+        <div class="moat-card">
+          <div><span class="moat-tag hard">Hard to replicate</span></div>
+          <div class="moat-info">
+            <h4>Transaction Data Exhaust</h4>
+            <p>Real-time insights from campaign execution across protocols for better agent matching.</p>
+          </div>
+        </div>
+        <div class="moat-card">
+          <div><span class="moat-tag grow">Growing moat</span></div>
+          <div class="moat-info">
+            <h4>Network Effects</h4>
+            <p>More agents and campaigns create better matching algorithms and a more attractive marketplace.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN PLANNER -->
+<section class="section" id="planner" style="background:var(--surface-2);border-top:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-tag">Campaign Planner</div>
+    <h2 class="section-title">Plan & simulate a cross-protocol campaign</h2>
+    <p class="section-sub">Define your advertiser, audience, buying model and environments. Pievra assembles a coherent agent stack connected via open protocols, projects KPIs, and generates a downloadable media plan - all free, no credit card required.</p>
+
+    <div class="planner-gate">
+      <!-- LLM Chat Mode -->
+      <div id="planner-chat-mode" style="display:none;margin-bottom:24px;background:#0a0e1a;border-radius:16px;padding:24px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;background:#00c4a7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">🤖</div>
+            <div>
+              <div style="font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:white">AI Campaign Assistant</div>
+              <div style="font-size:12px;color:#7a829e">Describe your campaign in plain language</div>
+            </div>
+          </div>
+          <button onclick="togglePlannerMode()" style="background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer">Switch to Form</button>
+        </div>
+
+        <!-- Example prompts -->
+        <div style="margin-bottom:14px">
+          <div style="font-size:11px;color:#7a829e;margin-bottom:8px;letter-spacing:.05em">EXAMPLE BRIEFS - click to use:</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <button class="chat-example" onclick="useChatExample(this)" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;text-align:left">🛍 Nike Air Max launch - Gen Z, Europe, CTV + Display, $80K, ROAS 3.0</button>
+            <button class="chat-example" onclick="useChatExample(this)" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;text-align:left">🏦 B2B SaaS lead gen - Finance decision-makers, US+UK, LinkedIn + Display, $25K CPL</button>
+            <button class="chat-example" onclick="useChatExample(this)" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;text-align:left">🚗 Auto awareness - In-market buyers, Germany + France, CTV + DOOH, $120K CPM</button>
+            <button class="chat-example" onclick="useChatExample(this)" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;text-align:left">✈ Travel retargeting - Luxury travellers, UAE + Singapore, Mobile + Native, $40K CPA</button>
+          </div>
+        </div>
+
+        <!-- Chat messages -->
+        <div id="chat-messages" style="min-height:80px;max-height:200px;overflow-y:auto;margin-bottom:12px"></div>
+
+        <!-- Chat input -->
+        <div style="display:flex;gap:10px">
+          <textarea id="chat-input" placeholder="e.g. Run an awareness campaign for Nike Air Max 2026 targeting Gen Z in France and Germany on CTV and Display, budget $80K, ROAS target 3.0..." style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;color:white;font-size:14px;padding:12px;font-family:Inter,sans-serif;resize:none;min-height:80px" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
+          <button onclick="if(typeof sendChat==='function'){sendChat();}else{console.error('sendChat not defined');}" id="chat-send-btn" style="background:#00c4a7;border:none;color:#0a0e1a;font-weight:700;font-size:14px;padding:12px 20px;border-radius:10px;cursor:pointer;align-self:flex-end;white-space:nowrap">Generate &#x2192;</button>
+        </div>
+        <div style="font-size:11px;color:#7a829e;margin-top:8px">Press Enter to send · Shift+Enter for new line</div>
+      </div>
+
+      <!-- Mode toggle bar -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:12px 16px;background:white;border:1px solid var(--border);border-radius:12px">
+        <div style="font-size:14px;color:#3d4460">Fill in the form or use the AI assistant to set up your campaign</div>
+        <div style="display:flex;gap:8px">
+          <button id="btn-form-mode" onclick="setMode('form')" style="background:#0a0e1a;color:white;border:none;font-size:13px;font-weight:600;padding:7px 16px;border-radius:8px;cursor:pointer">📋 Form</button>
+          <button id="btn-chat-mode" onclick="setMode('chat')" style="background:none;border:1px solid #e2e4ed;color:#3d4460;font-size:13px;font-weight:600;padding:7px 16px;border-radius:8px;cursor:pointer">🤖 AI Assistant</button>
+        </div>
+      </div>
+
+      <div class="planner-form">
+        <!-- Step 1 -->
+        <div class="form-step">
+          <div class="step-label">1 - Campaign Brief</div>
+          <div class="form-row">
+            <div class="form-col"><label for="pl-brand">Advertiser / Brand <span style="color:#dc2626">*</span></label><input type="text" id="pl-brand" placeholder="e.g. Nike, Samsung, L'Oréal..."/></div>
+            <div class="form-col"><label for="pl-name">Product / Campaign Name <span style="color:#dc2626">*</span></label><input type="text" id="pl-name" placeholder="e.g. Air Max 2026 launch..."/></div>
+          </div>
+          <div class="form-col">
+            <label for="pl-desc">Campaign Description <span class="hint">- goals, messaging, requirements</span> <span style="color:#dc2626">*</span></label>
+            <textarea id="pl-desc" placeholder="e.g. Drive awareness for Air Max 2026 targeting Gen Z in major European cities. 30s hero video for CTV, companion display for web retargeting. Brand safety: premium publishers only..."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step">
+          <div class="step-label">2 - Objective & Buying Model</div>
+          <div style="margin-bottom:16px">
+            <label style="margin-bottom:10px;display:block">Campaign Objective</label>
+            <div class="btn-grid">
+              <button class="toggle-btn active" onclick="toggleBtn(this,'obj')">Awareness<span class="sub">Maximise reach</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'obj')">Consideration<span class="sub">Drive engagement</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'obj')">Conversion<span class="sub">Optimise sales</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'obj')">Retention<span class="sub">Re-engage users</span></button>
+            </div>
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="margin-bottom:10px;display:block">Buying Model</label>
+            <div class="btn-grid-5">
+              <button class="toggle-btn active" onclick="toggleBtn(this,'buy')">CPM<span class="sub">per 1,000 impr.</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'buy')">CPC<span class="sub">per click</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'buy')">CPA<span class="sub">per acquisition</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'buy')">CPL<span class="sub">per lead</span></button>
+              <button class="toggle-btn" onclick="toggleBtn(this,'buy')">CPCV<span class="sub">per completed view</span></button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-col"><label for="pl-budget">Budget (USD)</label><input type="text" id="pl-budget" value="50000"/></div>
+            <div class="form-col"><label for="pl-kpi">KPI Target <span class="hint">- auto-suggested, edit freely</span></label><input type="text" id="pl-kpi" value="ROAS > 2.5"/></div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step">
+          <div class="step-label">3 - Audience Targeting</div>
+          <div class="form-row" style="margin-bottom:16px">
+            <div class="form-col">
+              <label>Age Range</label>
+              <select id="pl-age"><option>All Ages</option><option>13-17</option><option>18-24</option><option>25-34</option><option>35-44</option><option>45-54</option><option>55-64</option><option>65+</option></select>
+            </div>
+            <div class="form-col">
+              <label>Gender</label>
+              <div class="btn-grid-3">
+                <button class="toggle-btn active" onclick="toggleBtn(this,'gen')" style="flex:1">All</button>
+                <button class="toggle-btn" onclick="toggleBtn(this,'gen')" style="flex:1">Male</button>
+                <button class="toggle-btn" onclick="toggleBtn(this,'gen')" style="flex:1">Female</button>
+              </div>
+            </div>
+          </div>
+          <label style="margin-bottom:10px;display:block">Interests & Affinities</label>
+          <div class="interests">
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Technology</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Fashion</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Sports</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Gaming</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Travel</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Food & Drink</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Health & Fitness</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Finance</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Automotive</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Entertainment</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Luxury</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">B2B / Business</button>
+            <button class="interest-tag" onclick="this.classList.toggle('active')">Sustainability</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="form-step">
+          <div class="step-label">4 - Geo Targeting</div>
+          <div class="form-row">
+            <div class="form-col">
+              <label for="pl-country">Country / Region <span style="color:#7a829e;font-size:12px">(hold Ctrl/Cmd to select multiple)</span></label>
+              <select id="pl-country" multiple size="5" style="height:120px;padding:6px">
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Belgium">Belgium</option>
+                <option value="Spain">Spain</option>
+                <option value="Italy">Italy</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="UAE">UAE</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Japan">Japan</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Mexico">Mexico</option>
+                <option value="India">India</option>
+                <option value="South Africa">South Africa</option>
+              </select>
+            </div>
+            <div class="form-col"><label for="pl-city">City <span class="hint">- optional, for hyperlocal</span></label><input type="text" id="pl-city" placeholder="e.g. Paris, Dubai, London..."/></div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="form-step">
+          <div class="step-label">5 - Target Environments</div>
+          <div class="env-grid">
+            <button class="env-btn active" onclick="this.classList.toggle('active')">🖥 Web Display</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">📱 Mobile App</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">📺 CTV / Streaming</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">🏙 DOOH</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">🎧 Digital Audio</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">💬 Social</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">📰 Native</button>
+            <button class="env-btn" onclick="this.classList.toggle('active')">▶ Online Video</button>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="form-step" style="margin-bottom:24px">
+          <div class="step-label">6 - Flight & Brand Safety</div>
+          <div class="form-row">
+            <div class="form-col"><label for="pl-start">Flight Start</label><input type="date" id="pl-start" style="padding:10px 14px"/></div>
+            <div class="form-col"><label for="pl-end">Flight End</label><input type="date" id="pl-end" style="padding:10px 14px"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-col"><label for="pl-freq">Frequency Cap (per user)</label><input type="text" id="pl-freq" value="5"/></div>
+            <div class="form-col">
+              <label>Brand Safety</label>
+              <div class="btn-grid-3">
+                <button class="toggle-btn" onclick="toggleBtn(this,'bs')" style="flex:1">Light</button>
+                <button class="toggle-btn active" onclick="toggleBtn(this,'bs')" style="flex:1">Standard</button>
+                <button class="toggle-btn" onclick="toggleBtn(this,'bs')" style="flex:1">Strict</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="generate-btn" onclick="pievraGen()">
+          🐙 Generate Campaign Plan
+        </button>
+      </div>
+
+      <!-- Gate overlay - shows over bottom of form -->
+      <div class="gate-overlay" id="plannerGate" style="display:none">
+        <div class="gate-box">
+          <div style="font-size:32px;margin-bottom:12px">🐙</div>
+          <h3>Your plan is ready</h3>
+          <p>Create a free account to view, save and activate your cross-protocol campaign plan.</p>
+          <div class="gate-input-row">
+            <input type="email" placeholder="Work email address"/>
+            <button class="btn-teal" onclick="pievraHandleGetPlan()">Get Plan →</button>
+          </div>
+          <p class="gate-note">Free forever. No credit card required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOLS -->
+<section class="section" id="protocols" data-tickers="true">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-tag" style="text-align:center">Protocol Registry</div>
+      <h2 class="section-title">The full agentic advertising ecosystem</h2>
+      <p style="color:var(--ink-soft);max-width:520px;margin:0 auto;font-size:16px">Pievra supports all five live AI agent protocols. Choose the combination that fits your stack - or let Pievra auto-route.</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProto(this,'all')">All Protocols</button>
+      <button class="filter-btn" onclick="filterProto(this,'live')">Live</button>
+      <button class="filter-btn" onclick="filterProto(this,'media')">Media Trading</button>
+      <button class="filter-btn" onclick="filterProto(this,'data')">Data & Identity</button>
+      <button class="filter-btn" onclick="filterProto(this,'infra')">Infrastructure</button>
+    </div>
+    <div class="protocols-grid">
+      <div class="protocol-card" data-cat="live media">
+        <div class="protocol-head">
+          <div class="protocol-title-row">
+            <span class="protocol-icon">📢</span>
+            <div>
+              <div class="protocol-name">AdCP</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <span class="protocol-ver">v3.0-rc</span>
+                <span class="badge-live">Live</span>
+              </div>
+            </div>
+          </div>
+          <p class="protocol-desc">Advertising Campaign Protocol - the original standard for coordinated multi-agent advertising campaigns. Native auction and bid management across agent networks.</p>
+          <div class="protocol-tags">
+            <span class="ptag">campaigns</span><span class="ptag">advertising</span><span class="ptag">auction</span>
+          </div>
+          <p class="protocol-steward"><strong>Steward:</strong> Agentic Advertising Organisation</p>
+        </div>
+        <a class="protocol-foot" href="https://adcontextprotocol.org" target="_blank" rel="noopener" style="text-decoration:none;display:block;cursor:pointer">View Implementation <span>›</span></a>
+      </div>
+
+      <div class="protocol-card" data-cat="data infra">
+        <div class="protocol-head">
+          <div class="protocol-title-row">
+            <span class="protocol-icon">🔄</span>
+            <div>
+              <div class="protocol-name">UCP</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <span class="protocol-ver">v0.8</span>
+                <span class="badge-beta">Beta</span>
+                <span class="badge-new">New</span>
+              </div>
+            </div>
+          </div>
+          <p class="protocol-desc">User Context Protocol - IAB Tech Lab standard for cross-protocol agent coordination with unified user context and identity interfaces.</p>
+          <div class="protocol-tags">
+            <span class="ptag">coordination</span><span class="ptag">identity</span><span class="ptag">routing</span>
+          </div>
+          <p class="protocol-steward"><strong>Steward:</strong> IAB Tech Lab</p>
+        </div>
+        <a class="protocol-foot" href="https://iabtechlab.com" target="_blank" rel="noopener" style="text-decoration:none;display:block;cursor:pointer">View Implementation <span>›</span></a>
+      </div>
+
+      <div class="protocol-card" data-cat="live media">
+        <div class="protocol-head">
+          <div class="protocol-title-row">
+            <span class="protocol-icon">🎨</span>
+            <div>
+              <div class="protocol-name">ARTF</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <span class="protocol-ver">v1.0</span>
+                <span class="badge-live">Live</span>
+              </div>
+            </div>
+          </div>
+          <p class="protocol-desc">Agentic RTB Framework - IAB Tech Lab standard for asset routing and real-time bidding orchestration across creative agent networks.</p>
+          <div class="protocol-tags">
+            <span class="ptag">RTB</span><span class="ptag">creative</span><span class="ptag">routing</span>
+          </div>
+          <p class="protocol-steward"><strong>Steward:</strong> IAB Tech Lab</p>
+        </div>
+        <a class="protocol-foot" href="https://iabtechlab.com" target="_blank" rel="noopener" style="text-decoration:none;display:block;cursor:pointer">View Implementation <span>›</span></a>
+      </div>
+
+      <div class="protocol-card" data-cat="live infra">
+        <div class="protocol-head">
+          <div class="protocol-title-row">
+            <span class="protocol-icon">🌐</span>
+            <div>
+              <div class="protocol-name">MCP</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <span class="protocol-ver">v2.1</span>
+                <span class="badge-live">Live</span>
+              </div>
+            </div>
+          </div>
+          <p class="protocol-desc">Model Context Protocol - Anthropic's standardised communication layer for AI agent information exchange and tool interoperability.</p>
+          <div class="protocol-tags">
+            <span class="ptag">context</span><span class="ptag">standards</span><span class="ptag">communication</span>
+          </div>
+          <p class="protocol-steward"><strong>Steward:</strong> Anthropic</p>
+        </div>
+        <a class="protocol-foot" href="https://modelcontextprotocol.io" target="_blank" rel="noopener" style="text-decoration:none;display:block;cursor:pointer">View Implementation <span>›</span></a>
+      </div>
+
+      <div class="protocol-card" data-cat="live infra">
+        <div class="protocol-head">
+          <div class="protocol-title-row">
+            <span class="protocol-icon">🤝</span>
+            <div>
+              <div class="protocol-name">A2A</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <span class="protocol-ver">v1.5</span>
+                <span class="badge-live">Live</span>
+                <span class="badge-new">New</span>
+              </div>
+            </div>
+          </div>
+          <p class="protocol-desc">Agent-to-Agent Protocol - Google's peer-to-peer communication standard enabling direct, authenticated exchanges between AI agents without central brokers.</p>
+          <div class="protocol-tags">
+            <span class="ptag">peer-to-peer</span><span class="ptag">direct</span><span class="ptag">Google</span>
+          </div>
+          <p class="protocol-steward"><strong>Steward:</strong> Google</p>
+        </div>
+        <a class="protocol-foot" href="https://developers.google.com/workspace/add-ons/guides/alternate-runtimes" target="_blank" rel="noopener" style="text-decoration:none;display:block;cursor:pointer">View Implementation <span>›</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="section marketplace-section" id="marketplace">
+  <div class="section-inner">
+    <div class="section-tag">Agent Marketplace</div>
+    <h2 class="section-title">Real agents. Real repos. Real protocols.</h2>
+    <p class="section-sub">26 listed agents and tools from AdCP, IAB Tech Lab, Prebid, and the A2A ecosystem, each with a live GitHub repo or registry link.</p>
+
+    <!-- Toolbar -->
+    <div class="marketplace-toolbar">
+      <div class="marketplace-count">Showing <strong>26 agents</strong> across 5 protocols</div>
+    </div>
+
+    <!-- FEATURED agents,real open source projects -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:8px">
+        <span>★</span> Key Open Source Projects
+      </div>
+      <div class="marketplace-preview" id="featuredAgents">
+        <div class="agent-card premium">
+          <div class="premium-badge">Open Source</div>
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">Prebid Sales Agent</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Media Trading · Prebid.org</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">Open-source publisher-side AI agent that automates programmatic ad sales. Exposes inventory via MCP, integrates with Google Ad Manager. Deploy via Docker in 2 minutes.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">AdCP</span><span class="agent-tag">MCP</span><span class="agent-tag">A2A</span>
+            </div>
+            <a href="https://github.com/prebid/salesagent" target="_blank" class="btn-teal" style="padding:6px 14px;font-size:12px;text-decoration:none">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="agent-card premium">
+          <div class="premium-badge">Open Source</div>
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">IAB Buyer Agent</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Media Trading · IAB Tech Lab</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">AI-powered media buying system built on CrewAI and IAB OpenDirect 2.1. Receives campaign briefs, allocates budget, researches seller inventory, and books deals programmatically.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">MCP</span><span class="agent-tag">A2A</span>
+            </div>
+            <a href="https://github.com/IABTechLab/buyer-agent" target="_blank" class="btn-teal" style="padding:6px 14px;font-size:12px;text-decoration:none">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="agent-card premium">
+          <div class="premium-badge">Open Source</div>
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">AdCP Protocol Server</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Infrastructure · AgenticAdvertising.org</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">Official reference implementation of the Ad Context Protocol. Campaign negotiation, deal management, JSON schemas, and OpenAPI specs. 198 GitHub stars.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">AdCP</span><span class="agent-tag">MCP</span>
+            </div>
+            <a href="https://github.com/adcontextprotocol/adcp" target="_blank" class="btn-teal" style="padding:6px 14px;font-size:12px;text-decoration:none">View on GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IAB Registry agents -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-muted);margin-bottom:12px;margin-top:32px">
+        IAB Agent Registry,Live MCP Agents
+      </div>
+      <div class="marketplace-preview" id="standardAgents">
+        <div class="agent-card">
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">Amazon Ads MCP</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Media Trading · Amazon</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">Standardised MCP access layer for Amazon Ads. Transforms complex API operations into conversational queries for campaign data and metrics.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">MCP</span>
+            </div>
+            <a href="https://tools.iabtechlab.com/agent-registry" target="_blank" class="btn-outline" style="padding:6px 14px;font-size:12px;text-decoration:none">IAB Registry →</a>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">PubMatic MCP</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Supply-Side Platform · PubMatic</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">Supply-side platform MCP server for agentic integration. Registered in the IAB Agent Registry with GPP ID verification.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">MCP</span>
+            </div>
+            <a href="https://tools.iabtechlab.com/agent-registry" target="_blank" class="btn-outline" style="padding:6px 14px;font-size:12px;text-decoration:none">IAB Registry →</a>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-head">
+            <div>
+              <div class="agent-name">Equativ MCP</div>
+              <div style="font-size:12px;color:var(--ink-muted);margin-top:3px">Supply-Side Platform · Equativ</div>
+            </div>
+            <div class="agent-score" style="font-size:10px;padding:4px 8px;background:#dcfce7;color:#166534">Live</div>
+          </div>
+          <div class="agent-desc">Supply-side platform MCP server for agentic ad serving and inventory management. Registered in the IAB Agent Registry.</div>
+          <div class="agent-meta" style="justify-content:space-between;align-items:center">
+            <div style="display:flex;gap:6px">
+              <span class="agent-tag">MCP</span>
+            </div>
+            <a href="https://tools.iabtechlab.com/agent-registry" target="_blank" class="btn-outline" style="padding:6px 14px;font-size:12px;text-decoration:none">IAB Registry →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px">
+      <a href="/marketplace" class="btn-outline">Browse all 26 agents →</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIST YOUR AGENT -->
+<div class="list-agent-section">
+  <div class="list-agent-inner">
+    <div class="list-agent-copy">
+      <h2>List your agent on Pievra</h2>
+      <p>Submit your agent, MCP server, or protocol tool for inclusion in the marketplace. We verify every listing against its source repo or registry entry before publishing.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="/marketplace#list-agent" class="btn-teal">Apply to List</a>
+        <a href="https://github.com/pievra/sdk" target="_blank" class="btn-outline" style="color:white;border-color:rgba(255,255,255,0.3)">View Agent SDK →</a>
+      </div>
+    </div>
+    <div class="list-steps">
+      <div class="list-step">
+        <div class="step-circle">1</div>
+        <div>
+          <h4>Build with SDK</h4>
+          <p>Implement the Pievra SDK in your agent codebase. Supports all five protocols natively.</p>
+        </div>
+      </div>
+      <div class="list-step">
+        <div class="step-circle">2</div>
+        <div>
+          <h4>Pass Verification</h4>
+          <p>Run through automated verification and performance benchmarking. Typical turnaround: 48 hours.</p>
+        </div>
+      </div>
+      <div class="list-step">
+        <div class="step-circle">3</div>
+        <div>
+          <h4>Go Live Globally</h4>
+          <p>Launch on Pievra and reach buyers across all protocols. Earn per activation or on a revenue share model.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<section class="section" id="learn">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="section-tag" style="text-align:center">Learn</div>
+      <h2 class="section-title">Master the five protocols shaping AI advertising</h2>
+      <p style="color:var(--ink-soft);font-size:16px;max-width:600px;margin:0 auto">Pievra is 100% free. No paid tiers, no credit card. Use the simulator to learn how cross-protocol campaigns work and build your expertise before the industry shifts.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">AdCP & MCP</div>
+        <div class="price-desc">Campaign negotiation and tool orchestration</div>
+        <div style="margin:16px 0">
+          <div style="font-size:14px;color:var(--ink-soft);line-height:1.7">
+            <p><strong>AdCP</strong> (Ad Context Protocol) enables AI agents to negotiate deals using natural language briefs instead of static rate cards. Stewarded by PubMatic, Scope3, Yahoo and Triton Digital.</p>
+            <p style="margin-top:10px"><strong>MCP</strong> (Model Context Protocol) provides the universal tool-calling layer - agents query inventory, audiences and brand safety providers through a single adapter. Stewarded by Anthropic.</p>
+          </div>
+        </div>
+        <a href="https://adcontextprotocol.org" target="_blank" class="price-cta light">Read AdCP Spec</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-popular">Start Here</div>
+        <div class="price-name" style="color:white">Simulate a Campaign</div>
+        <div class="price-desc">Hands-on learning with the planner</div>
+        <div style="margin:16px 0">
+          <div style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.7">
+            <p>Use the Campaign Planner to build a simulated cross-protocol media plan. See how budget splits across protocols, which agents are recommended, and download a professional PDF.</p>
+            <p style="margin-top:10px">All features are free. No account limits. No upgrade walls.</p>
+          </div>
+        </div>
+        <a href="#planner" class="price-cta teal">Open Campaign Planner</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">UCP, ARTF & A2A</div>
+        <div class="price-desc">Audience signals, real-time bidding and agent collaboration</div>
+        <div style="margin:16px 0">
+          <div style="font-size:14px;color:var(--ink-soft);line-height:1.7">
+            <p><strong>UCP</strong> activates privacy-safe audience signals as embeddings, replacing third-party cookies. <strong>ARTF</strong> extends OpenRTB for sub-100ms agentic auctions. <strong>A2A</strong> enables agents to collaborate in real time. Stewarded by IAB Tech Lab and Linux Foundation.</p>
+          </div>
+        </div>
+        <a href="https://iabtechlab.com" target="_blank" class="price-cta light">Read IAB Specs</a>
+      </div>
+    </div>
+    <div class="txn-note">
+      <p>Pievra is a <strong>free planning simulator and learning platform</strong>. No fees, no subscriptions. Campaign plans are simulations using verified market benchmarks and IAB-spec compliant data objects. <a href="/terms" style="color:var(--teal)">Terms of Service →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="section community-section" id="community">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="section-tag" style="text-align:center;color:var(--teal)">Open Source & Community</div>
+      <h2 class="section-title" style="color:white">Open source foundations</h2>
+      <p style="color:#8892b0;max-width:500px;margin:0 auto;font-size:16px">Pievra's protocol adapters and SDK are open source under MIT licence. The repos are in early development, contributions welcome as the project matures.</p>
+    </div>
+
+    <div class="repos-grid">
+      <a href="https://github.com/pievra/core" target="_blank" class="repo-card">
+        <h3>pievra/core</h3>
+        <p>The core orchestration engine powering all campaigns across protocols.</p>
+        <div class="repo-stats">
+          <span>MIT licence</span><span>View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/pievra/sdk" target="_blank" class="repo-card">
+        <h3>pievra/sdk</h3>
+        <p>Official SDK for building agents and integrating with Pievra.</p>
+        <div class="repo-stats">
+          <span>MIT licence</span><span>View on GitHub →</span>
+        </div>
+      </a>
+      <a href="https://github.com/pievra/protocols" target="_blank" class="repo-card">
+        <h3>pievra/protocols</h3>
+        <p>Protocol adapters and implementations - AdCP, UCP, ARTF, MCP, A2A.</p>
+        <div class="repo-stats">
+          <span>MIT licence</span><span>View on GitHub →</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Agent Leaderboard Teaser -->
+    <div class="leaderboard-teaser" style="text-align:center">
+      <h3>Agent Performance Leaderboard</h3>
+      <p style="margin-bottom:16px">Rankings across all protocols: fill rate, CPM efficiency, and overall score. Will be tracked from real campaign performance once live.</p>
+      <div style="padding:32px 0;color:#4a5270">
+        <div style="font-size:40px;margin-bottom:12px">📊</div>
+        <div style="font-size:15px;font-weight:700;color:white;margin-bottom:6px">Leaderboard launching Q4 2026</div>
+        <div style="font-size:13px;color:#8892b0;max-width:400px;margin:0 auto">Agent rankings will be populated from real campaign data once the marketplace has live deployments. No synthetic data.</div>
+      </div>
+      <div style="margin-top:20px">
+        <a href="/marketplace" class="btn-teal" style="display:inline-flex">Explore agents →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div style="font-size:56px;margin-bottom:16px">🐙</div>
+  <h2>The protocol wars are here.<br/>Pick the neutral layer.</h2>
+  <p>Pievra is the only platform that orchestrates across all five agentic advertising protocols simultaneously.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a href="#planner" class="btn-teal">Plan a Campaign</a>
+    <a href="#marketplace" class="btn-outline" style="color:white;border-color:rgba(255,255,255,0.3)">List Your Agent</a>
+    <a href="https://github.com/pievra" target="_blank" class="btn-outline" style="color:white;border-color:rgba(255,255,255,0.3)">View Source</a>
+  </div>
+</div>
+
+<!-- PARTNER DIRECTORY -->
+<section class="section" id="partners" style="background:white;border-top:1px solid var(--border)">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-tag">Partner Directory</div>
+    <h2 class="section-title">The partner directory is open for applications</h2>
+    <p class="section-sub">We are building a directory of companies in the agentic advertising space, implementation partners, technology vendors, and consultancies. Apply to be among the first listed.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <a href="/partners" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:white;font-weight:700;font-size:14px;padding:12px 24px;border-radius:10px;text-decoration:none">Apply to Join →</a>
+      <a href="mailto:partners@pievra.com?subject=Partner%20Application" style="display:inline-flex;align-items:center;gap:8px;background:none;border:1.5px solid var(--border);color:var(--ink-soft);font-weight:600;font-size:14px;padding:11px 24px;border-radius:10px;text-decoration:none">Email Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="logo-mark">🐙</div>
+          <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;color:white">pievra</span>
+          <span style="font-size:10px;font-weight:700;color:var(--teal);background:rgba(0,196,167,0.12);border:1px solid var(--teal);padding:2px 8px;border-radius:20px">OPEN</span>
+        </div>
+        <p>Eight arms. Every AI agent protocol. The protocol-neutral orchestration layer for programmatic advertising.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/pievra">Docs</a></li>
+          <li><a href="https://github.com/pievra">GitHub</a></li>
+          <li><a href="https://github.com/pievra/core">API Reference</a></li>
+          <li><a href="/news">Protocol News</a></li>
+          <li><a href="#partners">Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://github.com/pievra">Contribute</a></li>
+          <li><a href="https://discord.gg/pievra">Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacy & GDPR</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/privacy#cnil">CNIL Compliance</a></li>
+          <li><a href="/privacy#cookies">Cookie Policy</a></li>
+          <li><a href="/careers">Careers</a></li>
+          <li><a href="/for-agencies">For Agencies</a></li>
+          <li><a href="/for-brands">For Brands</a></li>
+          <li><a href="/for-publishers">For Publishers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pievra. All rights reserved. <span class="octopus-tag">Named after the octopus - eight arms, every protocol.</span> &nbsp;·&nbsp; <a href="/terms" style="color:#4a5270;text-decoration:none" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Terms</a> &nbsp;·&nbsp; <a href="/privacy" style="color:#4a5270;text-decoration:none" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Privacy & GDPR</a> &nbsp;·&nbsp; <a href="/privacy#cnil" style="color:#4a5270;text-decoration:none" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">CNIL</a></p>
+      <div style="display:flex;gap:16px">
+        <a href="https://github.com/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">GitHub</a>
+        <a href="https://twitter.com/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Twitter/X</a>
+        <a href="https://discord.gg/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Discord</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SEO structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pievra",
+  "url": "https://pievra.com",
+  "description": "Protocol-neutral orchestration platform for programmatic AI campaigns across AdCP, UCP, ARTF, MCP and A2A.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<script>
+// Toggle button groups
+function toggleBtn(el, group) {
+  const parent = el.closest('.btn-grid, .btn-grid-5, .btn-grid-3, .form-step');
+  if (parent) {
+    parent.querySelectorAll('.toggle-btn[onclick*="'+group+'"]').forEach(b => b.classList.remove('active'));
+  }
+  el.classList.add('active');
+}
+
+// Modal
+function openModal() {
+  document.getElementById('gateModal').classList.add('active');
+  gtag && gtag('event', 'modal_open', { event_category: 'conversion', event_label: 'signup_gate' });
+}
+function closeModal() {
+  document.getElementById('gateModal').classList.remove('active');
+}
+document.getElementById('gateModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Gate submission
+function submitGate() {
+  const email = document.getElementById('gateEmail').value;
+  if (!email || !email.includes('@')) {
+    document.getElementById('gateEmail').style.borderColor = '#dc2626';
+    return;
+  }
+  const btn = document.querySelector('#planGate .generate-btn') ||
+               document.querySelector('button[onclick="submitGate()"]');
+  if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+  fetch('/api/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, source: 'campaign-planner' })
+  })
+  .then(r => r.json())
+  .then(d => {
+    gtag && gtag('event', 'sign_up', { event_category: 'conversion', event_label: email });
+    closeModal();
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#00c4a7;color:#0a0e1a;font-weight:700;padding:14px 28px;border-radius:12px;z-index:9999;font-size:15px;box-shadow:0 4px 24px rgba(0,196,167,0.3)';
+    banner.textContent = '✅ Welcome! Check your inbox for your Pievra access link.';
+    document.body.appendChild(banner);
+    setTimeout(() => banner.remove(), 6000);
+  })
+  .catch(() => {
+    closeModal();
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#00c4a7;color:#0a0e1a;font-weight:700;padding:14px 28px;border-radius:12px;z-index:9999;font-size:15px';
+    banner.textContent = '✅ Registered! We will be in touch at ' + email;
+    document.body.appendChild(banner);
+    setTimeout(() => banner.remove(), 6000);
+  });
+}
+
+// Track generate button
+function trackEvent(name) {
+  gtag && gtag('event', name, { event_category: 'engagement' });
+}
+
+// Protocol filter
+function filterProto(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.protocol-card').forEach(card => {
+    if (cat === 'all') {
+      card.style.display = '';
+    } else {
+      const cats = card.dataset.cat || '';
+      card.style.display = cats.includes(cat) ? '' : 'none';
+    }
+  });
+}
+
+// Sort agents - featured always stays pinned at top, standard list reorders
+function sortAgents(val) {
+  gtag && gtag('event', 'marketplace_sort', { event_category: 'engagement', event_label: val });
+  // In production this would trigger an API call - for now show feedback
+  const count = document.querySelector('.marketplace-count strong');
+  if (count) count.textContent = '26 agents';
+}
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(10,14,26,0.08)' : 'none';
+});
+</script>
+
+
+
+
+
+
+
+<script src="/static/planner.js?v=1774223657"></script>
+</body>
+</html>

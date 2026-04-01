@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pievra for Brands - Access Every AI Agent Protocol from One Platform</title>
+<meta name="description" content="Protocol-neutral campaign execution, free simulation tools and a simplified tech stack. Pievra gives brands direct access to AI advertising across AdCP, MCP, UCP, ARTF and A2A."/>
+<meta property="og:title" content="Pievra for Brands - Access Every AI Agent Protocol from One Platform"/>
+<meta property="og:description" content="Protocol-neutral execution, free simulation tools and a simplified tech stack for brands."/>
+<meta property="og:url" content="https://pievra.com/for-brands"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://pievra.com/for-brands"/>
+
+<!-- GA4 Analytics - consent-gated (GDPR/CNIL compliant) -->
+<script src="/static/consent.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #0a0e1a;
+  --ink-soft: #3d4460;
+  --ink-muted: #7a829e;
+  --surface: #ffffff;
+  --surface-2: #f4f5f9;
+  --surface-3: #ebedf5;
+  --teal: #00c4a7;
+  --teal-dark: #009e86;
+  --teal-light: #e0faf6;
+  --border: #e2e4ed;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(10,14,26,0.08);
+  --shadow-lg: 0 12px 48px rgba(10,14,26,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4,h5 { font-family: 'Manrope', sans-serif; line-height: 1.15; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 36px; height: 36px; background: var(--ink);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.logo-text { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--ink-soft);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.btn-ghost {
+  padding: 8px 16px; font-size: 14px; font-weight: 500;
+  color: var(--ink-soft); background: none; border: none; cursor: pointer;
+  border-radius: 8px; transition: background 0.2s; font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-primary {
+  padding: 8px 20px; font-size: 14px; font-weight: 600;
+  color: white; background: var(--ink); border: none; cursor: pointer;
+  border-radius: 8px; transition: all 0.2s; font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+.btn-primary:hover { background: #1a2035; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  padding: 140px 24px 80px;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,196,167,0.10) 0%, transparent 70%);
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 20px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-bottom: 32px;
+}
+.hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+.hero h1 {
+  font-size: clamp(38px, 5.5vw, 72px); font-weight: 800;
+  color: var(--ink); letter-spacing: -2px; margin-bottom: 24px;
+}
+.hero h1 .accent { color: var(--teal); }
+.hero-sub {
+  font-size: 18px; color: var(--ink-soft); max-width: 620px;
+  margin: 0 auto 40px; font-weight: 400; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-teal {
+  padding: 14px 28px; background: var(--teal); color: white;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,196,167,0.3); }
+.btn-outline {
+  padding: 14px 28px; background: transparent; color: var(--ink);
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+  border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+/* SECTIONS */
+.section { padding: 96px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; color: var(--ink); letter-spacing: -1.5px; margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--ink-soft); max-width: 560px; line-height: 1.7; margin-bottom: 56px; }
+.section-alt { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+/* VALUE PROPS */
+.value-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.value-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 32px; background: white; transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.value-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--teal); opacity: 0; transition: opacity 0.2s;
+}
+.value-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.value-card:hover::before { opacity: 1; }
+.value-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+.value-title { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+.value-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+/* ENTERPRISE */
+.enterprise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.enterprise-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; background: white; display: flex; align-items: flex-start; gap: 16px;
+  transition: box-shadow 0.2s;
+}
+.enterprise-card:hover { box-shadow: var(--shadow); }
+.enterprise-icon {
+  width: 44px; height: 44px; border-radius: 10px; background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+}
+.enterprise-card h4 { font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.enterprise-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.price-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 36px; background: white; transition: all 0.25s;
+  position: relative;
+}
+.price-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.price-card.featured {
+  border-color: var(--teal); transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,196,167,0.15);
+}
+.price-card.featured:hover { transform: scale(1.03) translateY(-3px); }
+.price-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; padding: 3px 10px; border-radius: 20px;
+  background: var(--teal-light); color: var(--teal-dark); margin-bottom: 16px;
+}
+.price-name { font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.price-amount { font-family: 'Manrope', sans-serif; font-size: 40px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.price-amount span { font-size: 16px; font-weight: 500; color: var(--ink-muted); }
+.price-note { font-size: 13px; color: var(--ink-muted); margin-bottom: 24px; }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.price-features li {
+  font-size: 14px; color: var(--ink-soft); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+}
+.price-check { color: var(--teal); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.fee-note {
+  background: var(--surface-2); border-left: 3px solid var(--teal);
+  padding: 20px 24px; border-radius: 0 10px 10px 0; margin-top: 32px;
+}
+.fee-note strong { font-size: 14px; font-weight: 700; color: var(--ink); display: block; margin-bottom: 6px; }
+.fee-note p { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin: 0; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: var(--ink); border-radius: var(--radius-lg);
+  padding: 64px 48px; text-align: center; color: white;
+}
+.cta-banner h2 {
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  letter-spacing: -1px; margin-bottom: 16px;
+}
+.cta-banner p {
+  font-size: 17px; color: #8892b0; max-width: 500px;
+  margin: 0 auto 36px; line-height: 1.7;
+}
+.cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer {
+  background: #060810; color: #4a5270;
+  border-top: 1px solid #0e1220; padding: 64px 24px 40px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: #4a5270; line-height: 1.7; margin-top: 12px; max-width: 220px; }
+.footer-col h4 { font-size: 13px; font-weight: 700; color: #8892b0; margin-bottom: 16px; letter-spacing: 0.5px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 13px; color: #4a5270; text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--teal); }
+.footer-bottom {
+  border-top: 1px solid #0e1220; padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom p { font-size: 13px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .value-cards, .enterprise-grid, .pricing-grid, .footer-top { grid-template-columns: 1fr; }
+  .price-card.featured { transform: none; }
+  .price-card.featured:hover { transform: translateY(-3px); }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="dot"></span> For Brands</div>
+    <h1>Access every AI agent protocol<br><span class="accent">from one platform</span></h1>
+    <p class="hero-sub">Whether your campaigns run on AdCP, MCP, UCP, ARTF or A2A, Pievra gives your brand protocol-neutral access to the full AI advertising ecosystem without vendor lock-in.</p>
+    <div class="hero-actions">
+      <a href="/signup" class="btn-teal">Sign Up Free</a>
+      <a href="/request-demo" class="btn-outline">Contact Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-tag">Why Brands Choose Pievra</p>
+    <h2 class="section-title">One platform, every protocol</h2>
+    <p class="section-sub">Stop building separate integrations. Pievra normalises AI advertising protocols so your team can focus on strategy, not plumbing.</p>
+
+    <div class="value-cards">
+      <div class="value-card">
+        <span class="value-icon">&#x1F50C;</span>
+        <h3 class="value-title">Protocol-Neutral Execution</h3>
+        <p class="value-desc">Pievra translates your campaigns into the correct format for each protocol. You choose agents based on capability, not which spec they support.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">&#x1F4B0;</span>
+        <h3 class="value-title">Free Platform</h3>
+        <p class="value-desc">Pievra is completely free to use. Access every protocol, explore the agent marketplace and run campaign simulations at no cost.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">&#x1F9E9;</span>
+        <h3 class="value-title">Simplified Tech Stack</h3>
+        <p class="value-desc">Replace five protocol integrations with one. Pievra handles the protocol translation, agent discovery and bid routing so your tech team can focus elsewhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTERPRISE -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <p class="section-tag">Platform</p>
+    <h2 class="section-title">Built for All Teams</h2>
+    <p class="section-sub">Pievra gives every team the tools and features they need to run AI advertising campaigns across all protocols.</p>
+
+    <div class="enterprise-grid">
+      <div class="enterprise-card">
+        <div class="enterprise-icon">&#x1F512;</div>
+        <div>
+          <h4>SSO &amp; RBAC <span style="display:inline-block;font-size:10px;font-weight:700;color:var(--teal-dark);background:var(--teal-light);border:1px solid var(--teal);padding:1px 8px;border-radius:12px;vertical-align:middle;margin-left:6px">ROADMAP</span></h4>
+          <p>Single sign-on and role-based access control are on the roadmap for enterprise teams. Expected Q1 2027.</p>
+        </div>
+      </div>
+      <div class="enterprise-card">
+        <div class="enterprise-icon">&#x1F464;</div>
+        <div>
+          <h4>Team Workspaces</h4>
+          <p>Collaborate with your team in shared workspaces. Invite unlimited members and organise campaigns by project or client.</p>
+        </div>
+      </div>
+      <div class="enterprise-card">
+        <div class="enterprise-icon">&#x1F3AF;</div>
+        <div>
+          <h4>Community Support</h4>
+          <p>Get help from the Pievra community on Discord, browse the documentation and access protocol learning resources.</p>
+        </div>
+      </div>
+      <div class="enterprise-card">
+        <div class="enterprise-icon">&#x1F4DD;</div>
+        <div>
+          <h4>Open Roadmap</h4>
+          <p>Follow our public roadmap and vote on upcoming features. We build what the community needs most.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-tag">Pricing</p>
+    <h2 class="section-title">Free for everyone</h2>
+    <p class="section-sub">Pievra is a free platform. All features are included for every user, with no paywalls or tiered plans.</p>
+
+    <div style="max-width:640px;margin:0 auto;text-align:center;border:1px solid var(--border);border-radius:var(--radius-lg);padding:48px 36px;background:white;">
+      <div class="price-amount">Free</div>
+      <p class="price-note" style="margin-bottom:28px;">No credit card required. No usage limits. No paid tiers.</p>
+      <ul class="price-features" style="text-align:left;max-width:380px;margin:0 auto 32px;">
+        <li><span class="price-check">&#x2713;</span> Access to the agent marketplace</li>
+        <li><span class="price-check">&#x2713;</span> Unlimited campaign simulations</li>
+        <li><span class="price-check">&#x2713;</span> Advanced reporting and exports</li>
+        <li><span class="price-check">&#x2713;</span> Team workspaces with unlimited seats</li>
+        <li><span class="price-check">&#x2713;</span> API access and webhooks</li>
+        <li><span class="price-check">&#x2713;</span> All five protocols supported</li>
+        <li><span class="price-check">&#x2713;</span> Community support via Discord</li>
+      </ul>
+      <a href="/signup" class="btn-teal" style="width:100%;max-width:300px;justify-content:center">Sign Up Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <div class="cta-banner">
+      <h2>Start running campaigns across every protocol</h2>
+      <p>Sign up for free and explore the campaign planner, agent marketplace and protocol learning resources.</p>
+      <div class="cta-actions">
+        <a href="/signup" class="btn-teal">Sign Up Free</a>
+        <a href="/request-demo" class="btn-outline" style="color:white;border-color:#2a3050">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="logo-mark">&#x1F419;</div>
+          <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:18px;color:white">pievra</span>
+        </div>
+        <p>Eight arms. Every AI agent protocol. The protocol-neutral orchestration layer for programmatic advertising.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/for-agencies">For Agencies</a></li>
+          <li><a href="/for-brands">For Brands</a></li>
+          <li><a href="/for-publishers">For Publishers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/pievra">Docs</a></li>
+          <li><a href="https://github.com/pievra">GitHub</a></li>
+          <li><a href="/news">Protocol News</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacy & GDPR</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pievra. All rights reserved.</p>
+      <div style="display:flex;gap:16px">
+        <a href="https://github.com/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">GitHub</a>
+        <a href="https://twitter.com/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Twitter/X</a>
+        <a href="https://discord.gg/pievra" target="_blank" style="color:#4a5270;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#00c4a7'" onmouseout="this.style.color='#4a5270'">Discord</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(10,14,26,0.08)' : 'none';
+});
+</script>
+
+</body>
+</html>

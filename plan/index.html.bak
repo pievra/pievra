@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campaign Plan - Pievra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--teal:#00c4a7;--teal-d:#009e86;--teal-l:#e0faf6;--surf:#f4f5f9;--border:#e2e4ed;--muted:#7a829e;--soft:#3d4460}
+body{font-family:Inter,sans-serif;background:var(--surf);color:var(--ink)}
+nav{background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:30px;height:30px;background:var(--teal);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink)}
+.ln{font-family:Manrope;font-weight:800;font-size:16px;color:#fff}
+.main{max-width:1000px;margin:0 auto;padding:32px 24px}
+.head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px}
+h1{font-family:Manrope;font-weight:800;font-size:26px;color:var(--ink);margin-bottom:4px}
+.sub{font-size:14px;color:var(--muted)}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:var(--ink);font-weight:700;font-size:14px;padding:11px 22px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;font-family:Inter}
+.pdf-btn:hover{background:var(--teal-d)}
+.section{background:white;border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:16px}
+.s-title{font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:0}
+.kv{background:var(--surf);border-radius:10px;padding:16px;text-align:center}
+.kv-n{font-family:Manrope;font-weight:800;font-size:22px;color:var(--teal-d)}
+.kv-l{font-size:11px;color:var(--muted);margin-top:3px}
+.proto-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.proto-card{background:var(--surf);border-radius:10px;padding:14px;text-align:center}
+.proto-name{font-family:Manrope;font-weight:800;font-size:14px;color:var(--ink);margin-bottom:4px}
+.proto-pct{font-size:24px;font-weight:800;color:var(--teal-d)}
+.proto-bud{font-size:11px;color:var(--muted);margin-top:3px}
+.proto-cpm{font-size:12px;font-weight:600;color:var(--soft);margin-top:2px}
+.pb{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;margin-bottom:6px}
+.pb-AdCP{background:#dbeafe;color:#1e40af}
+.pb-MCP{background:#f3e8ff;color:#7e22ce}
+.pb-UCP{background:#dcfce7;color:#166534}
+.pb-ARTF{background:#fef9c3;color:#854d0e}
+.pb-A2A{background:#ffe4e6;color:#be123c}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--ink);color:white;padding:10px 14px;text-align:left;font-weight:600;font-size:12px}
+td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--soft)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:var(--surf)}
+.loading{text-align:center;padding:60px;color:var(--muted)}
+.spin{display:inline-block;width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:sp .7s linear infinite;margin-bottom:12px}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.proto-grid{grid-template-columns:repeat(3,1fr)}}
+</style><script src="/static/pievra_widgets.js"></script>
+</head><body>
+<nav><a href="/" class="logo"><div class="lm">🐙</div><div class="ln">pievra</div></a>
+<div style="display:flex;gap:12px">
+  <a href="/dashboard" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;line-height:60px">Dashboard</a>
+</div>
+</nav>
+<div class="main" id="main">
+  <div class="loading"><div class="spin"></div><br/>Loading campaign plan...</div>
+</div>
+<script>
+var id = location.pathname.split('/').pop();
+var tok = localStorage.getItem('pievra_token')||'';
+var headers = {'Authorization':'Bearer '+tok};
+
+fetch('/api/plan/'+id, {credentials:'include', headers:headers})
+.then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+.then(function(d){
+  var plan = d.plan_json||{};
+  var kpis = plan.projected_kpis||{};
+  var split = plan.protocol_split||{};
+  var alloc = plan.budget_allocation||{};
+  var protos = plan.protocols||{};
+  var agents = plan.recommended_agents||[];
+  var brand = plan.brand||d.brand||'';
+  var cname = plan.campaign_name||d.campaign_name||'Campaign';
+  var imp = parseInt(kpis.estimated_impressions||0).toLocaleString();
+  var saving = kpis.cpm_saving_pct||'0';
+  var proto_uses = {
+    AdCP:'Deal negotiation & campaign management',
+    MCP:'Tool orchestration & data access',
+    UCP:'Audience signal activation',
+    ARTF:'Real-time auction execution',
+    A2A:'Agent collaboration'
+  };
+
+  var html = '<div class="head">'
+    +'<div><h1>'+(brand?brand+' - ':'')+cname+'</h1>'
+    +'<div id="protocol-tickers" style="margin-bottom:12px"></div>'+'<div class="sub">'+plan.objective+' &middot; '+plan.buying_model+' &middot; $'+parseInt(plan.budget_usd||d.budget||0).toLocaleString()+' total budget &middot; '+(plan.countries||[]).join(', ')+'</div>'
+    +'</div>'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap">'
+    +'<a href="/dashboard" class="pdf-btn" style="background:none;border:1px solid var(--border);color:var(--soft);">&#x2190; Dashboard</a>'
+    +'<button class="pdf-btn" onclick="downloadPDF()">&#x1F4E5; Download Media Plan PDF</button>'
+    +'</div></div>';
+
+  // KPI row
+  html += '<div class="section"><div class="s-title">&#x1F4CA; Projected Performance</div>'
+    +'<div class="kpis">'
+    +'<div class="kv"><div class="kv-n">'+imp+'</div><div class="kv-l">Est. Impressions</div></div>'
+    +'<div class="kv"><div class="kv-n">$'+parseFloat(kpis.weighted_cpm||14.5).toFixed(2)+'</div><div class="kv-l">Weighted CPM</div></div>'
+    +'<div class="kv"><div class="kv-n" style="color:#166534">'+saving+'%</div><div class="kv-l">CPM Saving vs Single Protocol</div></div>'
+    +'<div class="kv"><div class="kv-n">'+(kpis.estimated_roas||'2.8')+'x</div><div class="kv-l">Est. ROAS</div></div>'
+    +'</div></div>';
+
+  // Protocol split
+  html += '<div class="section"><div class="s-title">&#x26A1; Protocol Allocation</div>'
+    +'<div class="proto-grid">';
+  Object.entries(split).forEach(function(e){
+    var proto=e[0],pct=e[1];
+    var p=protos[proto]||{};
+    html += '<div class="proto-card">'
+      +'<div class="pb pb-'+proto+'">'+proto+'</div>'
+      +'<div class="proto-pct">'+pct+'%</div>'
+      +'<div class="proto-bud">$'+(alloc[proto]||0).toLocaleString()+'</div>'
+      +'<div class="proto-cpm">$'+parseFloat(p.estimated_cpm||0).toFixed(2)+' CPM</div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:4px">'+proto_uses[proto]+'</div>'
+      +'</div>';
+  });
+  html += '</div></div>';
+
+  // Protocol detail
+  html += '<div class="section"><div class="s-title">&#x1F4CB; Protocol Detail</div><table>'
+    +'<tr><th>Protocol</th><th>Version</th><th>Budget</th><th>Est. CPM</th><th>Est. Reach</th><th>Saving</th><th>Status</th></tr>';
+  Object.entries(protos).forEach(function(e){
+    var proto=e[0],p=e[1];
+    html += '<tr><td><b>'+proto+'</b></td><td>'+p.version+'</td>'
+      +'<td>$'+(alloc[proto]||0).toLocaleString()+'</td>'
+      +'<td>$'+parseFloat(p.estimated_cpm||0).toFixed(2)+'</td>'
+      +'<td>'+p.estimated_reach_pct+'%</td>'
+      +'<td style="color:#166534;font-weight:600">-'+p.arbitrage_saving_pct+'%</td>'
+      +'<td><span style="background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px">'+p.status.toUpperCase()+'</span></td>'
+      +'</tr>';
+  });
+  html += '</table></div>';
+
+  // Agents
+  html += '<div class="section"><div class="s-title">&#x1F916; Recommended Agent Stack</div><table>'
+    +'<tr><th>Agent</th><th>Protocol</th><th>Steward</th><th>Floor CPM</th><th>Viewability</th></tr>';
+  agents.forEach(function(a){
+    html += '<tr><td><b>'+a.name+'</b></td><td><span class="pb pb-'+a.protocol+'">'+a.protocol+'</span></td>'
+      +'<td>'+a.steward+'</td><td>$'+parseFloat(a.cpm_floor).toFixed(2)+'</td>'
+      +'<td style="color:#166534;font-weight:600">'+Math.round(a.viewability*100)+'%</td></tr>';
+  });
+  html += '</table></div>';
+
+  // Brief summary
+  html += '<div class="section"><div class="s-title">&#x1F4DD; Campaign Brief</div>'
+    +'<table><tr><th>Field</th><th>Value</th></tr>'
+    +'<tr><td>Brand</td><td>'+(plan.brand||d.brand||'-')+'</td></tr>'
+    +'<tr><td>Objective</td><td>'+plan.objective+'</td></tr>'
+    +'<tr><td>Buying Model</td><td>'+plan.buying_model+'</td></tr>'
+    +'<tr><td>Budget</td><td>$'+parseInt(plan.budget_usd||d.budget||0).toLocaleString()+'</td></tr>'
+    +'<tr><td>Countries</td><td>'+(plan.countries||[]).join(', ')+'</td></tr>'
+    +'<tr><td>Environments</td><td>'+(plan.environments||[]).join(', ')+'</td></tr>'
+    +'<tr><td>Flight</td><td>'+(plan.flight_start||'TBD')+' → '+(plan.flight_end||'TBD')+'</td></tr>'
+    +'<tr><td>Brand Safety</td><td>'+(kpis.brand_safety||'Standard')+'</td></tr>'
+    +'</table></div>';
+
+  document.getElementById('main').innerHTML = html;
+})
+.catch(function(e){
+  if(e.message==='401'){window.location.href='/signin';}
+  else{document.getElementById('main').innerHTML='<div class="loading">Error loading plan. <a href="/dashboard">Return to dashboard</a></div>';}
+});
+
+function downloadPDF(){
+  var tok=localStorage.getItem('pievra_token')||'';
+  var btn=event.target;
+  btn.textContent='Generating PDF...';
+  btn.disabled=true;
+  fetch('/api/plan/'+id+'/pdf',{credentials:'include',headers:{'Authorization':'Bearer '+tok}})
+  .then(function(r){
+    if(!r.ok)throw new Error('PDF failed');
+    return r.blob();
+  }).then(function(blob){
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;
+    a.download='pievra_mediaplan_'+id+'.pdf';
+    a.click();
+    btn.innerHTML='&#x1F4E5; Download Media Plan PDF';
+    btn.disabled=false;
+  }).catch(function(){
+    btn.innerHTML='&#x1F4E5; Download Media Plan PDF';
+    btn.disabled=false;
+    alert('PDF generation failed. Please try again.');
+  });
+}
+</script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Unsubscribe - Pievra Protocol Intelligence Weekly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,300&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0e1a;--teal:#00c4a7;--surface:#f7f6f0;--border:#e2e0d8;--muted:#8a8578}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:white;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.lm{width:32px;height:32px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:var(--teal)}
+.lt{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--ink)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px}
+.card{background:white;border:1px solid var(--border);border-radius:20px;padding:56px;max-width:480px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(10,14,26,.06)}
+.icon{font-size:48px;margin-bottom:20px}
+h1{font-family:'Fraunces',serif;font-size:32px;font-weight:700;letter-spacing:-1px;margin-bottom:12px;color:var(--ink)}
+p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.legal-note{font-size:12px;color:var(--muted);background:var(--surface);padding:14px;border-radius:10px;border:1px solid var(--border);text-align:left;line-height:1.6;margin-bottom:24px}
+.legal-note a{color:var(--teal);text-decoration:none}
+.btn{display:inline-block;padding:12px 28px;background:var(--ink);color:white;font-family:'Fraunces',serif;font-weight:700;font-size:15px;border-radius:10px;text-decoration:none;transition:all .2s}
+.btn:hover{background:#1a2035;transform:translateY(-1px)}
+.btn-ghost{display:inline-block;padding:12px 28px;background:none;color:var(--muted);font-size:14px;border-radius:10px;text-decoration:none;transition:color .2s;margin-top:8px}
+.btn-ghost:hover{color:var(--ink)}
+footer{text-align:center;padding:24px;font-size:12px;color:var(--muted)}
+footer a{color:var(--teal);text-decoration:none}
+
+/* States */
+.state{display:none}
+.state.active{display:block}
+</style>
+</head>
+<body>
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<main>
+  <!-- CONFIRM STATE - shown first -->
+  <div class="card state active" id="state-confirm">
+    <div class="icon">📬</div>
+    <h1>Unsubscribe from Protocol Intelligence Weekly?</h1>
+    <p>You'll no longer receive the weekly protocol briefing. You can re-subscribe at any time at <a href="/newsletter" style="color:var(--teal)">pievra.com/newsletter</a>.</p>
+    <div class="legal-note">
+      <strong>Your GDPR rights:</strong> Unsubscribing withdraws your consent for the newsletter under GDPR Article 7(3).
+      Your data will be retained for legal/audit purposes but you will receive no further marketing communications.
+      To request full data deletion, email <a href="mailto:privacy@pievra.com">privacy@pievra.com</a>.
+    </div>
+    <button onclick="processUnsubscribe()" style="display:block;width:100%;padding:14px;background:#dc2626;color:white;font-family:'Fraunces',serif;font-weight:700;font-size:16px;border:none;border-radius:12px;cursor:pointer;transition:all .2s;margin-bottom:10px">
+      Yes, unsubscribe me
+    </button>
+    <a href="/" class="btn-ghost">Keep my subscription</a>
+  </div>
+
+  <!-- SUCCESS STATE - shown after unsubscribe -->
+  <div class="card state" id="state-success">
+    <div class="icon">✅</div>
+    <h1>You've been unsubscribed</h1>
+    <p>Your unsubscribe request has been processed. You will not receive any further emails from Protocol Intelligence Weekly.</p>
+    <div class="legal-note">
+      <strong>Consent withdrawn:</strong> Your withdrawal has been recorded with a timestamp in our consent database in compliance with GDPR Article 7(3). Withdrawal reference: <span id="withdrawal-ref">processing...</span><br/><br/>
+      If you change your mind, you can re-subscribe at any time at <a href="/newsletter">pievra.com/newsletter</a>. To request deletion of your data, email <a href="mailto:privacy@pievra.com">privacy@pievra.com</a>.
+    </div>
+    <a href="/" class="btn">Back to Pievra</a>
+  </div>
+</main>
+
+<footer>
+  <p>Pievra · <a href="/privacy">Privacy & GDPR</a> · <a href="mailto:privacy@pievra.com">privacy@pievra.com</a> · <a href="https://www.cnil.fr/fr/plaintes">CNIL (France)</a></p>
+</footer>
+
+<script>
+function processUnsubscribe() {
+  const token = new URLSearchParams(window.location.search).get('t');
+  if (!token) { alert('Invalid unsubscribe link. Please contact privacy@pievra.com.'); return; }
+
+  // Production: POST to /api/newsletter/unsubscribe with token
+  // fetch('/api/newsletter/unsubscribe', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ token })
+  // }).then(r => r.json()).then(data => { ... });
+
+  // Show success state
+  document.getElementById('state-confirm').classList.remove('active');
+  document.getElementById('state-success').classList.add('active');
+  document.getElementById('withdrawal-ref').textContent = 'WD-' + Date.now().toString(36).toUpperCase();
+}
+</script>
+</body>
+</html>

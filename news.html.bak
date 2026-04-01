@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Protocol Intelligence - Pievra News</title>
+<meta name="description" content="In-depth analysis of every AI agent protocol shaping programmatic advertising in 2025 - AdCP, MCP, UCP/Agentic Audiences, ARTF and A2A. Real launch dates, correct versions, verified facts."/>
+<link rel="canonical" href="https://pievra.com/news"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- GA4 Analytics - consent-gated (GDPR/CNIL compliant) -->
+<script src="/static/consent.js"></script>
+<style>
+:root{--ink:#0a0e1a;--ink-soft:#3d4460;--ink-muted:#7a829e;--surface:#ffffff;--surface-2:#f4f5f9;--teal:#00c4a7;--teal-dark:#009e86;--teal-light:#e0faf6;--border:#e2e4ed;--radius:12px;--radius-lg:20px;--shadow:0 4px 24px rgba(10,14,26,0.07);--shadow-lg:0 12px 48px rgba(10,14,26,0.13)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{font-family:'Manrope',sans-serif;line-height:1.2}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:64px;display:flex;align-items:center;padding:0 32px;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:var(--ink);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:800;font-size:17px;color:var(--teal)}
+.logo-text{font-family:'Manrope',sans-serif;font-weight:700;font-size:19px;color:var(--ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-ghost{padding:7px 16px;font-size:13px;font-weight:500;color:var(--ink-soft);background:none;border:1px solid var(--border);cursor:pointer;border-radius:7px;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-primary{padding:7px 18px;font-size:13px;font-weight:600;color:white;background:var(--ink);border:none;cursor:pointer;border-radius:7px;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-primary:hover{background:#1a2035}
+.news-hero{background:var(--ink);padding:80px 32px 64px;text-align:center}
+.section-tag{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+.news-hero h1{font-size:clamp(36px,5vw,60px);font-weight:800;color:white;letter-spacing:-2px;margin-bottom:16px}
+.news-hero p{font-size:17px;color:#8892b0;max-width:600px;margin:0 auto 32px;line-height:1.7}
+.news-filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nf{padding:8px 18px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;color:#8892b0}
+.nf.active,.nf:hover{background:var(--teal);color:white;border-color:var(--teal)}
+.news-layout{max-width:1200px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.article-card{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:white;margin-bottom:32px;transition:box-shadow .2s}
+.article-card:hover{box-shadow:var(--shadow-lg)}
+.article-header{padding:32px 32px 24px}
+.meta-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.pb{font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.pb-adcp{background:#dbeafe;color:#1d4ed8}
+.pb-mcp{background:#d1fae5;color:#065f46}
+.pb-ucp{background:#fef3c7;color:#92400e}
+.pb-artf{background:#fce7f3;color:#9d174d}
+.pb-a2a{background:#ede9fe;color:#5b21b6}
+.badge-new{background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px;animation:shim 2.5s ease-in-out infinite}
+@keyframes shim{0%,100%{opacity:1}50%{opacity:.75}}
+.art-date{font-size:12px;color:var(--ink-muted)}
+.article-title{font-size:21px;font-weight:800;color:var(--ink);letter-spacing:-.5px;margin-bottom:10px}
+.article-excerpt{font-size:15px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px}
+.source-line{font-size:12px;color:var(--ink-muted);margin-bottom:18px}
+.source-line a{color:var(--teal);text-decoration:none}
+.source-line a:hover{text-decoration:underline}
+.expand-btn{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--teal);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;padding:0;transition:gap .2s}
+.expand-btn:hover{gap:12px}
+.expand-btn .arr{transition:transform .25s;display:inline-block}
+.expand-btn.open .arr{transform:rotate(90deg)}
+.article-body{display:none;padding:0 32px 32px;border-top:1px solid var(--border)}
+.article-body.open{display:block}
+.article-body h3{font-size:17px;font-weight:700;color:var(--ink);margin:28px 0 10px}
+.article-body h3:first-child{margin-top:28px}
+.article-body p{font-size:15px;color:var(--ink-soft);margin-bottom:14px;line-height:1.8}
+.article-body ul,.article-body ol{margin:0 0 16px 22px}
+.article-body li{font-size:15px;color:var(--ink-soft);margin-bottom:7px;line-height:1.6}
+.article-body strong{color:var(--ink);font-weight:600}
+.article-body a{color:var(--teal);text-decoration:none}
+.article-body a:hover{text-decoration:underline}
+.article-body code{font-family:'JetBrains Mono',monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;font-size:13px;color:var(--teal-dark)}
+.fact-box{background:var(--surface-2);border-left:3px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px;margin:0 0 20px}
+.fact-box p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.7}
+.fact-box strong{color:var(--ink)}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.pros{background:#f0fdf4;border:1px solid #86efac;border-radius:var(--radius);padding:16px 18px}
+.cons{background:#fef2f2;border:1px solid #fca5a5;border-radius:var(--radius);padding:16px 18px}
+.pros h4{font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;color:#15803d;margin-bottom:8px}
+.cons h4{font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;color:#b91c1c;margin-bottom:8px}
+.pros li,.cons li{font-size:13px;color:var(--ink-soft);margin-bottom:5px}
+.use-box{background:var(--surface-2);border-radius:var(--radius);padding:14px 18px;margin:14px 0}
+.use-box h4{font-family:'Manrope',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+/* Comments */
+.comments-section{border-top:1px solid var(--border);padding:24px 32px;background:var(--surface-2)}
+.comments-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.comments-header h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;color:var(--ink)}
+.c-count{font-size:12px;color:var(--ink-muted);background:white;border:1px solid var(--border);padding:2px 10px;border-radius:20px}
+.empty-c{text-align:center;padding:24px 16px;background:white;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px}
+.empty-c .ei{font-size:28px;margin-bottom:8px}
+.empty-c h5{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.empty-c p{font-size:13px;color:var(--ink-muted);margin:0}
+.comment{display:flex;gap:12px;margin-bottom:16px}
+.c-av{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:white;font-family:'Manrope',sans-serif}
+.c-bubble{flex:1;background:white;border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.c-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.c-name{font-size:13px;font-weight:700;color:var(--ink)}
+.c-role{font-size:11px;color:var(--ink-muted);background:var(--surface-2);padding:1px 8px;border-radius:20px}
+.c-time{font-size:11px;color:var(--ink-muted);margin-left:auto}
+.c-text{font-size:14px;color:var(--ink-soft);line-height:1.6}
+.c-actions{display:flex;gap:10px;margin-top:6px}
+.c-btn{font-size:12px;color:var(--ink-muted);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;padding:2px 0;transition:color .15s}
+.c-btn:hover{color:var(--teal)}
+.c-gate{background:white;border:1.5px dashed var(--border);border-radius:var(--radius);padding:20px;text-align:center}
+.c-gate h4{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.c-gate p{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.c-gate .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.c-form{display:none;margin-top:14px}
+.c-form.active{display:block}
+.c-form textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);resize:vertical;min-height:76px;margin-bottom:8px;transition:border-color .2s;outline:none;background:white}
+.c-form textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,196,167,.1)}
+.c-form-footer{display:flex;align-items:center;justify-content:space-between}
+.c-char{font-size:12px;color:var(--ink-muted)}
+.btn-post{padding:8px 20px;background:var(--teal);color:white;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:8px;cursor:pointer;transition:all .2s}
+.btn-post:hover{background:var(--teal-dark);transform:translateY(-1px)}
+/* Sidebar */
+.news-sidebar{position:sticky;top:88px}
+.sb-card{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:20px}
+.sb-head{padding:16px 18px;background:var(--ink)}
+.sb-head h3{font-family:'Manrope',sans-serif;font-size:14px;font-weight:700;color:white}
+.sb-head p{font-size:11px;color:#8892b0;margin-top:2px}
+.sb-body{padding:10px 14px;background:white}
+.proto-row{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .15s}
+.proto-row:last-child{border-bottom:none}
+.proto-row:hover .pr-title{color:var(--teal)}
+.pr-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.pr-title{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:1px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pr-sub{font-size:10px;color:var(--ink-muted)}
+.s-live{color:#16a34a}
+.s-beta{color:#d97706}
+.s-rc{color:#9333ea}
+.nl-card{background:var(--ink);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px}
+.nl-card h3{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;color:white;margin-bottom:6px}
+.nl-card p{font-size:12px;color:#8892b0;margin-bottom:14px;line-height:1.6}
+.nl-input{width:100%;padding:9px 12px;border-radius:7px;border:none;font-family:'Inter',sans-serif;font-size:13px;margin-bottom:8px;outline:none}
+.btn-nl{width:100%;padding:9px;background:var(--teal);color:white;font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;border:none;border-radius:7px;cursor:pointer;transition:background .2s}
+.btn-nl:hover{background:var(--teal-dark)}
+.tl-card{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.tl-item{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);align-items:flex-start}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px}
+.tl-date{font-size:10px;font-weight:700;color:var(--teal);margin-bottom:1px}
+.tl-text{font-size:11px;color:var(--ink-soft);line-height:1.4}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,14,26,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-box{background:white;border-radius:var(--radius-lg);padding:48px;max-width:440px;width:100%;box-shadow:var(--shadow-lg);transform:translateY(20px);transition:transform .25s;position:relative}
+.modal-overlay.active .modal-box{transform:translateY(0)}
+.modal-close{position:absolute;top:16px;right:18px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink-muted)}
+.modal-box h2{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;margin-bottom:6px}
+.modal-box p{font-size:14px;color:var(--ink-soft);margin-bottom:20px;line-height:1.7}
+.modal-box input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:10px;outline:none;transition:border-color .2s}
+.modal-box input:focus{border-color:var(--teal)}
+.btn-ms{width:100%;padding:13px;background:var(--ink);color:white;font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:9px;cursor:pointer;transition:all .2s}
+.btn-ms:hover{background:#1a2035}
+footer{background:#060810;color:#4a5270;border-top:1px solid #0e1220;padding:36px 32px;text-align:center}
+footer p{font-size:13px}
+footer a{color:var(--teal);text-decoration:none;margin:0 8px}
+@media(max-width:900px){.news-layout{grid-template-columns:1fr}.news-sidebar{position:static}.pc{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<div class="modal-overlay" id="signupModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div style="font-size:28px;margin-bottom:12px">🐙</div>
+    <h2>Join the community</h2>
+    <p>Create a free Pievra account to post comments, follow protocol updates, and connect with the programmatic AI community.</p>
+    <input type="email" id="mEmail" placeholder="Work email"/>
+    <input type="text" id="mName" placeholder="Your name"/>
+    <button class="btn-ms" onclick="submitSignup()">Create free account →</button>
+    <p style="font-size:12px;color:var(--ink-muted);text-align:center;margin-top:10px">Already registered? <a href="#" style="color:var(--teal)" onclick="doLogin()">Sign in</a></p>
+  </div>
+</div>
+
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<div class="news-hero">
+  <div class="section-tag">Protocol Intelligence</div>
+  <h1>The Pievra<br/>Protocol Briefing</h1>
+  <p>In-depth analysis of the five AI agent protocols reshaping programmatic advertising in 2025–2026. Real launch dates. Verified facts. No invented commentary.</p>
+  <div class="news-filters">
+    <button class="nf active" onclick="filterArticles(this,'all')">All</button>
+    <button class="nf" onclick="filterArticles(this,'adcp')">AdCP</button>
+    <button class="nf" onclick="filterArticles(this,'mcp')">MCP</button>
+    <button class="nf" onclick="filterArticles(this,'ucp')">Agentic Audiences/UCP</button>
+    <button class="nf" onclick="filterArticles(this,'artf')">ARTF</button>
+    <button class="nf" onclick="filterArticles(this,'a2a')">A2A</button>
+  </div>
+</div>
+
+<div class="news-layout">
+<main>
+
+<!-- AdCP -->
+<article class="article-card" data-proto="adcp">
+  <div class="article-header">
+    <div class="meta-row">
+      <span class="pb pb-adcp">AdCP</span>
+      <span class="art-date">15 October 2025</span>
+      <span class="art-date">· 9 min read</span>
+    </div>
+    <h2 class="article-title">Ad Context Protocol (AdCP) - The Open Standard Built on MCP That Launched Agentic Advertising</h2>
+    <p class="article-excerpt">On 15 October 2025, a consortium of 20+ companies led by Yahoo, PubMatic, Optable, Scope3, Swivel, and Triton Digital publicly launched AdCP - the first open standard enabling AI agents to execute advertising tasks across any platform. GitHub first release: v2.0.0. Current production version: v2.5. v3.0 RC2 in active development.</p>
+    <p class="source-line">Sources: <a href="https://adcontextprotocol.org" target="_blank">adcontextprotocol.org</a> · <a href="https://docs.adcontextprotocol.org" target="_blank">AdCP docs</a> · <a href="https://digiday.com/media-buying/wtf-ad-context-protocol/" target="_blank">Digiday</a> · <a href="https://shellypalmer.com/2025/10/adcp-ad-context-protocol-a-real-attempt-to-make-agents-buy-media/" target="_blank">Shelly Palmer</a> · <a href="https://www.adweek.com/media/adcp-ad-context-protocol-agentic-advertising-standard/" target="_blank">Adweek</a></p>
+    <button class="expand-btn" onclick="toggleArticle(this,'adcp-body')">Read full analysis <span class="arr">›</span></button>
+  </div>
+  <div class="article-body" id="adcp-body">
+    <div class="fact-box"><p><strong>Verified facts:</strong> Launched 15 Oct 2025 · GitHub first release v2.0.0 · Production v2.5 · v3.0-rc.2 in development (not for production) · Steward: AgenticAdvertising.org - Delaware 501(c)(6) non-profit incorporated 2025 · Built on MCP and A2A as transport layers · Prebid.org managing open-source Seller Agents project · 20+ founding members: Yahoo, PubMatic, Optable, Scope3, Swivel, Triton Digital, Magnite, Kargo, LG Ad Solutions, Raptive, The Weather Company, Samba TV, Butler/Till, Classify, Newton Research, AccuWeather and others</p></div>
+
+    <h3>What AdCP Is</h3>
+    <p>AdCP is an open technical standard that enables AI agents to communicate with advertising platforms through a unified interface - and, as it evolves, directly with each other. It is the agentic successor to OpenRTB: where OpenRTB standardised real-time bidding transactions, AdCP standardises agentic advertising workflows across the entire campaign lifecycle.</p>
+    <p>AdCP is built <em>on top of</em> Anthropic's MCP and Google's A2A as its transport layers. It defines domain-specific advertising tasks and schemas that run over these general-purpose agent communication protocols. MCP and A2A are the infrastructure; AdCP defines the advertising vocabulary and rules running over that infrastructure.</p>
+
+    <h3>The Four Protocol Domains (v2.5 - current production)</h3>
+    <ul>
+      <li><strong>Signals Activation Protocol:</strong> Agents discover and activate audience signals - identity, contextual, geographic, temporal - across connected platforms using natural language queries.</li>
+      <li><strong>Media Buy Protocol:</strong> Standardises how agents execute and optimise media purchases across all compatible platforms from one interface.</li>
+      <li><strong>Creative Protocol:</strong> Enables agents to build, optimise, and deploy creative assets. AI-generated creative integrates into the workflow.</li>
+      <li><strong>Curation Protocol:</strong> Marked "Coming Q2 2025" at launch; in active development in v3.0. Allows inventory curation with activated signals.</li>
+    </ul>
+
+    <h3>How It Works in Practice</h3>
+    <p>A buyer's AI assistant receives a natural language brief: "Reach eco-conscious car buyers on CTV in the US this week, $10K budget." The agent translates this into structured AdCP requests, queries compatible Seller Agents via MCP or A2A, receives standardised responses, and executes the buy - without custom integrations per platform. Prebid's stewardship of the Seller Agents project is the mechanism ensuring broad publisher adoption without fragmentation.</p>
+    <p>AdCP's governance layer adds <code>check_governance</code> validation - verifying budget limits, brand safety, and compliance before any campaign launches, with a complete audit trail of every agent decision.</p>
+
+    <div class="use-box"><h4>🎯 Primary use cases</h4>
+    <ul>
+      <li>Natural language campaign planning across all connected platforms simultaneously</li>
+      <li>Direct agent-to-agent inventory negotiation without exchange intermediaries</li>
+      <li>Cross-platform audience activation from a single campaign brief</li>
+      <li>SMB access to programmatic - no dedicated technical team required</li>
+      <li>Supply path optimisation with transparent deal economics</li>
+    </ul></div>
+
+    <div class="pc">
+      <div class="pros"><h4>✓ Upsides</h4><ul>
+        <li>First mover - 20+ founding members at launch</li>
+        <li>Built on proven MCP + A2A transports</li>
+        <li>Prebid managing Seller Agents - credible adoption path</li>
+        <li>Natural language interface lowers barrier to entry</li>
+        <li>Non-profit governance - no single vendor control</li>
+        <li>v3.0 RC2 already in development - active roadmap</li>
+      </ul></div>
+      <div class="cons"><h4>✗ Downsides</h4><ul>
+        <li>IAB Tech Lab's Katsur publicly sceptical - protocol fragmentation risk</li>
+        <li>Only launched Oct 2025 - no at-scale production track record</li>
+        <li>Security infrastructure nascent (no SECURITY.md at v2.0 launch)</li>
+        <li>Curation Protocol still in development</li>
+        <li>Governance non-profit still being formally incorporated</li>
+        <li>Tension with IAB Tech Lab's parallel AAMP initiative</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header"><h4>Community Discussion</h4><span class="c-count" id="cnt-adcp">0 comments</span></div>
+    <div id="list-adcp">
+      <div class="empty-c"><div class="ei">💬</div><h5>No comments yet</h5><p>Sign in to share your AdCP integration experience or questions.</p></div>
+    </div>
+    <div id="area-adcp">
+      <div class="c-gate" id="gate-adcp"><h4>Join the discussion</h4><p>Sign in or create a free account to post comments.</p><div class="btns"><button class="btn-primary" onclick="unlockComments('adcp')">Sign In to Comment</button><button class="btn-ghost" onclick="openModal()">Create Account</button></div></div>
+      <div class="c-form" id="form-adcp"><textarea id="ta-adcp" placeholder="Share your AdCP experience - integration observations, governance views, technical questions..." oninput="upChar('adcp')" maxlength="500"></textarea><div class="c-form-footer"><span class="c-char" id="ch-adcp">0 / 500</span><button class="btn-post" onclick="postComment('adcp')">Post Comment</button></div></div>
+    </div>
+  </div>
+</article>
+
+<!-- MCP -->
+<article class="article-card" data-proto="mcp">
+  <div class="article-header">
+    <div class="meta-row">
+      <span class="pb pb-mcp">MCP</span>
+      <span class="art-date">25 November 2025</span>
+      <span class="art-date">· 8 min read</span>
+    </div>
+    <h2 class="article-title">Model Context Protocol (MCP) - From Anthropic Side Project to Linux Foundation Standard in 13 Months</h2>
+    <p class="article-excerpt">Launched by Anthropic in November 2024, MCP reached 97 million monthly SDK downloads, adoption by OpenAI, Google, and Microsoft, and governance transfer to the Linux Foundation - all within one year. Latest spec: 2025-11-25. Current production standard for enterprise deployments.</p>
+    <p class="source-line">Sources: <a href="https://modelcontextprotocol.io/specification/2025-11-25" target="_blank">MCP Spec 2025-11-25</a> · <a href="https://blog.modelcontextprotocol.io" target="_blank">MCP Blog</a> · <a href="https://en.wikipedia.org/wiki/Model_Context_Protocol" target="_blank">Wikipedia</a> · VentureBeat · Lakera</p>
+    <button class="expand-btn" onclick="toggleArticle(this,'mcp-body')">Read full analysis <span class="arr">›</span></button>
+  </div>
+  <div class="article-body" id="mcp-body">
+    <div class="fact-box"><p><strong>Verified facts:</strong> Launched November 2024 by Anthropic · March 26 2025: OAuth 2.1, Streamable HTTP, JSON-RPC batching, Tool Annotations · June 18 2025: Structured outputs, elicitation, security improvements · September 2025: MCP Registry preview launched · <strong>Latest spec: 2025-11-25</strong> - async execution, .well-known identity discovery, enterprise transport · December 2025: Anthropic donates MCP to Agentic AI Foundation (AAIF) under Linux Foundation, co-founded with Block and OpenAI · 97M+ monthly SDK downloads · 5,800+ servers available · OpenAI adopted March 2025</p></div>
+
+    <h3>What MCP Is and Is Not</h3>
+    <p>MCP is a universal context exchange and tool-connection standard - the infrastructure layer on which advertising protocols including AdCP, ARTF, and Agentic Audiences are built. It defines how AI agents connect to external tools, data sources, APIs, and resources. It is <strong>not</strong> an advertising protocol. It is the plumbing beneath the advertising protocols.</p>
+    <p>In advertising: MCP is what allows a campaign agent to call a DMP for audience data, retrieve brand guidelines, check compliance rules before bidding, and retain cross-campaign memory - all through one standardised interface without custom integrations per data source.</p>
+
+    <h3>Specification Milestones</h3>
+    <ul>
+      <li><strong>November 2024 (launch):</strong> Basic client-server, tool calling, resource access, prompt templates. Synchronous operations only.</li>
+      <li><strong>March 26 2025:</strong> OAuth 2.1, Streamable HTTP (replaces HTTP+SSE), JSON-RPC batching, Tool Annotations. OpenAI adopts across all products. Microsoft launches Playwright-MCP.</li>
+      <li><strong>June 18 2025:</strong> Structured tool outputs, server-initiated user interactions (elicitation), improved security, formal governance model.</li>
+      <li><strong>September 2025:</strong> MCP Registry preview - public catalog and API for server discovery.</li>
+      <li><strong>November 25 2025 (current production):</strong> Asynchronous task execution, .well-known server identity discovery, enterprise horizontal scaling improvements, long-running workflow governance.</li>
+      <li><strong>December 2025:</strong> Donated to Linux Foundation AAIF - vendor-neutral governance.</li>
+    </ul>
+
+    <div class="pc">
+      <div class="pros"><h4>✓ Upsides</h4><ul>
+        <li>97M+ monthly downloads - de facto industry standard</li>
+        <li>Linux Foundation governance - vendor neutral</li>
+        <li>OpenAI, Google, Microsoft, AWS all committed</li>
+        <li>Nov 2025 spec production-ready for enterprise</li>
+        <li>5,800+ servers across every enterprise data category</li>
+        <li>Async execution enables real-time campaign governance</li>
+      </ul></div>
+      <div class="cons"><h4>✗ Downsides</h4><ul>
+        <li>Not designed for RTB latency - not a bidstream protocol</li>
+        <li>Security model still maturing (prompt injection risks in earlier specs)</li>
+        <li>MCP server management adds infrastructure overhead</li>
+        <li>Server quality highly variable - no unified certification yet</li>
+        <li>Horizontal scaling at enterprise level still being refined</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header"><h4>Community Discussion</h4><span class="c-count" id="cnt-mcp">0 comments</span></div>
+    <div id="list-mcp"><div class="empty-c"><div class="ei">💬</div><h5>No comments yet</h5><p>Sign in to share your MCP implementation experience or questions.</p></div></div>
+    <div id="area-mcp">
+      <div class="c-gate" id="gate-mcp"><h4>Join the discussion</h4><p>Sign in or create a free account to post comments.</p><div class="btns"><button class="btn-primary" onclick="unlockComments('mcp')">Sign In to Comment</button><button class="btn-ghost" onclick="openModal()">Create Account</button></div></div>
+      <div class="c-form" id="form-mcp"><textarea id="ta-mcp" placeholder="Your MCP implementation experience, server architecture questions, or thoughts on the Linux Foundation transition..." oninput="upChar('mcp')" maxlength="500"></textarea><div class="c-form-footer"><span class="c-char" id="ch-mcp">0 / 500</span><button class="btn-post" onclick="postComment('mcp')">Post Comment</button></div></div>
+    </div>
+  </div>
+</article>
+
+<!-- Agentic Audiences / UCP -->
+<article class="article-card" data-proto="ucp">
+  <div class="article-header">
+    <div class="meta-row">
+      <span class="pb pb-ucp">Agentic Audiences / UCP</span>
+      <span class="art-date">3 November 2025</span>
+      <span class="art-date">· 7 min read</span>
+      <span class="badge-new">NEW</span>
+    </div>
+    <h2 class="article-title">Agentic Audiences (formerly UCP) - LiveRamp's Embedding-Based Signal Standard, Now at IAB Tech Lab</h2>
+    <p class="article-excerpt">On 3 November 2025, LiveRamp donated the User Context Protocol (UCP) to IAB Tech Lab. IAB Tech Lab has since renamed it Agentic Audiences as part of its AAMP initiative (announced February 26, 2026). This is the data plane of agentic advertising - compact, privacy-preserving vector embeddings replacing raw data payloads between agents.</p>
+    <p class="source-line">Sources: <a href="https://iabtechlab.com/standards/agentic-audiences/" target="_blank">IAB Tech Lab</a> · <a href="https://github.com/IABTechLab/agentic-audiences" target="_blank">GitHub IABTechLab/agentic-audiences</a> · AdExchanger · ppc.land · IAB Canada</p>
+    <button class="expand-btn" onclick="toggleArticle(this,'ucp-body')">Read full analysis <span class="arr">›</span></button>
+  </div>
+  <div class="article-body" id="ucp-body">
+    <div class="fact-box"><p><strong>Verified facts:</strong> Originally developed by LiveRamp · Donated to IAB Tech Lab 3 November 2025 · Renamed Agentic Audiences - part of AAMP (formally named February 26, 2026) · Now in IAB Tech Lab GitHub open-source initiative · Steward: IAB Tech Lab, Commit Group governance · Integrates with GPP and TCF for consent · Signal types: identity, contextual, reinforcement · Embedding dimensions: 256–1,024 · Target: sub-100ms signal exchange</p></div>
+
+    <h3>What Agentic Audiences (UCP) Is</h3>
+    <p>Agentic Audiences is the <strong>data plane</strong> of agentic advertising - the standard defining how agents exchange user signals. It is not a campaign execution protocol. It defines how buyer agents, seller agents, and measurement agents share what they know about a user's intent, identity, and advertising response history without exchanging raw personal data.</p>
+    <p>The technical innovation: <strong>embeddings</strong> - compact, learned vector representations of 256 to 1,024 dimensions that encode complex user signals in a format that is simultaneously privacy-preserving, fast, and interoperable. Instead of passing thousands of raw data points, agents exchange dense vectors that capture semantic meaning. Similar user intents produce similar vectors. An agent can compare and act on these without ever resolving the underlying identity.</p>
+
+    <h3>Three Signal Types</h3>
+    <ul>
+      <li><strong>Identity signals:</strong> Hashed identifiers, behavioural segments, probabilistic matches - in compressed vector form, no raw PII</li>
+      <li><strong>Contextual signals:</strong> What the user is doing right now - content category, time of day, device context</li>
+      <li><strong>Reinforcement signals:</strong> How this user or users like them have previously responded to advertising - enabling real-time model learning</li>
+    </ul>
+    <p>AdCP defines how agents act on the <em>control plane</em>. Agentic Audiences defines the <em>data plane</em> - the signals that inform those actions. They are designed to work together. IAB Tech Lab explicitly positions UCP as the data layer that extends and enriches AdCP-based agent workflows.</p>
+
+    <h3>The AAMP Context</h3>
+    <p>On February 26, 2026, IAB Tech Lab formally named its umbrella initiative <strong>AAMP - Agentic Advertising Management Protocols</strong>. Agentic Audiences is one of seven protocol components within AAMP, alongside ARTF, Agentic Ad Objects (AdCOM), Agentic Direct, Agentic Deals, and two components in development. Understanding UCP requires understanding it as part of a coordinated infrastructure - not a standalone protocol.</p>
+
+    <div class="pc">
+      <div class="pros"><h4>✓ Upsides</h4><ul>
+        <li>Sub-100ms signal exchange - meets RTB requirements</li>
+        <li>Privacy-preserving by design - embeddings, not raw PII</li>
+        <li>IAB Tech Lab governance - broad industry trust</li>
+        <li>GPP and TCF integration - GDPR/CNIL aligned</li>
+        <li>Open source - any company can implement</li>
+        <li>Enables 1P data activation without a data clean room</li>
+      </ul></div>
+      <div class="cons"><h4>✗ Downsides</h4><ul>
+        <li>Very new - donated November 2025, still being refined</li>
+        <li>Requires publisher-side embedding infrastructure</li>
+        <li>Embedding model alignment across parties not yet standardised</li>
+        <li>UCP / Agentic Audiences naming transition still causing market confusion</li>
+        <li>Cross-border consent mapping not fully resolved</li>
+        <li>Commit Group governance model untested at scale</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header"><h4>Community Discussion</h4><span class="c-count" id="cnt-ucp">0 comments</span></div>
+    <div id="list-ucp"><div class="empty-c"><div class="ei">💬</div><h5>No comments yet</h5><p>Sign in to discuss Agentic Audiences implementation, the UCP rename, or the AAMP roadmap.</p></div></div>
+    <div id="area-ucp">
+      <div class="c-gate" id="gate-ucp"><h4>Join the discussion</h4><p>Sign in or create a free account to post comments.</p><div class="btns"><button class="btn-primary" onclick="unlockComments('ucp')">Sign In to Comment</button><button class="btn-ghost" onclick="openModal()">Create Account</button></div></div>
+      <div class="c-form" id="form-ucp"><textarea id="ta-ucp" placeholder="Your experience with UCP / Agentic Audiences, consent architecture, or AAMP observations..." oninput="upChar('ucp')" maxlength="500"></textarea><div class="c-form-footer"><span class="c-char" id="ch-ucp">0 / 500</span><button class="btn-post" onclick="postComment('ucp')">Post Comment</button></div></div>
+    </div>
+  </div>
+</article>
+
+<!-- ARTF -->
+<article class="article-card" data-proto="artf">
+  <div class="article-header">
+    <div class="meta-row">
+      <span class="pb pb-artf">ARTF</span>
+      <span class="art-date">13 November 2025</span>
+      <span class="art-date">· 7 min read</span>
+      <span class="badge-new">NEW</span>
+    </div>
+    <h2 class="article-title">ARTF v1.0 - IAB Tech Lab's Containerisation Framework That Promises to Cut RTB Latency by 80%</h2>
+    <p class="article-excerpt">On 13 November 2025, IAB Tech Lab released the Agentic RTB Framework (ARTF) v1.0 for public comment, open until 15 January 2026. ARTF is a containerisation architecture for the programmatic bidstream - not a planning protocol like AdCP. IAB Tech Lab CEO Anthony Katsur has called it the most important advance in programmatic since OpenRTB itself.</p>
+    <p class="source-line">Sources: <a href="https://iabtechlab.com/press-releases/iab-tech-lab-announces-agentic-rtb-framework-artf-v1-0-for-public-comment/" target="_blank">IAB Tech Lab</a> · <a href="https://github.com/IABTechLab/agentic-rtb-framework" target="_blank">GitHub IABTechLab/agentic-rtb-framework</a> · <a href="https://www.adexchanger.com/?p=446969" target="_blank">AdExchanger</a> · MarTech</p>
+    <button class="expand-btn" onclick="toggleArticle(this,'artf-body')">Read full analysis <span class="arr">›</span></button>
+  </div>
+  <div class="article-body" id="artf-body">
+    <div class="fact-box"><p><strong>Verified facts:</strong> Released for public comment 13 November 2025 · Comment period: until 15 January 2026 · Steward: IAB Tech Lab · Go reference implementation by Index Exchange (AGPL-3.0) · Spec: Creative Commons Attribution 3.0 · Supports MCP and A2A as agent communication layers · Contributors include The Trade Desk (Arpad Miklos), Chalice (Adam Heimlich), Index Exchange (Joshua Prismon) · Part of AAMP initiative · Target: RTB round-trip from 600–800ms to ~100ms (-80%)</p></div>
+
+    <h3>What ARTF Is</h3>
+    <p>ARTF is a <strong>containerisation architecture</strong> for programmatic advertising. It allows technologies - DSPs, SSPs, enrichment partners, measurement solutions, AI agents - to operate within the same virtual environment rather than communicating across separate networks via API calls. The result: auction-speed agentic decisioning that was previously impossible within RTB latency constraints.</p>
+    <p>ARTF is explicitly different from AdCP. AdCP defines how agents communicate in the planning and buying layer above the auction. ARTF defines how agents participate in real-time bidding execution at the infrastructure level, within the auction. IAB Tech Lab describes them as complementary rather than competing.</p>
+
+    <h3>How Containerisation Works</h3>
+    <p>ARTF packages agent or technology code into a software container that runs inside a partner's infrastructure. A DSP's bidding logic, a fraud detection agent, and a viewability measurement service can all operate in the same virtual machine - communicating at memory speed rather than network speed. This eliminates the network hops that create the 600–800ms round-trip time of current OpenRTB implementations.</p>
+    <p>The gRPC service definition: <code>RTBExtensionPoint.GetMutations(RTBRequest)</code> - an agent receives a bid request, proposes mutations (segment activations, deal adjustments, bid shading, viewability additions), and returns them within the latency budget. A working Go reference implementation is publicly available on IAB Tech Lab's GitHub.</p>
+
+    <div class="use-box"><h4>🎯 Primary use cases</h4>
+    <ul>
+      <li>Real-time audience segment activation within the bid window</li>
+      <li>Dynamic deal management - activate, suppress, adjust per impression</li>
+      <li>Intelligent bid shading with in-auction price optimisation</li>
+      <li>Real-time viewability and brand safety scoring before bid response</li>
+      <li>Fraud detection at auction speed - not post-bid</li>
+    </ul></div>
+
+    <div class="pc">
+      <div class="pros"><h4>✓ Upsides</h4><ul>
+        <li>80% latency reduction - opens new in-auction possibilities</li>
+        <li>Builds on OpenRTB - lowest adoption friction</li>
+        <li>Go reference implementation available now</li>
+        <li>Fraud detection moves to real-time</li>
+        <li>IAB Tech Lab governance - highest trust in industry</li>
+        <li>Reduces compute and energy cost vs server-to-server</li>
+      </ul></div>
+      <div class="cons"><h4>✗ Downsides</h4><ul>
+        <li>Still in public comment - not finalised as of March 2026</li>
+        <li>Requires both buyer and seller in same containerised environment</li>
+        <li>Infrastructure migration cost for distributed architectures</li>
+        <li>Security surface of shared containers needs careful design</li>
+        <li>Only 14 companies in Working Group at v1.0 launch</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header"><h4>Community Discussion</h4><span class="c-count" id="cnt-artf">0 comments</span></div>
+    <div id="list-artf"><div class="empty-c"><div class="ei">💬</div><h5>No comments yet</h5><p>Sign in to discuss ARTF containerisation, the public comment process, or your thoughts on the IAB Tech Lab approach.</p></div></div>
+    <div id="area-artf">
+      <div class="c-gate" id="gate-artf"><h4>Join the discussion</h4><p>Sign in or create a free account to post comments.</p><div class="btns"><button class="btn-primary" onclick="unlockComments('artf')">Sign In to Comment</button><button class="btn-ghost" onclick="openModal()">Create Account</button></div></div>
+      <div class="c-form" id="form-artf"><textarea id="ta-artf" placeholder="Your ARTF observations, containerisation thoughts, or in-auction agent use cases..." oninput="upChar('artf')" maxlength="500"></textarea><div class="c-form-footer"><span class="c-char" id="ch-artf">0 / 500</span><button class="btn-post" onclick="postComment('artf')">Post Comment</button></div></div>
+    </div>
+  </div>
+</article>
+
+<!-- A2A -->
+<article class="article-card" data-proto="a2a">
+  <div class="article-header">
+    <div class="meta-row">
+      <span class="pb pb-a2a">A2A</span>
+      <span class="art-date">9 April 2025</span>
+      <span class="art-date">· 8 min read</span>
+      <span class="badge-new">NEW</span>
+    </div>
+    <h2 class="article-title">Agent2Agent Protocol (A2A) v0.3 - Google's Open Standard for Direct Agent-to-Agent Communication, Now at the Linux Foundation</h2>
+    <p class="article-excerpt">Announced by Google on 9 April 2025 with 50+ founding partners, A2A reached v0.3 in July 2025 and was donated to the Linux Foundation in June 2025. It is the universal inter-agent transport that AdCP, ARTF, and MCP all reference as complementary infrastructure. Current version: v0.3.</p>
+    <p class="source-line">Sources: <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank">Google Developers Blog</a> · <a href="https://cloud.google.com/blog/products/ai-machine-learning/agent2agent-protocol-is-getting-an-upgrade" target="_blank">Google Cloud Blog</a> · <a href="https://a2a-protocol.org/latest/" target="_blank">a2a-protocol.org</a> · IBM Think</p>
+    <button class="expand-btn" onclick="toggleArticle(this,'a2a-body')">Read full analysis <span class="arr">›</span></button>
+  </div>
+  <div class="article-body" id="a2a-body">
+    <div class="fact-box"><p><strong>Verified facts:</strong> Announced 9 April 2025 by Google · 50+ founding partners: Atlassian, Box, Cohere, Salesforce, SAP, Workday, LangChain, MongoDB, PayPal, ServiceNow · Service providers: Accenture, BCG, Deloitte, PwC, KPMG · June 2025: Donated to Linux Foundation · July 31 2025: v0.3 - gRPC support, signed Agent Cards, extended Python SDK · 150+ organisations in ecosystem as of July 2025 · Built on HTTP, SSE, JSON-RPC · Microsoft Azure, SAP confirmed support · Official docs: a2a-protocol.org</p></div>
+
+    <h3>What A2A Is</h3>
+    <p>A2A is a universal agent-to-agent communication protocol - the standard enabling any two AI agents, regardless of builder or framework, to discover each other, authenticate securely, and collaborate. It is the "HTTP for AI agents." A2A is <strong>complementary to MCP, not competing</strong>: MCP connects an agent to its tools (agent-to-tool); A2A connects agents to other agents (agent-to-agent). Google's documentation explicitly recommends using them together.</p>
+
+    <h3>Core Architecture</h3>
+    <p>Every A2A agent publishes an <strong>Agent Card</strong> - a JSON metadata document at <code>/.well-known/agent.json</code> advertising its identity, capabilities, service endpoint, and authentication requirements. Agent Cards enable discovery without a prior relationship. A buying agent queries a registry, receives Agent Cards for matching sellers, and initiates direct authenticated communication without an exchange.</p>
+    <p><strong>Tasks</strong> are the unit of work: structured objects with a defined lifecycle (submitted → working → input-required → completed / failed). Long-running campaigns maintain state across the lifecycle, with agents pushing status updates to registered notification endpoints.</p>
+
+    <h3>Version History</h3>
+    <ul>
+      <li><strong>April 9 2025 (v0.1):</strong> Core spec - Agent Cards, task management, basic auth. 50+ partners.</li>
+      <li><strong>May 20 2025 (v0.2 / Google I/O):</strong> Stateless interactions, OpenAPI-like auth schemas, official Python SDK. Microsoft Azure and SAP announce support.</li>
+      <li><strong>June 2025:</strong> Donated to Linux Foundation - vendor-neutral governance.</li>
+      <li><strong>July 31 2025 (v0.3):</strong> gRPC support, signed Agent Cards (cryptographic identity verification), extended Python SDK, native ADK integration, Agent Engine deployment support.</li>
+    </ul>
+
+    <div class="pc">
+      <div class="pros"><h4>✓ Upsides</h4><ul>
+        <li>Linux Foundation governance - vendor neutral since June 2025</li>
+        <li>150+ organisations committed - broadest ecosystem</li>
+        <li>Built on HTTP/JSON-RPC - no new infrastructure required</li>
+        <li>Eliminates exchange fees on direct A2A transactions</li>
+        <li>Complements MCP - both work better together</li>
+        <li>Enterprise adoption already in production (Tyson Foods, Gordon Food Service)</li>
+      </ul></div>
+      <div class="cons"><h4>✗ Downsides</h4><ul>
+        <li>Still v0.3 - production capable but not v1.0</li>
+        <li>Google discovery registry quality scoring raises neutrality concerns</li>
+        <li>Fraud detection harder without exchange oversight</li>
+        <li>Both buyer and seller must be A2A-capable for direct transactions</li>
+        <li>Registry scalability at open web scale unproven</li>
+        <li>Regulatory attention likely as direct transaction volume grows</li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header"><h4>Community Discussion</h4><span class="c-count" id="cnt-a2a">0 comments</span></div>
+    <div id="list-a2a"><div class="empty-c"><div class="ei">💬</div><h5>No comments yet</h5><p>Sign in to share your A2A implementation experience, direct deal performance data, or governance observations.</p></div></div>
+    <div id="area-a2a">
+      <div class="c-gate" id="gate-a2a"><h4>Join the discussion</h4><p>Sign in or create a free account to post comments.</p><div class="btns"><button class="btn-primary" onclick="unlockComments('a2a')">Sign In to Comment</button><button class="btn-ghost" onclick="openModal()">Create Account</button></div></div>
+      <div class="c-form" id="form-a2a"><textarea id="ta-a2a" placeholder="Your A2A experience, direct deal performance observations, or thoughts on the governance question..." oninput="upChar('a2a')" maxlength="500"></textarea><div class="c-form-footer"><span class="c-char" id="ch-a2a">0 / 500</span><button class="btn-post" onclick="postComment('a2a')">Post Comment</button></div></div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="news-sidebar">
+  <div class="sb-card">
+    <div class="sb-head"><h3>Protocol Status</h3><p>Verified · March 2026</p></div>
+    <div class="sb-body">
+      <div class="proto-row" onclick="filterArticles(null,'adcp')">
+        <div class="pr-icon" style="background:#dbeafe">📢</div>
+        <div>
+          <div class="pr-title">AdCP <span style="font-size:9px;background:#dbeafe;color:#1d4ed8;padding:1px 7px;border-radius:10px;font-weight:700">v2.5 prod</span></div>
+          <div class="pr-sub s-live">● Live · AgenticAdvertising.org · Oct 2025</div>
+        </div>
+      </div>
+      <div class="proto-row" onclick="filterArticles(null,'mcp')">
+        <div class="pr-icon" style="background:#d1fae5">🌐</div>
+        <div>
+          <div class="pr-title">MCP <span style="font-size:9px;background:#d1fae5;color:#065f46;padding:1px 7px;border-radius:10px;font-weight:700">Spec 2025-11-25</span></div>
+          <div class="pr-sub s-live">● Live · Linux Foundation AAIF · Nov 2024</div>
+        </div>
+      </div>
+      <div class="proto-row" onclick="filterArticles(null,'ucp')">
+        <div class="pr-icon" style="background:#fef3c7">🔄</div>
+        <div>
+          <div class="pr-title">Agentic Audiences <span class="badge-new" style="font-size:9px;padding:1px 7px">NEW</span></div>
+          <div class="pr-sub s-beta">● Open source · IAB Tech Lab · Nov 2025</div>
+        </div>
+      </div>
+      <div class="proto-row" onclick="filterArticles(null,'artf')">
+        <div class="pr-icon" style="background:#fce7f3">🎨</div>
+        <div>
+          <div class="pr-title">ARTF v1.0 <span class="badge-new" style="font-size:9px;padding:1px 7px">NEW</span></div>
+          <div class="pr-sub s-rc">● Public comment · IAB Tech Lab · Nov 2025</div>
+        </div>
+      </div>
+      <div class="proto-row" onclick="filterArticles(null,'a2a')">
+        <div class="pr-icon" style="background:#ede9fe">🤝</div>
+        <div>
+          <div class="pr-title">A2A <span style="font-size:9px;background:#ede9fe;color:#5b21b6;padding:1px 7px;border-radius:10px;font-weight:700">v0.3</span></div>
+          <div class="pr-sub s-live">● Live · Linux Foundation · Apr 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nl-card">
+    <h3>📬 Protocol Intelligence Weekly</h3>
+    <p>Every Tuesday - protocol updates, integration guides, benchmarks. 2,400+ subscribers. Free.</p>
+    <input class="nl-input" type="email" id="nl-email" placeholder="Your work email"/>
+    <button class="btn-nl" onclick="subNewsletter()">Subscribe Free →</button>
+    <p style="font-size:10px;color:#4a5270;margin-top:6px;text-align:center">Unsubscribe anytime · No spam</p>
+  </div>
+
+  <div class="tl-card">
+    <div class="sb-head" style="padding:14px 16px"><h3>2025–2026 Timeline</h3></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Nov 2024</div><div class="tl-text">Anthropic launches MCP</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Mar 26 2025</div><div class="tl-text">MCP major update · OpenAI adopts</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Apr 9 2025</div><div class="tl-text">Google launches A2A - 50+ partners</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Jun 2025</div><div class="tl-text">A2A & MCP donated to Linux Foundation</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Jun 18 2025</div><div class="tl-text">MCP spec update - OAuth 2.1</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Jul 31 2025</div><div class="tl-text">A2A v0.3 - gRPC + signed Agent Cards</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Oct 15 2025</div><div class="tl-text">AdCP v2.0 launched - 20+ companies</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Nov 3 2025</div><div class="tl-text">LiveRamp donates UCP to IAB Tech Lab</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Nov 13 2025</div><div class="tl-text">ARTF v1.0 for public comment</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Nov 25 2025</div><div class="tl-text">MCP spec 2025-11-25 - async execution</div></div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">Dec 2025</div><div class="tl-text">MCP → Linux Foundation AAIF</div></div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:#7c3aed"></div><div><div class="tl-date" style="color:#7c3aed">Feb 26 2026</div><div class="tl-text">IAB Tech Lab names initiative AAMP</div></div></div>
+    <div class="tl-item"><div class="tl-dot" style="background:#4a5270"></div><div><div class="tl-date" style="color:#4a5270">2026 roadmap</div><div class="tl-text">ARTF finalised · AAMP Agent Registry · AdCP v3.0</div></div></div>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <p>© 2025 Pievra · <a href="/">Home</a> · <a href="/news">News</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy & GDPR</a></p>
+  <p style="margin-top:6px;font-size:11px;color:#2a2f45">All protocol information sourced from official specifications, verified press releases, and primary sources. Last updated: March 2026.</p>
+</footer>
+
+<script>
+const protos = ['adcp','mcp','ucp','artf','a2a'];
+let loggedIn = false, user = null;
+const counts = {};
+protos.forEach(p => counts[p] = 0);
+
+function openModal() { document.getElementById('signupModal').classList.add('active'); }
+function closeModal() { document.getElementById('signupModal').classList.remove('active'); }
+document.getElementById('signupModal').addEventListener('click', e => { if (e.target.id === 'signupModal') closeModal(); });
+
+function submitSignup() {
+  const e = document.getElementById('mEmail').value;
+  const n = document.getElementById('mName').value.trim();
+  if (!e || !e.includes('@') || !n) { alert('Please enter your name and a valid work email.'); return; }
+  login(n, e); closeModal();
+}
+function doLogin() {
+  const n = prompt('Enter your name to sign in:');
+  if (n && n.trim()) login(n.trim(), 'user@example.com');
+}
+function login(name, email) {
+  loggedIn = true;
+  user = { name, email, initials: name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) };
+  protos.forEach(p => unlockComments(p, true));
+}
+
+function unlockComments(p, silent) {
+  if (!loggedIn) { if (!silent) openModal(); return; }
+  const g = document.getElementById('gate-'+p);
+  const f = document.getElementById('form-'+p);
+  if (g) g.style.display = 'none';
+  if (f) f.classList.add('active');
+}
+
+function upChar(p) {
+  const ta = document.getElementById('ta-'+p);
+  const ch = document.getElementById('ch-'+p);
+  if (ta && ch) ch.textContent = ta.value.length + ' / 500';
+}
+
+function postComment(p) {
+  if (!loggedIn) { openModal(); return; }
+  const ta = document.getElementById('ta-'+p);
+  if (!ta || !ta.value.trim()) return;
+  const text = ta.value.trim().slice(0, 500);
+  const list = document.getElementById('list-'+p);
+  const empty = list.querySelector('.empty-c');
+  if (empty) empty.remove();
+  const cols = ['#0a0e1a','#065f46','#1d4ed8','#9d174d','#5b21b6','#7c3aed','#0369a1','#9a3412'];
+  const col = cols[Math.floor(Math.random()*cols.length)];
+  const now = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' today';
+  const el = document.createElement('div');
+  el.className = 'comment';
+  el.innerHTML = `<div class="c-av" style="background:${col}">${xss(user.initials)}</div><div class="c-bubble"><div class="c-meta"><span class="c-name">${xss(user.name)}</span><span class="c-role">Pievra Community</span><span class="c-time">${now}</span></div><div class="c-text">${xss(text)}</div><div class="c-actions"><button class="c-btn" onclick="like(this)">👍 0</button></div></div>`;
+  list.appendChild(el);
+  ta.value = ''; upChar(p);
+  counts[p]++;
+  const cnt = document.getElementById('cnt-'+p);
+  if (cnt) cnt.textContent = counts[p] + ' comment' + (counts[p]!==1?'s':'');
+  gtag && gtag('event','comment_posted',{event_category:'community',event_label:p});
+}
+
+function like(btn) {
+  if (!loggedIn) { openModal(); return; }
+  const m = btn.textContent.match(/\d+/);
+  if (m) btn.textContent = '👍 '+(parseInt(m[0])+1);
+}
+
+function xss(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function toggleArticle(btn, id) {
+  const b = document.getElementById(id);
+  const open = b.classList.contains('open');
+  b.classList.toggle('open', !open);
+  btn.classList.toggle('open', !open);
+  btn.innerHTML = open ? 'Read full analysis <span class="arr">›</span>' : 'Collapse <span class="arr" style="transform:rotate(90deg);display:inline-block">›</span>';
+  if (!open) gtag && gtag('event','article_expand',{event_category:'engagement',event_label:id});
+}
+
+function filterArticles(btn, proto) {
+  if (btn) { document.querySelectorAll('.nf').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  document.querySelectorAll('.article-card').forEach(c => { c.style.display=(proto==='all'||c.dataset.proto===proto)?'':'none'; });
+}
+
+function subNewsletter() {
+  const i = document.getElementById('nl-email');
+  if (!i||!i.value||!i.value.includes('@')) { if(i) i.style.outline='2px solid #ef4444'; return; }
+  i.style.outline='2px solid #22c55e';
+  document.querySelector('.btn-nl').textContent='✓ Subscribed!';
+  gtag && gtag('event','newsletter_subscribe',{event_category:'conversion'});
+}
+</script>
+</body>
+</html>

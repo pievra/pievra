@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sign In - Pievra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#18181B;--accent:#F97316;--surf:#FEFDFB;--border:#E4E4E7;--muted:#71717A}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surf);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+
+.card{background:white;border-radius:16px;padding:40px;width:100%;max-width:420px;box-shadow:0 4px 24px rgba(24,24,27,.08)}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:28px;color:var(--ink);margin-bottom:6px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:24px}
+.tabs{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.tab{flex:1;padding:10px;background:none;border:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif}
+.tab.active{background:var(--ink);color:white}
+.field{margin-bottom:14px}
+label{display:block;font-size:13px;font-weight:500;color:#52525B;margin-bottom:5px}
+input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--ink);background:var(--surf);outline:none}
+input:focus{border-color:var(--accent);background:white}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-ink{background:var(--ink);color:white}
+
+.err{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;display:none}
+.panel{display:none}.panel.active{display:block}
+.flinks{display:flex;justify-content:space-between;margin-top:14px;font-size:13px}
+.flinks a{color:var(--accent);text-decoration:none}
+.div{display:flex;align-items:center;gap:10px;margin:18px 0}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--border)}
+.div span{font-size:12px;color:var(--muted)}
+.sp{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style></head><body>
+<a href="/" class="logo"><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:#18181B">pievra<span style="color:#F97316">.</span></span></a>
+<div class="card">
+  <h1>Sign in</h1><p class="sub">Access your Pievra dashboard</p>
+  <div class="tabs">
+    <button class="tab active" onclick="sw('pw')">Password</button>
+    <button class="tab" onclick="sw('ml')">Magic link</button>
+  </div>
+  <div id="err" class="err"></div><div id="ok" class="ok"></div>
+  <div id="ppw" class="panel active">
+    <div class="field"><label>Work email</label><input type="email" id="em" placeholder="you@company.com"/></div>
+    <div class="field"><label>Password</label><input type="password" id="pw" placeholder="********"/></div>
+    <button class="btn btn-ink" id="lbtn" onclick="doLogin()">Sign in</button>
+    <div class="flinks"><a href="/forgot-password">Forgot password?</a><a href="/account-recovery">Account recovery</a></div>
+  </div>
+  <div id="pml" class="panel">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.6">Enter your email and we will send a one-click sign-in link.</p>
+    <div class="field"><label>Work email</label><input type="email" id="mlem" placeholder="you@company.com"/></div>
+    <button class="btn btn-accent" id="mlbtn" onclick="doMagic()">Send sign-in link</button>
+  </div>
+  <div class="div"><span>New to Pievra?</span></div>
+  <a href="/signup" style="display:block;text-align:center;font-size:14px;color:var(--accent);font-weight:600;text-decoration:none">Create a free account</a>
+</div>
+<script>
+let tab='pw';
+function sw(t){tab=t;document.querySelectorAll('.tab').forEach((e,i)=>e.classList.toggle('active',(i===0&&t==='pw')||(i===1&&t==='ml')));document.getElementById('ppw').classList.toggle('active',t==='pw');document.getElementById('pml').classList.toggle('active',t==='ml');clr();}
+function err(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';document.getElementById('ok').style.display='none';}
+function ok(m){const e=document.getElementById('ok');e.textContent=m;e.style.display='block';document.getElementById('err').style.display='none';}
+function clr(){document.getElementById('err').style.display='none';document.getElementById('ok').style.display='none';}
+const p=new URLSearchParams(location.search);
+if(p.get('error')==='invalid_token')err('This link is invalid. Please request a new one.');
+if(p.get('error')==='token_expired')err('This link has expired. Please request a new one.');
+if(p.get('welcome'))ok('Account verified. Welcome to Pievra!');
+async function doLogin(){
+  const email=document.getElementById('em').value.trim(),pw=document.getElementById('pw').value,btn=document.getElementById('lbtn');
+  if(!email||!pw){err('Please enter your email and password.');return;}
+  btn.innerHTML='<span class="sp"></span>Signing in...';btn.disabled=true;clr();
+  try{const r=await fetch('/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({email,password:pw})});
+  const d=await r.json();
+  if(!r.ok){err(d.detail||'Invalid email or password.');return;}
+  localStorage.setItem('pievra_user',JSON.stringify(d.user));localStorage.setItem('pievra_token',d.token||'');
+  window.location.href='/dashboard';}
+  catch(e){err('Network error. Please try again.');}
+  finally{btn.innerHTML='Sign in';btn.disabled=false;}
+}
+async function doMagic(){
+  const email=document.getElementById('mlem').value.trim(),btn=document.getElementById('mlbtn');
+  if(!email){err('Please enter your email.');return;}
+  btn.innerHTML='<span class="sp"></span>Sending...';btn.disabled=true;clr();
+  try{await fetch('/auth/magic',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});
+  ok('If an account exists, a sign-in link has been sent. Check your inbox.');}
+  catch(e){err('Network error.');}
+  finally{btn.innerHTML='Send sign-in link';btn.disabled=false;}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'){if(tab==='pw')doLogin();else doMagic();}});
+</script></body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Request a Demo - Pievra</title>
+<meta name="description" content="Schedule a personalised demo of Pievra - the protocol-neutral orchestration platform for AI advertising campaigns."/>
+<link rel="canonical" href="https://pievra.com/request-demo"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0e1a;--ink-soft:#3d4460;--ink-muted:#7a829e;--surface:#fff;--surface-2:#f4f5f9;--teal:#00c4a7;--teal-dark:#009e86;--teal-light:#e0faf6;--border:#e2e4ed;--radius:12px;--radius-lg:20px;--shadow:0 4px 24px rgba(10,14,26,0.08);--coral:#ff5e3a}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--surface-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Manrope',sans-serif;line-height:1.15}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:64px}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:36px;height:36px;background:var(--ink);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;color:var(--ink)}
+.nav-links{display:flex;align-items:center;gap:16px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;padding:8px 16px;border-radius:8px;transition:all .2s}
+.nav-links a:hover{background:var(--surface-2);color:var(--ink)}
+.btn-primary{padding:8px 20px;font-size:14px;font-weight:600;color:white;background:var(--ink);border:none;cursor:pointer;border-radius:8px;text-decoration:none}
+
+.page{max-width:1200px;margin:0 auto;padding:120px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+
+.left h1{font-size:clamp(32px,4vw,48px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
+.left h1 span{color:var(--teal)}
+.left>p{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:32px}
+.benefit{display:flex;gap:12px;margin-bottom:20px}
+.benefit-icon{width:40px;height:40px;border-radius:10px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.benefit h3{font-size:15px;font-weight:700;margin-bottom:2px}
+.benefit p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+.form-card{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow)}
+.form-card h2{font-size:22px;font-weight:800;margin-bottom:4px}
+.form-card>p{font-size:13px;color:var(--ink-muted);margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.form-group.full{grid-column:1/-1}
+label{font-size:13px;font-weight:600;color:var(--ink)}
+label .req{color:var(--coral);margin-left:2px}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:white;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,196,167,0.1)}
+textarea{resize:vertical;min-height:90px}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%237a829e' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+
+.btn-submit{width:100%;padding:14px;background:var(--teal);color:var(--ink);font-family:'Inter',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;transition:all .2s;margin-top:4px}
+.btn-submit:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,196,167,0.3)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.form-note{font-size:11px;color:var(--ink-muted);text-align:center;margin-top:12px}
+
+.success-msg{display:none;text-align:center;padding:40px 20px}
+.success-msg .icon{font-size:48px;margin-bottom:16px}
+.success-msg h2{font-size:24px;font-weight:800;margin-bottom:8px}
+.success-msg p{font-size:14px;color:var(--ink-soft);line-height:1.7;max-width:360px;margin:0 auto}
+.success-msg a{display:inline-block;margin-top:20px;padding:10px 24px;background:var(--ink);color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px}
+
+.error-msg{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500;margin-bottom:14px;display:none}
+
+footer{background:var(--ink);padding:32px 24px;text-align:center;color:#4a5270;font-size:13px;margin-top:60px}
+footer a{color:var(--teal);text-decoration:none}
+
+@media(max-width:900px){
+  .page{grid-template-columns:1fr;gap:32px;padding-top:96px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav style="background:#0a0e1a;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:100">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div style="width:30px;height:30px;background:#00c4a7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;color:#0a0e1a">P</div>
+    <div style="font-family:Manrope,sans-serif;font-weight:800;font-size:16px;color:#fff">pievra</div>
+  </a>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="/marketplace" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Marketplace</a>
+    <a href="/partners" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Partners</a>
+    <a href="/news" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">News</a>
+    <a href="/careers" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500">Careers</a>
+    <a href="/signin" style="color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:500">Sign In</a>
+    <a href="/signup" style="background:#00c4a7;color:#0a0e1a;font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;text-decoration:none">Sign Up Free</a>
+  </div>
+</nav>
+
+<div class="page">
+  <!-- Left: value prop -->
+  <div class="left">
+    <h1>See Pievra <span>in action</span></h1>
+    <p>Request a personalised walkthrough of the platform. We'll show you how Pievra orchestrates AI agent campaigns across all five protocols - tailored to your use case.</p>
+
+    <div class="benefit">
+      <div class="benefit-icon">🎯</div>
+      <div>
+        <h3>Tailored to your workflow</h3>
+        <p>We'll focus the demo on the protocols and features most relevant to your campaigns.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">⚡</div>
+      <div>
+        <h3>Live platform walkthrough</h3>
+        <p>See campaign planning, agent matching, protocol routing, and reporting in real time.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">🤝</div>
+      <div>
+        <h3>Integration guidance</h3>
+        <p>Get answers on API access, SDK usage, and how Pievra fits into your existing stack.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">🔒</div>
+      <div>
+        <h3>No commitment</h3>
+        <p>30-minute call. No credit card. No pressure. We'll follow up only if it's a good fit.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: form -->
+  <div class="form-card" id="form-card">
+    <div id="form-view">
+      <h2>Request a demo</h2>
+      <p>Fill in your details and we'll get back to you within 48 hours.</p>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full name <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label>Work email <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="you@company.com" required/>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" id="f-company" placeholder="Company name"/>
+        </div>
+        <div class="form-group">
+          <label>Company type</label>
+          <select id="f-type">
+            <option value="">Select...</option>
+            <option value="Agency / Trading Desk">Agency / Trading Desk</option>
+            <option value="Brand / Advertiser">Brand / Advertiser</option>
+            <option value="Publisher / SSP">Publisher / SSP</option>
+            <option value="Data Provider">Data Provider</option>
+            <option value="Technology Partner">Technology Partner</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Monthly programmatic budget</label>
+        <select id="f-budget">
+          <option value="">Select range...</option>
+          <option value="Under $10K">Under $10K</option>
+          <option value="$10K - $50K">$10K - $50K</option>
+          <option value="$50K - $200K">$50K - $200K</option>
+          <option value="$200K - $1M">$200K - $1M</option>
+          <option value="$1M+">$1M+</option>
+          <option value="Not applicable">Not applicable</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>What would you like to see in the demo?</label>
+        <textarea id="f-needs" placeholder="Tell us about your use case, which protocols interest you, or any specific questions..."></textarea>
+      </div>
+
+      <button class="btn-submit" id="submit-btn" onclick="submitDemo()">Request Demo</button>
+      <div class="form-note">We'll respond within 48 hours. No spam, ever.</div>
+    </div>
+
+    <div class="success-msg" id="success-view">
+      <div class="icon">🐙</div>
+      <h2>Demo request received</h2>
+      <p>Thanks! We've received your request and will be in touch within 48 hours to schedule your personalised walkthrough.</p>
+      <a href="/">Back to Pievra</a>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 Pievra. All rights reserved. &nbsp;·&nbsp; <a href="/privacy">Privacy</a> &nbsp;·&nbsp; <a href="/terms">Terms</a></footer>
+
+<script>
+async function submitDemo() {
+  var btn = document.getElementById('submit-btn');
+  var errEl = document.getElementById('error-msg');
+  errEl.style.display = 'none';
+
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var company = document.getElementById('f-company').value.trim();
+  var companyType = document.getElementById('f-type').value;
+  var budget = document.getElementById('f-budget').value;
+  var needs = document.getElementById('f-needs').value.trim();
+
+  if (!name || !email) {
+    errEl.textContent = 'Please fill in your name and email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    var res = await fetch('/api/request-demo', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        company: company,
+        company_type: companyType,
+        budget: budget,
+        needs: needs
+      })
+    });
+    if (!res.ok) {
+      var data = await res.json();
+      throw new Error(data.error || 'Something went wrong');
+    }
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'block';
+  } catch (e) {
+    errEl.textContent = e.message || 'Failed to submit. Please try again.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Request Demo';
+  }
+}
+</script>
+</body>
+</html>

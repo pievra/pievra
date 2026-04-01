@@ -1,0 +1,111 @@
+<h2>News Page Layout: 3 Approaches</h2>
+<p class="subtitle">Click to select the layout direction that fits Pievra best</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Magazine Layout</h3>
+      <p>Think TechCrunch / The Verge. Featured hero article at top, then a grid of cards below. Sidebar with protocol status + newsletter. Filters and sort bar pinned below nav.</p>
+      <div style="margin-top:12px;padding:16px;background:#f8f8f8;border-radius:8px;font-family:monospace;font-size:12px;line-height:1.8;color:#555">
+        ┌──────────────────────────────────────┐<br>
+        │ Nav: Logo | News | Marketplace | ... │<br>
+        ├──────────────────────────────────────┤<br>
+        │ Filters: [All] [Media Trading] [...] │<br>
+        │ Tags: [AdCP] [MCP] [UCP] [ARTF] [A2A]│<br>
+        │ Sort: [Most Recent ▼] &nbsp;&nbsp; 26 articles │<br>
+        ├──────────────────────────────────────┤<br>
+        │ ┌─── FEATURED REPORT ────────────┐   │<br>
+        │ │ Hero card (large, Pievra report)│   │<br>
+        │ └────────────────────────────────┘   │<br>
+        ├────────────────────────┬─────────────┤<br>
+        │ ┌──────┐ ┌──────┐     │ Protocol    │<br>
+        │ │Card 1│ │Card 2│     │ Status      │<br>
+        │ └──────┘ └──────┘     │ ──────────  │<br>
+        │ ┌──────┐ ┌──────┐     │ Newsletter  │<br>
+        │ │Card 3│ │Card 4│     │ ──────────  │<br>
+        │ └──────┘ └──────┘     │ Trending    │<br>
+        │ ┌──────┐ ┌──────┐     │             │<br>
+        │ │Card 5│ │Card 6│     │             │<br>
+        │ └──────┘ └──────┘     │             │<br>
+        └────────────────────────┴─────────────┘
+      </div>
+      <div style="margin-top:12px">
+        <strong style="color:#16a34a">Pros:</strong> Visual impact, scannable, familiar news pattern<br>
+        <strong style="color:#dc2626">Cons:</strong> More complex grid, needs good images/thumbnails
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Feed Layout</h3>
+      <p>Think Hacker News / Product Hunt. Clean single-column list. Each row: title + source + category badge + protocol tags + share buttons + timestamp. Dense, fast to scan. Sidebar for filters.</p>
+      <div style="margin-top:12px;padding:16px;background:#f8f8f8;border-radius:8px;font-family:monospace;font-size:12px;line-height:1.8;color:#555">
+        ┌──────────────────────────────────────┐<br>
+        │ Nav: Logo | News | Marketplace | ... │<br>
+        ├─────────────────────────┬────────────┤<br>
+        │                         │ Filters    │<br>
+        │ ┌─ PINNED REPORT ────┐  │ [Category] │<br>
+        │ │ Featured analysis   │  │ [Protocol] │<br>
+        │ └────────────────────┘  │ ──────────│<br>
+        │                         │ Sort       │<br>
+        │ 1. Article title...     │ [Recent ▼] │<br>
+        │    Source · 2h · 🔖 📤  │ ──────────│<br>
+        │ 2. Article title...     │ Protocol   │<br>
+        │    Source · 5h · 🔖 📤  │ Status     │<br>
+        │ 3. Article title...     │ ──────────│<br>
+        │    Source · 1d · 🔖 📤  │ Newsletter │<br>
+        │ 4. Article title...     │            │<br>
+        │    Source · 1d · 🔖 📤  │            │<br>
+        │ ...                     │            │<br>
+        └─────────────────────────┴────────────┘
+      </div>
+      <div style="margin-top:12px">
+        <strong style="color:#16a34a">Pros:</strong> Maximum density, fast scanning, works without images, easy to build<br>
+        <strong style="color:#dc2626">Cons:</strong> Less visual, harder to feature content, less shareable
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Hybrid: Magazine Top + Feed Below</h3>
+      <p>Featured Pievra reports get the hero/magazine treatment at the top. Below that, RSS articles in a dense, sortable/filterable feed. Best of both worlds.</p>
+      <div style="margin-top:12px;padding:16px;background:#f8f8f8;border-radius:8px;font-family:monospace;font-size:12px;line-height:1.8;color:#555">
+        ┌──────────────────────────────────────┐<br>
+        │ Nav: Logo | News | Marketplace | ... │<br>
+        ├──────────────────────────────────────┤<br>
+        │ PIEVRA REPORTS (horizontal scroll)   │<br>
+        │ ┌────────┐ ┌────────┐ ┌────────┐    │<br>
+        │ │Report 1│ │Report 2│ │Report 3│ →  │<br>
+        │ │  (big) │ │  (big) │ │  (big) │    │<br>
+        │ └────────┘ └────────┘ └────────┘    │<br>
+        ├──────────────────────────────────────┤<br>
+        │ INDUSTRY FEED                        │<br>
+        │ [All] [Media Trading] [Data] [...]   │<br>
+        │ [AdCP] [MCP] [UCP] [ARTF] [A2A]     │<br>
+        │ Sort: [Most Recent ▼] &nbsp;&nbsp; 26 articles│<br>
+        ├────────────────────────┬─────────────┤<br>
+        │ ┌──────────────────┐   │ Protocol   │<br>
+        │ │ Article card     │   │ Status     │<br>
+        │ │ badges + share   │   │ ─────────  │<br>
+        │ └──────────────────┘   │ Newsletter │<br>
+        │ ┌──────────────────┐   │ ─────────  │<br>
+        │ │ Article card     │   │ Bookmarks  │<br>
+        │ │ badges + share   │   │            │<br>
+        │ └──────────────────┘   │            │<br>
+        │ ...                    │            │<br>
+        └────────────────────────┴─────────────┘
+      </div>
+      <div style="margin-top:12px">
+        <strong style="color:#16a34a">Pros:</strong> Reports get premium visibility, feed is dense and functional, clear content hierarchy<br>
+        <strong style="color:#dc2626">Cons:</strong> Slightly more complex to build, page is taller
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:24px">My recommendation: <strong>C (Hybrid)</strong>. It gives Pievra's original reports the premium treatment they deserve while keeping the RSS feed scannable and functional. The separation also makes the dual filter system (categories + protocols) cleaner since it only applies to the feed section.</p>

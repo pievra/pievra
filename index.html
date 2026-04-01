@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Pievra - The Agentic Advertising Marketplace</title>
+<meta name="description" content="The open marketplace for AI agents in programmatic advertising. 26 agents across AdCP, MCP, UCP, ARTF and A2A. Find agents, become a partner, follow protocol news."/>
+<meta name="keywords" content="AI agent marketplace, agentic advertising, AdCP, MCP, UCP, ARTF, A2A, programmatic advertising, protocol orchestration"/>
+<meta property="og:title" content="Pievra - The Agentic Advertising Marketplace"/>
+<meta property="og:description" content="26 AI agents across 5 protocols. The open marketplace for agentic advertising."/>
+<meta property="og:url" content="https://pievra.com"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://pievra.com"/>
+
+<!-- GA4 Analytics - consent-gated (GDPR/CNIL compliant) -->
+<script src="/static/consent.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #18181B;
+  --ink-soft: #52525B;
+  --ink-muted: #71717A;
+  --surface: #FEFDFB;
+  --surface-2: #F9F8F6;
+  --surface-card: #FFFFFF;
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --accent-light: #FFF7ED;
+  --accent-border: #FDBA74;
+  --sky: #0EA5E9;
+  --sky-light: #F0F9FF;
+  --border: #E4E4E7;
+  --border-strong: #D4D4D8;
+  --radius: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--surface); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+h1 { font-family: 'Instrument Serif', serif; line-height: 1.1; font-weight: 400; }
+h2,h3,h4,h5 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.2; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.fade-up { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+.fade-up-d1 { animation-delay: 0.1s; }
+.fade-up-d2 { animation-delay: 0.2s; }
+.fade-up-d3 { animation-delay: 0.3s; }
+.fade-up-d4 { animation-delay: 0.4s; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* NAV - light */
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-dark { background: var(--ink); color: white; font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: none; cursor: pointer; transition: all .2s; }
+.btn-dark:hover { background: #27272A; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.btn-outline-dark { background: none; border: 1.5px solid var(--border-strong); color: var(--ink); font-weight: 600; font-size: 14px; padding: 9px 20px; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.btn-outline-dark:hover { border-color: var(--ink); background: var(--surface-2); }
+
+/* HERO - light, left aligned */
+.hero { background: var(--surface); padding: 48px 40px 36px; overflow: hidden; position: relative; }
+.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+.hero-content { text-align: left; }
+.hero-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent-hover); font-size: 13px; font-weight: 600; padding: 6px 18px; border-radius: 24px; margin-bottom: 16px; }
+.hero-pill .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
+.hero h1 { font-size: clamp(40px, 5vw, 60px); color: var(--ink); letter-spacing: -1px; margin-bottom: 20px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 17px; color: var(--ink-muted); max-width: 480px; line-height: 1.7; margin-bottom: 24px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* HERO VISUAL - protocol diagram on light */
+.hero-visual { position: relative; }
+.protocol-hub { position: relative; width: 100%; aspect-ratio: 1; max-width: 380px; margin: 0 auto; }
+.hub-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; background: var(--ink); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 28px; color: white; z-index: 2; }
+.hub-center .hub-dot { color: var(--accent); }
+.protocol-node { position: absolute; background: var(--surface-card); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 16px; font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all .2s; }
+.protocol-node:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(249,115,22,0.1); }
+.pn-adcp { top: 8%; left: 8%; }
+.pn-mcp { top: 3%; right: 8%; }
+.pn-ucp { bottom: 28%; right: 0%; }
+.pn-artf { bottom: 6%; right: 18%; }
+.pn-a2a { bottom: 12%; left: 3%; }
+.pn-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+
+/* STATS ROW */
+.stats-bar { background: var(--surface-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 40px; }
+.stats-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: flex-start; gap: 48px; flex-wrap: wrap; }
+.stat-cell { text-align: left; }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 32px; color: var(--ink); }
+.stat-label { font-size: 13px; color: var(--ink-muted); margin-top: 2px; }
+
+/* TRUST BAR */
+.trust-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; }
+.trust-bar-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.trust-label { font-size: 11px; font-weight: 700; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1px; }
+.trust-items { display: flex; gap: 20px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+.trust-badge { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: white; flex-shrink: 0; }
+
+/* SECTIONS */
+.section { padding: 44px 24px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-tag { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.section-title { font-size: clamp(28px, 3vw, 36px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; color: var(--ink); }
+.section-sub { font-size: 16px; color: var(--ink-muted); max-width: 560px; line-height: 1.7; margin-bottom: 28px; }
+
+/* PILLARS - asymmetric */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pillar { background: var(--surface-card); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px; transition: all .25s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.pillar:hover { border-color: var(--accent-border); box-shadow: 0 8px 32px rgba(249,115,22,.06); transform: translateY(-2px); }
+.pillar-main { }
+.pillar-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
+.pillar-icon-agents { background: var(--accent-light); color: var(--accent); }
+.pillar-icon-partners { background: var(--sky-light); color: var(--sky); }
+.pillar-icon-news { background: #F5F3FF; color: #7C3AED; }
+.pillar-title { font-weight: 800; font-size: 18px; margin-bottom: 8px; color: var(--ink); }
+.pillar-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 14px; flex: 1; }
+.pillar-meta { font-size: 12px; color: var(--ink-muted); margin-bottom: 16px; }
+.pillar-cta { display: inline-flex; align-items: center; gap: 6px; background: var(--ink); color: white; font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.pillar-cta:hover { background: #27272A; transform: translateY(-1px); }
+
+/* FEATURED AGENTS */
+.agents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.agent-card { background: var(--surface-card); border: 1.5px solid var(--border); border-radius: 14px; padding: 24px; transition: all .2s ease; }
+.agent-card:hover { border-color: var(--accent-border); box-shadow: 0 8px 28px rgba(249,115,22,.06); transform: translateY(-3px); }
+.agent-card.premium { border-color: var(--accent-border); background: linear-gradient(135deg, white 0%, var(--accent-light) 100%); }
+.agent-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.agent-name { font-weight: 700; font-size: 16px; color: var(--ink); }
+.agent-org { font-size: 12px; color: var(--ink-muted); margin-top: 4px; }
+.agent-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; }
+.agent-meta { display: flex; align-items: center; justify-content: space-between; }
+.agent-tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; display: inline-block; }
+.t-adcp { background: #DBEAFE; color: #1E40AF; }
+.t-mcp { background: #F3E8FF; color: #7E22CE; }
+.t-ucp { background: #DCFCE7; color: #166534; }
+.t-artf { background: #FEF9C3; color: #854D0E; }
+.t-a2a { background: #FFE4E6; color: #BE123C; }
+.status-badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+.status-live { background: #DCFCE7; color: #166534; }
+.agent-link { background: var(--ink); color: white; border: none; border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-block; transition: all .2s; }
+.agent-link:hover { background: #27272A; transform: translateY(-1px); }
+
+/* NEWS - horizontal cards */
+.news-list { display: flex; flex-direction: column; gap: 12px; }
+.news-card { background: var(--surface-card); border: 1.5px solid var(--border); border-radius: 14px; padding: 24px 28px; transition: all .2s ease; text-decoration: none; color: inherit; display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; }
+.news-card:hover { border-color: var(--accent-border); box-shadow: 0 4px 20px rgba(249,115,22,.04); transform: translateX(4px); }
+.news-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; display: inline-block; white-space: nowrap; }
+.news-body { min-width: 0; }
+.news-title { font-weight: 700; font-size: 17px; line-height: 1.35; margin-bottom: 4px; color: var(--ink); }
+.news-excerpt { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+.news-date { font-size: 12px; color: var(--ink-muted); white-space: nowrap; }
+.news-arrow { font-size: 18px; color: var(--ink-muted); transition: all .2s; }
+.news-card:hover .news-arrow { color: var(--accent); transform: translateX(4px); }
+
+/* CTA BANNER - dark accent section */
+.cta-banner { background: var(--ink); padding: 48px 24px; position: relative; overflow: hidden; }
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(249,115,22,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+.cta-banner h2 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(32px, 4vw, 48px); color: white; margin-bottom: 16px; letter-spacing: -0.5px; }
+.cta-banner h2 em { font-style: italic; color: var(--accent); }
+.cta-banner p { font-size: 16px; color: rgba(255,255,255,.5); max-width: 460px; margin: 0 auto 32px; line-height: 1.7; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-accent-on-dark { background: var(--accent); color: white; font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.btn-accent-on-dark:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(249,115,22,0.3); }
+.btn-outline-light { display: inline-flex; align-items: center; gap: 8px; background: none; border: 1.5px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7); font-weight: 600; font-size: 15px; padding: 13px 28px; border-radius: 10px; text-decoration: none; transition: all .2s; }
+.btn-outline-light:hover { border-color: rgba(255,255,255,.35); color: #fff; }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 36px 24px 20px; border-top: 1px solid rgba(255,255,255,.06); }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 32px; }
+.footer-logo { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: white; }
+.footer-logo 
+.footer-brand p { font-size: 13px; color: #71717A; line-height: 1.7; margin-top: 12px; max-width: 220px; }
+.footer-col h4 { font-size: 12px; font-weight: 700; color: #A1A1AA; margin-bottom: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 14px; color: #71717A; text-decoration: none; transition: color 0.2s; padding: 2px 0; display: inline-block; }
+.footer-col ul li a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 13px; color: #52525B; }
+.footer-social { display: flex; gap: 16px; }
+.footer-social a { color: #71717A; text-decoration: none; font-size: 14px; transition: color .2s; padding: 4px 0; }
+.footer-social a:hover { color: var(--accent); }
+
+/* HAMBURGER */
+
+.hamburger:hover { background: var(--surface-2); }
+.hamburger svg { display: block; }
+
+
+
+
+
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  
+  
+  
+  
+  .hero { padding: 32px 20px 28px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .stats-bar { padding: 24px 20px; }
+  .stats-inner { gap: 32px; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar-main { padding: 24px; }
+  .agents-grid { grid-template-columns: 1fr; }
+  .news-card { grid-template-columns: 1fr; gap: 8px; }
+  .news-arrow { display: none; }
+  .news-date { order: -1; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 600px) {
+  .stats-inner { gap: 20px; }
+  .stat-num { font-size: 24px; }
+  .hero h1 { font-size: 36px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { text-align: center; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+}
+.btn-accent{background:var(--accent,#F97316);color:white;font-weight:700;font-size:14px;padding:10px 20px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-block}.btn-accent:hover{background:var(--accent-hover,#EA580C);transform:translateY(-1px);box-shadow:0 4px 12px rgba(249,115,22,0.25)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="background:var(--surface,#FEFDFB);height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 40px;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border,#E4E4E7)">
+<div style="justify-self:start"><a href="/" style="text-decoration:none;display:inline-block"><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--ink,#18181B);letter-spacing:-0.5px">pievra<span style="color:var(--accent,#F97316)">.</span></span></a></div>
+<div style="display:flex;gap:4px;align-items:center;justify-self:center">
+<a href="/marketplace" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Marketplace</a>
+<a href="/partners" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Partners</a>
+<a href="/news" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">News</a>
+<a href="/news/analytics" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Analytics</a>
+<a href="/careers" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Careers</a>
+</div>
+<div style="display:flex;gap:4px;align-items:center;justify-self:end">
+<a href="/signin" style="color:var(--ink-muted,#71717A);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .2s">Sign In</a>
+<a href="/signup" style="background:var(--accent,#F97316);color:white;font-weight:700;text-decoration:none;font-size:14px;padding:8px 14px;border-radius:8px;transition:all .2s">Sign Up Free</a>
+</div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-pill fade-up"><span class="pill-dot"></span> 26 agents across 5 protocols</div>
+      <h1 class="fade-up fade-up-d1">Where AI agents <em>negotiate, buy, and optimize</em> ads</h1>
+      <p class="hero-sub fade-up fade-up-d2">The first open marketplace unifying every agentic advertising protocol. Deploy agents that talk across AdCP, MCP, UCP, ARTF, and A2A from a single directory.</p>
+      <div class="hero-actions fade-up fade-up-d3">
+        <a href="/marketplace" class="btn-accent" style="padding:14px 28px;font-size:15px">Browse Agents</a>
+        <a href="/partners" class="btn-outline-dark" style="padding:13px 28px;font-size:15px">Find a Partner</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up fade-up-d2">
+      <div class="protocol-hub">
+        <div class="hub-center">p<span class="hub-dot">.</span></div>
+        <div class="protocol-node pn-adcp"><span class="pn-dot" style="background:#1E40AF"></span>AdCP</div>
+        <div class="protocol-node pn-mcp"><span class="pn-dot" style="background:#7E22CE"></span>MCP</div>
+        <div class="protocol-node pn-ucp"><span class="pn-dot" style="background:#166534"></span>UCP</div>
+        <div class="protocol-node pn-artf"><span class="pn-dot" style="background:#854D0E"></span>ARTF</div>
+        <div class="protocol-node pn-a2a"><span class="pn-dot" style="background:#BE123C"></span>A2A</div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1" viewBox="0 0 400 400">
+          <line x1="200" y1="200" x2="80" y2="50" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="200" y1="200" x2="320" y2="40" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="200" y1="200" x2="360" y2="260" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="200" y1="200" x2="300" y2="350" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="200" y1="200" x2="60" y2="320" stroke="#E4E4E7" stroke-width="1" stroke-dasharray="4 4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner fade-up">
+    <div class="stat-cell"><div class="stat-num">26</div><div class="stat-label">Listed Agents</div></div>
+    <div class="stat-cell"><div class="stat-num">5</div><div class="stat-label">Protocols</div></div>
+    <div class="stat-cell"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat-cell"><div class="stat-num">Free</div><div class="stat-label">Early Access</div></div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-label">Protocol stewards</span>
+    <div class="trust-items">
+      <div class="trust-item"><div class="trust-badge" style="background:#1D4ED8">AAO</div>Agentic Advertising Org</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#DC2626">IAB</div>IAB Tech Lab</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#334155">LF</div>Linux Foundation</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#16A34A">G</div>Google</div>
+      <div class="trust-item"><div class="trust-badge" style="background:#525252">A</div>Anthropic</div>
+    </div>
+  </div>
+</div>
+
+<!-- THREE PILLARS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="pillars">
+      <div class="pillar pillar-main reveal">
+        <div class="pillar-icon pillar-icon-agents">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        </div>
+        <h3 class="pillar-title">Agent Marketplace</h3>
+        <p class="pillar-desc">The open directory of every AI agent, MCP server, and protocol tool in agentic advertising. Sourced from AdCP, IAB AAMP, Prebid, A2A, and the IAB Agent Registry.</p>
+        <p class="pillar-meta">26 agents &middot; 6 categories &middot; 5 protocols</p>
+        <a href="/marketplace" class="pillar-cta">Browse All Agents &rarr;</a>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon pillar-icon-partners">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="pillar-title">Partner Directory</h3>
+        <p class="pillar-desc">Implementation experts, technology vendors, and consultancies who deploy AI agents for programmatic advertising.</p>
+        <p class="pillar-meta">Open for applications &middot; 7 categories</p>
+        <a href="/partners" class="pillar-cta">Find a Partner &rarr;</a>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon pillar-icon-news">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="pillar-title">Protocol News</h3>
+        <p class="pillar-desc">In-depth analysis of every AI protocol shaping programmatic advertising. Real launch dates, correct versions, verified facts.</p>
+        <p class="pillar-meta">5 protocol deep-dives &middot; Weekly updates</p>
+        <a href="/news" class="pillar-cta">Read Latest &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED AGENTS -->
+<section class="section" style="background:var(--surface-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-tag">Featured Open Source Projects</div>
+    <h2 class="section-title reveal">Agents you can deploy today</h2>
+    <p class="section-sub reveal">Real open source projects from Prebid, IAB Tech Lab, and the AdCP ecosystem. Every listing links to its source repo.</p>
+
+    <div class="agents-grid">
+      <div class="agent-card premium reveal">
+        <div class="agent-head">
+          <div>
+            <div class="agent-name">Prebid Sales Agent</div>
+            <div class="agent-org">Media Trading &middot; Prebid.org</div>
+          </div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="agent-desc">Open-source publisher-side AI agent that automates programmatic ad sales. Exposes inventory via MCP, integrates with Google Ad Manager. Deploy via Docker in 2 minutes.</div>
+        <div class="agent-meta">
+          <div style="display:flex;gap:6px">
+            <span class="agent-tag t-adcp">AdCP</span><span class="agent-tag t-mcp">MCP</span><span class="agent-tag t-a2a">A2A</span>
+          </div>
+          <a href="https://github.com/prebid/salesagent" target="_blank" class="agent-link">View on GitHub &rarr;</a>
+        </div>
+      </div>
+
+      <div class="agent-card premium reveal">
+        <div class="agent-head">
+          <div>
+            <div class="agent-name">IAB Buyer Agent</div>
+            <div class="agent-org">Media Trading &middot; IAB Tech Lab</div>
+          </div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="agent-desc">AI-powered media buying system built on CrewAI and IAB OpenDirect 2.1. Receives campaign briefs, allocates budget across channels, and books deals programmatically.</div>
+        <div class="agent-meta">
+          <div style="display:flex;gap:6px">
+            <span class="agent-tag t-mcp">MCP</span><span class="agent-tag t-a2a">A2A</span>
+          </div>
+          <a href="https://github.com/IABTechLab/buyer-agent" target="_blank" class="agent-link">View on GitHub &rarr;</a>
+        </div>
+      </div>
+
+      <div class="agent-card premium reveal">
+        <div class="agent-head">
+          <div>
+            <div class="agent-name">AdCP Protocol Server</div>
+            <div class="agent-org">Infrastructure &middot; AgenticAdvertising.org</div>
+          </div>
+          <span class="status-badge status-live">Live</span>
+        </div>
+        <div class="agent-desc">Official reference implementation of the Ad Context Protocol. Campaign negotiation, deal management, and media buy protocols with Express server and OpenAPI specs.</div>
+        <div class="agent-meta">
+          <div style="display:flex;gap:6px">
+            <span class="agent-tag t-adcp">AdCP</span><span class="agent-tag t-mcp">MCP</span>
+          </div>
+          <a href="https://github.com/adcontextprotocol/adcp" target="_blank" class="agent-link">View on GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px">
+      <a href="/marketplace" class="btn-dark" style="padding:14px 28px;font-size:15px">Browse all 26 agents &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST NEWS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-tag">Protocol Intelligence</div>
+    <h2 class="section-title reveal">Latest protocol analysis</h2>
+    <p class="section-sub reveal">In-depth coverage of every agentic advertising protocol. Verified facts, real launch dates, no hype.</p>
+
+    <div class="news-list">
+      <a href="/news" class="news-card reveal">
+        <div class="news-badge t-adcp">AdCP</div>
+        <div class="news-body">
+          <h3 class="news-title">Ad Context Protocol (AdCP) - The Open Standard That Launched Agentic Advertising</h3>
+          <p class="news-excerpt">First open standard enabling AI agents to execute advertising tasks across any platform. 20+ founding members, built on MCP and A2A.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="news-date">Oct 15, 2025</div>
+          <div class="news-arrow">&rarr;</div>
+        </div>
+      </a>
+      <a href="/news" class="news-card reveal">
+        <div class="news-badge t-mcp">MCP</div>
+        <div class="news-body">
+          <h3 class="news-title">Model Context Protocol - From Anthropic Side Project to Linux Foundation Standard</h3>
+          <p class="news-excerpt">Universal context exchange and tool-connection standard with 97M+ monthly downloads. Now under Linux Foundation governance.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="news-date">Nov 25, 2025</div>
+          <div class="news-arrow">&rarr;</div>
+        </div>
+      </a>
+      <a href="/news" class="news-card reveal">
+        <div class="news-badge t-artf">ARTF</div>
+        <div class="news-body">
+          <h3 class="news-title">ARTF v1.0 - IAB Tech Lab's Framework That Promises to Cut RTB Latency by 80%</h3>
+          <p class="news-excerpt">Containerisation architecture targeting RTB round-trip from 600-800ms to ~100ms. Public comment period opened January 2026.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="news-date">Nov 13, 2025</div>
+          <div class="news-arrow">&rarr;</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="margin-top:32px">
+      <a href="/news" style="display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;font-size:15px;text-decoration:none;transition:gap .2s" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Read all protocol news &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-inner reveal">
+    <h2>Five protocols. <em>One marketplace.</em></h2>
+    <p>Pievra aggregates every AI agent across all five agentic advertising protocols into one searchable directory.</p>
+    <div class="cta-actions">
+      <a href="/marketplace" class="btn-accent-on-dark">Browse the Marketplace</a>
+      <a href="/partners" class="btn-outline-light">Become a Partner</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">pievra<span class="logo-dot">.</span></div>
+        <p>The agentic advertising marketplace. Every AI agent across all five protocols in one directory.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/marketplace">Marketplace</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li><a href="/news">Protocol News</a></li>
+          <li><a href="/campaign-planner">Campaign Planner</a></li>
+          <li><a href="/advertise">Advertise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/pievra">GitHub</a></li>
+          <li><a href="https://discord.gg/pievra">Discord</a></li>
+          <li><a href="/for-agencies">For Agencies</a></li>
+          <li><a href="/for-brands">For Brands</a></li>
+          <li><a href="/for-publishers">For Publishers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacy & GDPR</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+          <li><a href="/privacy#cnil">CNIL Compliance</a></li>
+          <li><a href="/careers">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pievra. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://github.com/pievra" target="_blank">GitHub</a>
+        <a href="https://twitter.com/pievra" target="_blank">Twitter/X</a>
+        <a href="https://discord.gg/pievra" target="_blank">Discord</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SEO structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pievra",
+  "url": "https://pievra.com",
+  "description": "The agentic advertising marketplace. Find AI agents across AdCP, MCP, UCP, ARTF and A2A protocols.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<!-- Scroll reveal + mobile menu -->
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('mobile-menu');
+    if (menu && menu.classList.contains('open') && !e.target.closest('.hamburger') && !e.target.closest('#mobile-menu')) {
+      menu.classList.remove('open');
+    }
+  });
+
+  var menuLinks = document.querySelectorAll('#mobile-menu a');
+  menuLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
